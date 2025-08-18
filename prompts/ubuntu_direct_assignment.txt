@@ -1,0 +1,18 @@
+You will be provided a set of
+conversations extracted from a chat log ,
+as well as the next chat message in the
+sequence . Respond with a JSON object
+that contains the conversation ID of
+the message the last chat message is
+responding to / following up to .
+Alternatively , if the last chat message
+seems to be starting its own
+conversation , respond with
+{" conversation_id ": 0}. If the last chat
+message is just a system message ,
+respond with {" conversation_id ": 0}.
+
+Examples :
+{" conversation_id ": 0}
+{" conversation_id ": 11}
+{" conversation_id ": 7}

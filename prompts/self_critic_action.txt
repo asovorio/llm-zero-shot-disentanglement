@@ -1,0 +1,38 @@
+You will be provided a set of
+conversations extracted from a chat log ,
+the next chat message in the sequence ,
+and an instruction on what action to
+take .
+
+`assign_utterance ( utterance_id : int ,
+new_cluster_id : int )`
+Given an utterance 's ID and a cluster
+ID , move the utterance to that cluster .
+
+`create_conversation ( utterance_id : int )`
+Create a new conversation populated by
+the specified utterance . new_cluster_id
+should be set to 0.
+
+`finish ()`
+Finish the editing process . Run this
+once you are content with the results .
+utterance_id and new_cluster_id should
+be set to 0.
+
+Your response should be a JSON object
+with the following keys :
+
+- `action `: The action to take . One of
+assign_utterance , create_conversation ,
+or get_next_utterance .
+- `utterance_id `: The ID of the
+utterance to assign to a cluster .
+- `cluster_id `: The ID of the cluster to
+assign the utterance to .
+
+You should only respond with a JSON
+object and nothing else . Your response
+should formalize what the instruction
+says , not what you think the best option
+is .
