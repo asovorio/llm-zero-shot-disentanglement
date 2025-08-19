@@ -2,14 +2,13 @@
 from __future__ import annotations
 import argparse
 from pathlib import Path
-from typing import List
-from src.llm_disentangle.config import load_config
-from src.llm_disentangle.datasets.ubuntu_irc import UbuntuIrcDataset
-from src.llm_disentangle.api import OpenAIClient
-from src.llm_disentangle.methods import BestResponseRunner
-from src.llm_disentangle.prompting import PromptLoader
-from src.llm_disentangle.utils.io import write_jsonl, ensure_dir
-from src.llm_disentangle.utils.logging import setup_logger
+from src.disentangle.config import load_config
+from src.disentangle.datasets.ubuntu_irc import UbuntuIrcDataset
+from src.disentangle.api import OpenAIClient
+from src.disentangle.methods import BestResponseRunner
+from src.disentangle.prompting import PromptLoader
+from src.disentangle.utils.io import write_jsonl, ensure_dir
+from src.disentangle.utils.logging import setup_logger
 
 logger = setup_logger(__name__)
 
@@ -28,7 +27,7 @@ def main():
     if cfg.run.dataset.lower() != "ubuntu_irc":
         raise SystemExit("Best-Response script currently wired for Ubuntu IRC chunks.")
     ds = UbuntuIrcDataset(
-        data_root=(Path(cfg.paths.data_dir) / "ubuntu_irc_src" / "repo"),
+        data_root=Path(cfg.paths.processed_dir) / "ubuntu_irc",
         split=cfg.run.split,
         chunk_size=cfg.run.chunk_size,
         seed=cfg.run.seed,

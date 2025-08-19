@@ -1,50 +1,30 @@
 from __future__ import annotations
 from dataclasses import dataclass
-from typing import List, Dict, Any
-from ..api.openai_client import OpenAIClient
-from ..prompting.loader import PromptLoader
-from ..prompting.schema import parse_json_object
+from typing import Dict, Any, List, Tuple
+import numpy as np
+from .metrics import compute_metrics
+from ..utils.io import write_jsonl, save_json
 from ..utils.logging import setup_logger
 
 logger = setup_logger(__name__)
 
 @dataclass
-class SelfCriticRefiner:
-    client: OpenAIClient
-    prompts: PromptLoader
+class EvaluationReport:
+    per_chunk: List[Dict[str, Any]]
+    aggregate: Dict[str, float]
 
-    def refine_chunk(self, chunk_id: str, texts: List[str], clusters: List[int], max_iters: int = 1) -> Dict[str, Any]:
-        """
-        Simple Examine->Act loop over a single chunk.
-        """
-        sys_examine = self.prompts.load("ubuntu_self_critic_examine.txt")
-        sys_action  = self.prompts.load("ubuntu_self_critic_action.txt")
+def evaluate_chunks(golds: List[List[int]], preds: List[List[int]], metrics: List[str]) -> EvaluationReport:
+    per_chunk: List[Dict[str, Any]] = []
+    mats: Dict[str, List[float]] = {m: [] for m in metrics}
+    for g, p in zip(golds, preds):
+        m = compute_metrics(g, p, metrics)
+        per_chunk.append(m)
+        for k, v in m.items():
+            mats[k].append(v)
+    agg = {k: float(np.mean(v)) if v else 0.0 for k, v in mats.items()}
+    return EvaluationReport(per_chunk=per_chunk, aggregate=agg)
 
-        for _ in range(max_iters):
-            # Examine
-            state = "\n".join([f"[{i}] (c={c}) {t}" for i, (c, t) in enumerate(zip(clusters, texts))])
-            out = self.client.chat(system=sys_examine, user=state)
-            obj = parse_json_object(out)
-            edits = obj.get("edits", [])
-
-            if not edits:
-                break
-
-            # Act
-            action_input = {
-                "current": clusters,
-                "edits": edits
-            }
-            out2 = self.client.chat(system=sys_action, user=json_dumps(action_input))
-            obj2 = parse_json_object(out2)
-            new_assignments = obj2.get("assignments")
-            if isinstance(new_assignments, list) and len(new_assignments) == len(clusters):
-                clusters = [int(x) for x in new_assignments]
-            else:
-                break
-
-        return {"chunk_id": chunk_id, "clusters": clusters}
-
-def json_dumps(o: Any) -> str:
-    import json
-    return json.dumps(o, ensure_ascii=False)
+def save_report(path_jsonl: str, path_summary: str, report: EvaluationReport) -> None:
+    write_jsonl(path_jsonl, report.per_chunk)
+    save_json(path_summary, report.aggregate)
+    logger.info("Saved per-chunk metrics to %s and summary to %s", path_jsonl, path_summary)

@@ -3,18 +3,18 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 from typing import List, Dict, Any
-from src.llm_disentangle.config import load_config
-from src.llm_disentangle.datasets.ubuntu_irc import UbuntuIrcDataset
-from src.llm_disentangle.datasets.movie_dialogue import MovieDialogueDataset
-from src.llm_disentangle.eval.scorer import evaluate_chunks, save_report
-from src.llm_disentangle.utils.io import read_jsonl, ensure_dir
-from src.llm_disentangle.utils.logging import setup_logger
+from src.disentangle.config import load_config
+from src.disentangle.datasets.ubuntu_irc import UbuntuIrcDataset
+from src.disentangle.datasets.movie_dialogue import MovieDialogueDataset
+from src.disentangle.eval.scorer import evaluate_chunks, save_report
+from src.disentangle.utils.io import read_jsonl, ensure_dir
+from src.disentangle.utils.logging import setup_logger
 
 logger = setup_logger(__name__)
 
 def _load_gold_and_pred_ubuntu(cfg, predictions_path: Path):
     ds = UbuntuIrcDataset(
-        data_root=(Path(cfg.paths.data_dir) / "ubuntu_irc_src" / "repo"),
+        data_root=Path(cfg.paths.processed_dir) / "ubuntu_irc",
         split=cfg.run.split,
         chunk_size=cfg.run.chunk_size,
         seed=cfg.run.seed,
