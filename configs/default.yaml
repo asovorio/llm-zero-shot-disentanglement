@@ -7,9 +7,9 @@ run:
 
 model:
   provider: openai
-  name: gpt-4o                     # or gpt-4o-mini
+  name: gpt-4o-mini                     # or gpt-4o-mini
   temperature: 0
-  max_tokens: 200                  # adjust per prompt
+  max_tokens: 16                  # adjust per prompt
   structured_outputs: true         # JSON-only outputs for core methods
 
 paths:

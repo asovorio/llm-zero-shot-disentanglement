@@ -20,7 +20,7 @@ def main():
     args = ap.parse_args()
     cfg = load_config(args.config)
 
-    prompts = PromptLoader(cfg.paths.prompts_dir)
+    prompts = PromptLoader(Path(cfg.paths.prompts_dir))
     client = OpenAIClient(model=cfg.model.name, temperature=cfg.model.temperature,
                           max_tokens=cfg.model.max_tokens, structured=cfg.model.structured_outputs)
     refiner = SelfCriticRefiner(client=client, prompts=prompts)

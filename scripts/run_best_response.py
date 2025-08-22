@@ -18,7 +18,7 @@ def main():
     args = ap.parse_args()
     cfg = load_config(args.config)
 
-    prompts = PromptLoader(cfg.paths.prompts_dir)
+    prompts = PromptLoader(Path(cfg.paths.prompts_dir))
     client = OpenAIClient(model=cfg.model.name, temperature=cfg.model.temperature,
                           max_tokens=cfg.model.max_tokens, structured=cfg.model.structured_outputs)
     runner = BestResponseRunner(client=client, prompts=prompts)
@@ -39,6 +39,7 @@ def main():
     for ch in chunks:
         texts = [m.text for m in ch.messages]
         out = runner.run_chunk(ch.chunk_id, texts)
+        logger.info("Ran a chunk!")
         rows.append(out)
 
     write_jsonl(results_dir / "predictions.jsonl", rows)
