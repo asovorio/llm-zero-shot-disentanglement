@@ -3,16 +3,11 @@
 Prepare Ubuntu IRC gold JSONL with conv_id per message.
 
 Usage (from repo root):
-  python scripts/prepare_data.py \
-    --ubuntu_repo data/raw/ubuntu_irc_src/repo \
-    --split train \
-    --out data/processed/ubuntu_irc
-
-You can also pass an explicit file:
-  python scripts/prepare_data.py --input /path/to/train.json --split train --out data/processed/ubuntu_irc
+  python scripts/prepare_data.py --input data/raw/ubuntu_hf_export/ubuntu_test.jsonl --split test --out data/processed/ubuntu_irc
 
 Output:
-  data/processed/ubuntu_irc/ubuntu_train.jsonl   # rows with: id, author, text, timestamp, conv_id, is_system
+  data/processed/ubuntu_irc/ubuntu_<split>.jsonl
+  Rows contain: id, author, text, timestamp, conv_id, is_system, is_context
 """
 
 from __future__ import annotations
@@ -20,7 +15,7 @@ import argparse
 import json
 import re
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional
 
 SYSTEM_PAT = re.compile(r"\b(join|part|quit|nick|mode|topic)\b", re.I)
 
@@ -32,15 +27,11 @@ def _ensure_dir(p: Path) -> Path:
     return p
 
 def _list_candidates(root: Path, split: str) -> List[Path]:
-    """
-    Search for plausible raw files under the cloned ubuntu repo.
-    We look for files with the split name in them and extensions .json/.jsonl.
-    """
+    """Search for plausible raw files under a repo; prefer shorter paths."""
     pats = [f"*{split}*.json", f"*{split}*.jsonl"]
     out: List[Path] = []
     for pat in pats:
         out.extend(root.rglob(pat))
-    # Heuristic: prefer shorter paths (likely top-level prepared files)
     out.sort(key=lambda p: (len(p.parts), p.name))
     return out
 
@@ -57,13 +48,11 @@ def _read_json_or_jsonl(path: Path) -> List[Dict[str, Any]]:
     else:
         with path.open("r", encoding="utf-8") as f:
             obj = json.load(f)
-        # accept either a list of messages OR an object with a top-level list (e.g., {"messages":[...]} or {"data":[...]})
         if isinstance(obj, list):
             return obj
         for k in ("messages", "data", "rows", "items"):
             if k in obj and isinstance(obj[k], list):
                 return obj[k]
-        # Some repos store a list of "conversations", each with its own messages
         if "conversations" in obj and isinstance(obj["conversations"], list):
             rows = []
             for conv in obj["conversations"]:
@@ -108,15 +97,26 @@ def _norm_ts(row: Dict[str, Any]) -> float:
     return 0.0
 
 def _norm_parent(row: Dict[str, Any]) -> Optional[str]:
-    """
-    Try to extract an explicit gold parent id, if present.
-    If absent, return None (we'll rely on other link encodings if available).
-    """
+    """Extract a single explicit parent id if present; else None."""
     for k in ("reply_to", "parent", "parent_id"):
-        if k in row and row[k]:
+        if k in row and row[k] not in (None, "", 0):
             return str(row[k])
-    # Some formats embed links as objects: {"links":[{"parent":123,"child":456},...]}
     return None
+
+def _norm_is_system(row: Dict[str, Any], text_fallback: str) -> bool:
+    if "is_system" in row:
+        try:
+            return bool(row["is_system"])
+        except Exception:
+            pass
+    return bool(SYSTEM_PAT.search(text_fallback)) if isinstance(text_fallback, str) else False
+
+def _norm_is_context(row: Dict[str, Any]) -> bool:
+    # Pass through from your HF export; default False if missing
+    try:
+        return bool(row.get("is_context", False))
+    except Exception:
+        return False
 
 # -----------------------------
 # Union-Find for gold threads
@@ -161,43 +161,38 @@ def convert(
 
     rows = _read_json_or_jsonl(input_path)
 
-    # Normalize messages
+    # Normalize messages (pass through is_context and prefer provided is_system)
     msgs: List[Dict[str, Any]] = []
     for r in rows:
+        text = _norm_text(r)
         m = {
             "id": _norm_id(r),
             "author": _norm_author(r),
-            "text": _norm_text(r),
+            "text": text,
             "timestamp": _norm_ts(r),
-            "parent": _norm_parent(r),   # may be None
+            "parent": _norm_parent(r),         # may be None
+            "is_system": _norm_is_system(r, text),
+            "is_context": _norm_is_context(r), # <-- NEW
         }
-        # quick system-heuristic
-        txt = m["text"]
-        m["is_system"] = bool(SYSTEM_PAT.search(txt)) if isinstance(txt, str) else False
         msgs.append(m)
 
     # Build id->index map
     id2idx = {m["id"]: i for i, m in enumerate(msgs)}
 
-    # If there are no parent links in rows, try to discover link arrays at top-level (rare)
-    # (We keep it minimal; users can extend if their copy stores links separately.)
     # Reconstruct gold conversation components via union-find on parent links
     dsu = DSU(len(msgs))
     for i, m in enumerate(msgs):
         p = m.get("parent")
         if p is None:
             continue
-        if p in id2idx:
-            dsu.union(i, id2idx[p])
-        else:
-            # unseen parent id -> ignore (could be outside the sampled window)
-            pass
+        j = id2idx.get(p)
+        if j is not None:
+            dsu.union(i, j)
 
     # Assign conv_id = first-seen root order (stable, deterministic)
     root2cid: Dict[int, int] = {}
     next_cid = 0
     conv_id: List[int] = [0] * len(msgs)
-    # sort messages deterministically for id assignment (by timestamp, then stable index)
     order = sorted(range(len(msgs)), key=lambda i: (msgs[i]["timestamp"], i))
     for i in order:
         r = dsu.find(i)
@@ -218,6 +213,7 @@ def convert(
                 "timestamp": m["timestamp"],
                 "conv_id": conv_id[i],
                 "is_system": m["is_system"],
+                "is_context": m["is_context"],   # <-- NEW
             }
             f.write(json.dumps(row, ensure_ascii=False) + "\n")
 
@@ -230,9 +226,9 @@ def convert(
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--ubuntu_repo", type=Path, default=None,
-                    help="Path to cloned jkkummerfeld/irc-disentanglement repo")
+                    help="(Optional) Path to cloned jkkummerfeld/irc-disentanglement repo")
     ap.add_argument("--input", type=Path, default=None,
-                    help="Optional direct path to a split file (.json/.jsonl)")
+                    help="Direct path to a split file (.json/.jsonl); e.g., data/raw/ubuntu_hf_export/ubuntu_test.jsonl")
     ap.add_argument("--split", required=True, choices=["train", "dev", "test"])
     ap.add_argument("--out", type=Path, required=True, help="Processed output dir (e.g., data/processed/ubuntu_irc)")
     args = ap.parse_args()
