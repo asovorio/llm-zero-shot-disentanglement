@@ -1,6 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 from ..api.openai_client import OpenAIClient
 from ..prompting.loader import PromptLoader
 from ..prompting.schema import parse_json_object
@@ -12,49 +12,82 @@ logger = setup_logger(__name__)
 class BestResponseRunner:
     client: OpenAIClient
     prompts: PromptLoader
+    dataset: str = "ubuntu_irc"  # <- add a dataset hint so we can apply Ubuntu rule
 
-    def run_chunk(self, chunk_id: str, texts: List[str]) -> Dict[str, Any]:
+    def run_chunk(
+        self,
+        chunk_id: str,
+        ids: List[str],
+        texts: List[str],
+        is_system: Optional[List[bool]] = None,
+    ) -> Dict[str, Any]:
         """
-        Best-Response: for each message i, ask LLM to output parent_index in [0..i].
-        Build clusters by linking to parent or to itself (root).
-        Returns a mapping with 'parents' and 'clusters' (per message).
+        Best-Response (paper-faithful + Ubuntu system-msg enforcement):
+        - Show chat log with message IDs.
+        - For Ubuntu system messages, force parent=self (no model call needed).
+        - Otherwise, ask model for {"response_to": <ID>} and map to index.
         """
-        system = self.prompts.load("ubuntu_best_response.txt")
+        assert len(ids) == len(texts), "ids and texts length mismatch"
+        n = len(ids)
+        if is_system is None:
+            is_system = [False] * n
+
+        system_prompt = self.prompts.load("ubuntu_best_response.txt" if self.dataset.lower().startswith("ubuntu")
+                                          else "movie_best_response.txt")
+
         parents: List[int] = []
-        for i, text in enumerate(texts):
-            history = "\n".join([f"[{j}] {t}" for j, t in enumerate(texts[:i+1])])
+        id_to_index: Dict[str, int] = {}
+
+        for i, (mid, text) in enumerate(zip(ids, texts)):
+            id_to_index[str(mid)] = i
+
+            # Ubuntu rule: system messages must be self-rooted
+            if self.dataset.lower().startswith("ubuntu") and is_system[i]:
+                parents.append(i)
+                continue
+
+            # --- render ONLY prior history here ---
+            if i == 0:
+                history = "(no prior messages)"
+            else:
+                history = "\n".join(f"{ids[j]}: {texts[j]}" for j in range(i))
+
+            # --- show current message separately ---
+            current = f"{mid}: {text}"
+
             user = (
-                "Messages (0-based index):\n"
+                "Chat log so far (ID: text):\n"
                 f"{history}\n\n"
-                f"Now choose the parent for message [{i}]. "
-                "Return JSON {\"parent_index\": <int in [0..i]>}. "
-                "Use i itself if it starts a new thread."
+                "Current message:\n"
+                f"{current}\n\n"
+                "Choose the parent for the *current* message by returning JSON:\n"
+                "{\"response_to\": <ID>}.\n"
+                "If it starts a new conversation, return its own ID."
             )
-            out = self.client.chat(system=system, user=user)
+
+            out = self.client.chat(system=system_prompt, user=user)
             obj = parse_json_object(out)
-            p = int(obj.get("parent_index", i))
-            p = min(max(p, 0), i)  # clamp
+
+            parent_id = str(obj.get("response_to", mid))
+            p = id_to_index.get(parent_id, i)
+            if p > i:  # guard against future parents
+                p = i
             parents.append(p)
 
-        # Build clusters from parent pointers (forest of trees)
         clusters = self._parents_to_clusters(parents)
         return {"chunk_id": chunk_id, "parents": parents, "clusters": clusters}
 
     @staticmethod
     def _parents_to_clusters(parents: List[int]) -> List[int]:
-        """
-        Convert parent array to conversation ids by root discovery.
-        Assign cluster id = order of first appearance of root.
-        """
         n = len(parents)
-        roots = {}
-        cluster_id = 0
+        roots: Dict[int, int] = {}
         cluster = [-1] * n
+        cluster_id = 0
 
         def find_root(i: int) -> int:
             seen = set()
             while parents[i] != i:
-                if i in seen:  # cycle guard
+                if i in seen:
                     break
                 seen.add(i)
                 i = parents[i]
