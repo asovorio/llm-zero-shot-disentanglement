@@ -2,6 +2,7 @@ from __future__ import annotations
 import json
 from typing import Any, Dict
 
+
 def parse_json_object(s: str) -> Dict[str, Any]:
     """
     Best-effort JSON parser: trims code fences and trailing text.
@@ -18,10 +19,15 @@ def parse_json_object(s: str) -> Dict[str, Any]:
     if first >= 0 and last > first:
         s = s[first:last+1]
     try:
-        return json.loads(s)
+        obj = json.loads(s)
     except Exception:
         # attempt to fix common trailing commas or single quotes
         s = s.replace("'", '"')
         s = s.replace(",}", "}")
         s = s.replace(",]", "]")
-        return json.loads(s)
+        obj = json.loads(s)
+
+    if isinstance(obj, dict):
+        obj = {(k.strip() if isinstance(k, str) else k): v for k, v in obj.items()}
+
+    return obj
