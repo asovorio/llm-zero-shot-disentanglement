@@ -18,10 +18,16 @@ def _pin_model_snapshot(name: str) -> str:
     Paper parity: prefer exact snapshots. Adjust this function if your account
     uses different snapshot aliases.
     """
-    if name in {"gpt-4o", "gpt-4o-latest"}:
+    if name in {"gpt-4o"}:
         pinned = "gpt-4o-2024-08-06"
         logger.info("Pinning model %s -> %s for paper parity.", name, pinned)
         return pinned
+
+    elif name in {"gpt-4o-mini"}:
+        pinned = "gpt-4o-mini-2024-07-18"
+        logger.info("Pinning model %s -> %s for paper parity.", name, pinned)
+        return pinned
+
     # If user provided a specific dated snapshot already, keep it.
     return name
 
@@ -40,7 +46,7 @@ def main():
         model=model_name,
         temperature=0,                   # <-- force temperature = 0
         max_tokens=cfg.model.max_tokens,
-        structured=True                  # <-- force Structured Outputs (JSON)
+        structured=cfg.model.structured_outputs  # <-- force Structured Outputs (JSON)
     )
     runner = BestResponseRunner(client=client, prompts=prompts, dataset=cfg.run.dataset)
 

@@ -29,7 +29,9 @@ def _coerce_int(value: Any) -> Optional[int]:
                 return None
     return None
 
-def _render_clusters(ids: List[str], texts: List[str], clusters: List[List[int]]) -> str:
+
+def _render_clusters(ids: List[str], authors: List[str], texts: List[str],
+                     clusters: List[List[int]]) -> str:
     lines: List[str] = []
     if not clusters:
         lines.append("No existing conversations yet.")
@@ -39,7 +41,9 @@ def _render_clusters(ids: List[str], texts: List[str], clusters: List[List[int]]
         lines.append(f"Conversation {j}:")
         if members:
             for m in members:
-                lines.append(f"{ids[m]}: {texts[m]}")
+                # author may be missing -> show UNKNOWN to avoid blank
+                auth = authors[m] if authors and authors[m] else "UNKNOWN"
+                lines.append(f"{ids[m]} | {auth}: {texts[m]}")
         else:
             lines.append("[empty]")
         lines.append("")  # blank line between clusters
@@ -47,6 +51,7 @@ def _render_clusters(ids: List[str], texts: List[str], clusters: List[List[int]]
 
 def _build_user_prompt_for_step(
     ids: List[str],
+    authors: List[str],
     texts: List[str],
     clusters: List[List[int]],
     i: int,
@@ -56,10 +61,11 @@ def _build_user_prompt_for_step(
     """
     lines: List[str] = []
     lines.append("Current conversation clusters:")
-    lines.append(_render_clusters(ids, texts, clusters))
+    lines.append(_render_clusters(ids, authors, texts, clusters))
     lines.append("")
     lines.append("Next message to assign:")
-    lines.append(f"{ids[i]}: {texts[i]}")
+    auth_i = authors[i] if authors and authors[i] else "UNKNOWN"
+    lines.append(f"{ids[i]} | {auth_i}: {texts[i]}")
     return "\n".join(lines)
 
 @dataclass
@@ -72,6 +78,7 @@ class DirectAssignmentRunner:
         self,
         chunk_id: str,
         ids_in: List[Any],
+        authors_in: Optional[List[str]],
         texts: List[str],
         is_system: Optional[List[bool]] = None,
     ) -> Dict[str, Any]:
@@ -90,9 +97,16 @@ class DirectAssignmentRunner:
         ids = _normalize_ids(ids_in)
         n = len(ids)
         assert n == len(texts), "ids and texts length mismatch"
+        assert n == len(authors_in), "ids and authors length mismatch"
         if is_system is None:
             is_system = [False] * n
         assert len(is_system) == n, "is_system length mismatch"
+        # authors may be None; normalize to list[str] of length n
+        authors: List[str] = (authors_in or [""] * n)
+
+        if len(authors) != n:
+            # be forgiving: pad/truncate to n
+            authors = (authors + [""] * n)[:n]
 
         # Choose system prompt per dataset
         if self.dataset == "ubuntu_irc":
@@ -106,7 +120,7 @@ class DirectAssignmentRunner:
         labels: List[int] = [-1] * n
 
         for i in range(n):
-            user_prompt = _build_user_prompt_for_step(ids, texts, clusters, i)
+            user_prompt = _build_user_prompt_for_step(ids, authors, texts, clusters, i)
 
             # Always call the model (no short-circuit), as in the paper
             raw = self.client.chat(system=system_prompt, user=user_prompt)

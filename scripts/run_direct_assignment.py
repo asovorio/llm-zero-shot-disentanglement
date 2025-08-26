@@ -15,10 +15,16 @@ from src.disentangle.utils.logging import setup_logger
 logger = setup_logger(__name__)
 
 def _pin_model_snapshot(name: str) -> str:
-    if name in {"gpt-4o", "gpt-4o-latest"}:
+    if name in {"gpt-4o"}:
         pinned = "gpt-4o-2024-08-06"
         logger.info("Pinning model %s -> %s for paper parity.", name, pinned)
         return pinned
+
+    elif name in {"gpt-4o-mini"}:
+        pinned = "gpt-4o-mini-2024-07-18"
+        logger.info("Pinning model %s -> %s for paper parity.", name, pinned)
+        return pinned
+
     return name
 
 def main():
@@ -35,7 +41,7 @@ def main():
         model=model_name,
         temperature=0,                   # <-- force temperature = 0
         max_tokens=cfg.model.max_tokens,
-        structured=True                  # <-- force Structured Outputs (JSON)
+        structured=cfg.model.structured_outputs  # <-- force Structured Outputs (JSON)
     )
 
     dataset_name = cfg.run.dataset.lower()
@@ -68,8 +74,9 @@ def main():
             bool(getattr(m, "is_system", False) or (getattr(m, "role", "") or "").lower() == "system")
             for m in ch.messages
         ]
+        authors = getattr(ch, "authors", [""] * len(ids))
 
-        out = runner.run_chunk(ch.chunk_id, ids, texts, is_system=is_system)
+        out = runner.run_chunk(ch.chunk_id, ids, authors, texts, is_system=is_system)
         logger.info("Ran chunk %s", ch.chunk_id)
         rows.append(out)
 

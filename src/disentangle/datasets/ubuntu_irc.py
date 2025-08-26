@@ -4,6 +4,7 @@ from pathlib import Path
 from typing import List, Dict, Any, Optional, Iterable
 import json
 from collections import defaultdict
+import re
 
 # Reuse your project’s logger if you have it
 try:
@@ -13,6 +14,24 @@ except Exception:
     import logging
     logger = logging.getLogger(__name__)
 
+PATTERNS = [
+    re.compile(r"^\s*<\s*([A-Za-z0-9_\-\[\]\{\}|^`]+)\s*>\s+"),       # <nick> msg
+    re.compile(r"^\s*\*\s*([A-Za-z0-9_\-\[\]\{\}|^`]+)\b"),          # * nick action
+    re.compile(r"^\s*([A-Za-z0-9_\-\[\]\{\}|^`]+)\s*:\s+"),          # nick: msg
+    re.compile(r"^\s*([A-Za-z0-9_\-\[\]\{\}|^`]+)\s*>\s+"),          # nick> msg
+    re.compile(r"^\s*([A-Za-z0-9_\-\[\]\{\}|^`]+)\s*,\s+"),          # nick, msg
+    re.compile(r"^\s*\[\s*([A-Za-z0-9_\-\[\]\{\}|^`]+)\s*\]\s+"),    # [nick] msg
+    re.compile(r"^\s*\(\s*([A-Za-z0-9_\-\[\]\{\}|^`]+)\s*\)\s+"),    # (nick) msg
+]
+
+
+def _fallback_author_from_text(t: str) -> str:
+    s = t or ""
+    for rx in PATTERNS:
+        m = rx.match(s)
+        if m:
+            return m.group(1)
+    return ""
 
 @dataclass
 class Message:
@@ -23,12 +42,17 @@ class Message:
     is_system: bool = False
     gold: Optional[Any] = None # original gold convo/thread id if present
     role: Optional[str] = None
+    author: Optional[str] = None  # <-- NEW: speaker/nick if available
 
 
 @dataclass
 class Chunk:
     chunk_id: str
     messages: List[Message]
+    ids: List[str]                 # <-- NEW: convenience lists for runners
+    authors: List[str]             # <-- NEW
+    texts: List[str]               # <-- NEW
+    is_system: List[bool]          # <-- NEW
     # gold labels per message (length == chunk size), or None if unavailable
     gold: Optional[List[Any]] = None
 
@@ -103,17 +127,21 @@ class UbuntuIrcDataset:
             is_system = bool(self._coalesce(row, "is_system", default=(role == "system")))
             # Use provided timestamp, else fallback to file order
             ts        = int(self._coalesce(row, "timestamp", "ts", default=idx))
-            # ✳️ Expanded list of acceptable gold label fields
-            gold      = self._coalesce(
-                row,
-                "gold", "gold_cluster", "conversation_id", "thread_id",
-                "conv_id", "conversation", "conv", "cluster", "cluster_id",
-                "label", "label_id", "convId", "threadId"
-            )
+            # NEW: author/speaker/nick (if available)
+            author    = self._coalesce(row, "author", "speaker", "user", "nick", "username", default=None)
+
+            # Accept only official gold fields
+            gold = self._coalesce(row, "conv_id", "conversation_id", default=None)
+            if gold is None:
+                # hard-fail to avoid silently evaluating against non-official or missing gold
+                raise ValueError(
+                    "Missing official gold conversation id (conv_id/conversation_id). "
+                    "Ensure you're using the official Ubuntu IRC test set with gold labels."
+                )
 
             msg = Message(
                 mid=mid, text=text, session_id=str(session_id),
-                ts=ts, is_system=is_system, gold=gold, role=role
+                ts=ts, is_system=is_system, gold=gold, role=role, author=author
             )
             sessions[str(session_id)].append(msg)
 
@@ -148,9 +176,31 @@ class UbuntuIrcDataset:
                             sess_id, start
                         )
 
+                # Convenience lists for runners (ids/authors/texts/is_system)
+                ids       = [m.mid for m in window]
+                authors = []
+                for m in window:
+                    a = (m.author or "").strip()
+                    if not a:
+                        a = _fallback_author_from_text(m.text)
+                    authors.append(a)
+                texts     = [m.text for m in window]
+                is_system = [m.is_system for m in window]
+
                 # stable, human-readable chunk_id
                 chunk_id = f"{sess_id}_{start:06d}"
-                chunks.append(Chunk(chunk_id=chunk_id, messages=window, gold=gold_list))
+                # NOTE: gold_list is expected to be non-None for canonical test; assert if you want
+                # assert gold_list is not None, "Chunk includes rows without gold."
+
+                chunks.append(Chunk(
+                    chunk_id=chunk_id,
+                    messages=window,
+                    ids=ids,
+                    authors=authors,
+                    texts=texts,
+                    is_system=is_system,
+                    gold=gold_list
+                ))
 
         logger.info(
             "Built %d chunks (size=%d) across %d sessions for split=%s",
