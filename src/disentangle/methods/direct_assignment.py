@@ -30,7 +30,7 @@ def _coerce_int(value: Any) -> Optional[int]:
     return None
 
 
-def _render_clusters(ids: List[str], authors: List[str], texts: List[str],
+def _render_clusters(display_ids: List[str], authors: List[str], texts: List[str],
                      clusters: List[List[int]]) -> str:
     lines: List[str] = []
     if not clusters:
@@ -43,14 +43,14 @@ def _render_clusters(ids: List[str], authors: List[str], texts: List[str],
             for m in members:
                 # author may be missing -> show UNKNOWN to avoid blank
                 auth = authors[m] if authors and authors[m] else "UNKNOWN"
-                lines.append(f"{ids[m]} | {auth}: {texts[m]}")
+                lines.append(f"{display_ids[m]} | {auth}: {texts[m]}")
         else:
             lines.append("[empty]")
         lines.append("")  # blank line between clusters
     return "\n".join(lines).rstrip()
 
 def _build_user_prompt_for_step(
-    ids: List[str],
+    display_ids: List[str],
     authors: List[str],
     texts: List[str],
     clusters: List[List[int]],
@@ -58,14 +58,15 @@ def _build_user_prompt_for_step(
 ) -> str:
     """
     Show full current cluster state (all messages assigned so far) + the one to assign.
+    Uses simple numeric DISPLAY IDs (1..n) in the prompt only.
     """
     lines: List[str] = []
     lines.append("Current conversation clusters:")
-    lines.append(_render_clusters(ids, authors, texts, clusters))
+    lines.append(_render_clusters(display_ids, authors, texts, clusters))
     lines.append("")
     lines.append("Next message to assign:")
     auth_i = authors[i] if authors and authors[i] else "UNKNOWN"
-    lines.append(f"{ids[i]} | {auth_i}: {texts[i]}")
+    lines.append(f"{display_ids[i]} | {auth_i}: {texts[i]}")
     return "\n".join(lines)
 
 @dataclass
@@ -93,6 +94,9 @@ class DirectAssignmentRunner:
               but after parsing we enforce k=0 for fidelity).
 
           We keep deterministic numbering: the first new conversation is 1, then 2, etc., in the order created.
+
+          Change in this version:
+            - Use simple numeric DISPLAY IDs (1..n) in the prompt only (internal ids untouched).
         """
         ids = _normalize_ids(ids_in)
         n = len(ids)
@@ -114,13 +118,16 @@ class DirectAssignmentRunner:
         else:
             system_prompt = self.prompts.load("movie_direct_assignment.txt")
 
+        # DISPLAY ids for the prompt only: 1..n
+        display_ids: List[str] = [str(j + 1) for j in range(n)]
+
         # clusters: list of lists of message indices assigned so far
         clusters: List[List[int]] = []
         # labels: output labels per message (0-based cluster indices for evaluation)
         labels: List[int] = [-1] * n
 
         for i in range(n):
-            user_prompt = _build_user_prompt_for_step(ids, authors, texts, clusters, i)
+            user_prompt = _build_user_prompt_for_step(display_ids, authors, texts, clusters, i)
 
             # Always call the model (no short-circuit), as in the paper
             raw = self.client.chat(system=system_prompt, user=user_prompt)

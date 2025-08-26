@@ -82,7 +82,8 @@ def main():
             bool(getattr(m, "is_system", False) or (getattr(m, "role", "") or "").lower() == "system")
             for m in ch.messages
         ]
-        out = runner.run_chunk(ch.chunk_id, ids, texts, is_system=is_system)
+        authors = getattr(ch, "authors", [""] * len(ids))
+        out = runner.run_chunk(ch.chunk_id, ids, authors, texts, is_system=is_system)
         logger.info("Ran chunk %s", ch.chunk_id)
         return out
 
