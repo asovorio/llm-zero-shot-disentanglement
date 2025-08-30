@@ -249,31 +249,6 @@ class UbuntuIrcDataset:
 
                 # stable, human-readable chunk_id
                 chunk_id = f"{sess_id}_{start:06d}"
-                # NOTE: gold_list is expected to be non-None for canonical dev; assert if you want
-                # assert gold_list is not None, "Chunk includes rows without gold."
-
-                # --- BEGIN: targeted debug for two chunks only ---
-                if chunk_id in {"2005-08-07_000000", "2005-08-07_000050"}:
-                    import hashlib, json as _json
-                    fp = hashlib.sha256(_json.dumps({
-                        "ids": ids,
-                        "authors": authors,
-                        "texts": texts,
-                        "is_system": is_system
-                    }, ensure_ascii=False).encode("utf-8")).hexdigest()
-                    unk = sum(1 for a in authors if not a)
-                    sys_cnt = sum(1 for s in is_system if s)
-                    logger.info("[CHK %s] sha256=%s | unknown_authors=%d/50 | is_system=%d/50",
-                                chunk_id, fp, unk, sys_cnt)
-                    # Optional: write exact content to inspect if needed
-                    with open(f"tmp_{chunk_id}_content.json", "w", encoding="utf-8") as _f:
-                        _json.dump({
-                            "ids": ids,
-                            "authors": authors,
-                            "texts": texts,
-                            "is_system": is_system
-                        }, _f, ensure_ascii=False)
-                # --- END: targeted debug ---
 
                 chunks.append(Chunk(
                     chunk_id=chunk_id,
