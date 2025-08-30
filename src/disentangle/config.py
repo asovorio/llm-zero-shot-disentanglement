@@ -6,7 +6,6 @@ import yaml
 
 @dataclass
 class RunConfig:
-    method: str
     dataset: str
     split: str
     chunk_size: int

@@ -1,13 +1,12 @@
 run:
-  method: direct_assignment        # or best_response / self_critic
   dataset: ubuntu_irc              # or movie_dialogue
-  split: test                      # train/dev/test (as applicable)
+  split: dev                      # train/dev/test (as applicable)
   chunk_size: 50                   # Ubuntu IRC protocol
   seed: 0
 
 model:
   provider: openai
-  name: gpt-4o-mini                     # or gpt-4o-mini
+  name: gpt-5-mini
   temperature: 0
   max_tokens: 64                  # adjust per prompt
   structured_outputs: true         # JSON-only outputs for core methods
@@ -19,6 +18,6 @@ paths:
   prompts_dir: ./prompts
 
 eval:
-  metrics: [nmi, ari, shen_f]
+  metrics: [nmi, ari, shen_f, vi, one_to_one, exact_p, exact_r, exact_f]
   report_json: true
   report_csv: true

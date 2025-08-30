@@ -5,6 +5,8 @@ from typing import List, Dict, Any, Optional, Iterable
 import json
 from collections import defaultdict
 import re
+from datetime import datetime, timezone
+import math
 
 # Reuse your project’s logger if you have it
 try:
@@ -32,6 +34,54 @@ def _fallback_author_from_text(t: str) -> str:
         if m:
             return m.group(1)
     return ""
+
+def ts_to_yyyymmdd(ts: Any) -> str:
+    """
+    Best-effort conversion of timestamp-like values to 'YYYY-MM-DD' (UTC).
+    Accepts:
+      - int/float seconds or milliseconds
+      - numeric strings
+      - ISO 8601 strings (e.g., '2010-05-01T12:34:56Z')
+    Returns 'unknown' if parsing fails.
+    """
+    try:
+        # numeric: int/float or numeric string
+        if isinstance(ts, (int, float)):
+            x = float(ts)
+        elif isinstance(ts, str) and ts.strip():
+            s = ts.strip()
+            # numeric string?
+            try:
+                x = float(s)
+            except Exception:
+                x = None
+        else:
+            x = None
+
+        if x is not None and math.isfinite(x):
+            # Heuristic: >1e12 → ms; >1e10 → probably ms from int cast
+            if x > 1e12:
+                x = x / 1000.0
+            dt = datetime.utcfromtimestamp(x)
+            return dt.strftime("%Y-%m-%d")
+
+        # ISO-8601 string?
+        if isinstance(ts, str) and ts.strip():
+            s = ts.strip().replace("Z", "+00:00")
+            try:
+                dt = datetime.fromisoformat(s)
+                if dt.tzinfo is None:
+                    # treat naive as UTC
+                    dt = dt.replace(tzinfo=timezone.utc)
+                else:
+                    dt = dt.astimezone(timezone.utc)
+                return dt.strftime("%Y-%m-%d")
+            except Exception:
+                pass
+
+    except Exception:
+        pass
+    return "unknown"
 
 @dataclass
 class Message:
@@ -120,7 +170,15 @@ class UbuntuIrcDataset:
         # 1) Load and normalize messages
         sessions: Dict[str, List[Message]] = defaultdict(list)
         for idx, row in enumerate(self._open_jsonl(path)):
-            session_id = self._coalesce(row, "session_id", "sid", "session", default="unknown")
+            session_id = self._coalesce(row, "session_id", "sid", "session")
+            if not session_id:
+                day = row.get("day") or row.get("date")
+                if day:
+                    session_id = str(day)
+                else:
+                    ts = self._coalesce(row, "timestamp", "ts")
+                    session_id = ts_to_yyyymmdd(ts) if ts is not None else "unknown"
+            session_id = str(session_id)
             mid       = str(self._coalesce(row, "mid", "id", "msg_id", default=f"{session_id}:{idx}"))
             text      = self._coalesce(row, "text", "message", "content", default="")
             role      = str(self._coalesce(row, "role", default="")).lower()
@@ -136,7 +194,7 @@ class UbuntuIrcDataset:
                 # hard-fail to avoid silently evaluating against non-official or missing gold
                 raise ValueError(
                     "Missing official gold conversation id (conv_id/conversation_id). "
-                    "Ensure you're using the official Ubuntu IRC test set with gold labels."
+                    "Ensure you're using the official Ubuntu IRC dev set with gold labels."
                 )
 
             msg = Message(
@@ -189,7 +247,7 @@ class UbuntuIrcDataset:
 
                 # stable, human-readable chunk_id
                 chunk_id = f"{sess_id}_{start:06d}"
-                # NOTE: gold_list is expected to be non-None for canonical test; assert if you want
+                # NOTE: gold_list is expected to be non-None for canonical dev; assert if you want
                 # assert gold_list is not None, "Chunk includes rows without gold."
 
                 chunks.append(Chunk(
