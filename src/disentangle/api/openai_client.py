@@ -30,8 +30,8 @@ class OpenAIClient:
                 {"role": "system", "content": system},
                 {"role": "user", "content": user},
             ],
-            temperature=self.temperature,
-            max_tokens=self.max_tokens,
+            #temperature=self.temperature, # not used for gpt5-mini
+            #max_tokens=self.max_tokens,
         )
         if self.structured:
             kwargs["response_format"] = {"type": "json_object"}

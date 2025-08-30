@@ -5,6 +5,8 @@ from typing import List, Dict, Any, Optional, Iterable
 import json
 from collections import defaultdict
 import re
+from datetime import datetime, timezone
+import math
 
 # Reuse your project’s logger if you have it
 try:
@@ -33,12 +35,60 @@ def _fallback_author_from_text(t: str) -> str:
             return m.group(1)
     return ""
 
+def ts_to_yyyymmdd(ts: Any) -> str:
+    """
+    Best-effort conversion of timestamp-like values to 'YYYY-MM-DD' (UTC).
+    Accepts:
+      - int/float seconds or milliseconds
+      - numeric strings
+      - ISO 8601 strings (e.g., '2010-05-01T12:34:56Z')
+    Returns 'unknown' if parsing fails.
+    """
+    try:
+        # numeric: int/float or numeric string
+        if isinstance(ts, (int, float)):
+            x = float(ts)
+        elif isinstance(ts, str) and ts.strip():
+            s = ts.strip()
+            # numeric string?
+            try:
+                x = float(s)
+            except Exception:
+                x = None
+        else:
+            x = None
+
+        if x is not None and math.isfinite(x):
+            # Heuristic: >1e12 → ms; >1e10 → probably ms from int cast
+            if x > 1e12:
+                x = x / 1000.0
+            dt = datetime.utcfromtimestamp(x)
+            return dt.strftime("%Y-%m-%d")
+
+        # ISO-8601 string?
+        if isinstance(ts, str) and ts.strip():
+            s = ts.strip().replace("Z", "+00:00")
+            try:
+                dt = datetime.fromisoformat(s)
+                if dt.tzinfo is None:
+                    # treat naive as UTC
+                    dt = dt.replace(tzinfo=timezone.utc)
+                else:
+                    dt = dt.astimezone(timezone.utc)
+                return dt.strftime("%Y-%m-%d")
+            except Exception:
+                pass
+
+    except Exception:
+        pass
+    return "unknown"
+
 @dataclass
 class Message:
     mid: str                   # unique message ID
     text: str
     session_id: str
-    ts: int                    # sortable timestamp or order index
+    is_context: bool = False
     is_system: bool = False
     gold: Optional[Any] = None # original gold convo/thread id if present
     role: Optional[str] = None
@@ -120,13 +170,20 @@ class UbuntuIrcDataset:
         # 1) Load and normalize messages
         sessions: Dict[str, List[Message]] = defaultdict(list)
         for idx, row in enumerate(self._open_jsonl(path)):
-            session_id = self._coalesce(row, "session_id", "sid", "session", default="unknown")
+            session_id = self._coalesce(row, "session_id", "sid", "session")
+            if not session_id:
+                day = row.get("day") or row.get("date")
+                if day:
+                    session_id = str(day)
+                else:
+                    ts = self._coalesce(row, "timestamp", "ts")
+                    session_id = ts_to_yyyymmdd(ts) if ts is not None else "unknown"
+            session_id = str(session_id)
             mid       = str(self._coalesce(row, "mid", "id", "msg_id", default=f"{session_id}:{idx}"))
             text      = self._coalesce(row, "text", "message", "content", default="")
             role      = str(self._coalesce(row, "role", default="")).lower()
             is_system = bool(self._coalesce(row, "is_system", default=(role == "system")))
-            # Use provided timestamp, else fallback to file order
-            ts        = int(self._coalesce(row, "timestamp", "ts", default=idx))
+            is_ctx = bool(self._coalesce(row, "is_context", default=False))
             # NEW: author/speaker/nick (if available)
             author    = self._coalesce(row, "author", "speaker", "user", "nick", "username", default=None)
 
@@ -136,12 +193,12 @@ class UbuntuIrcDataset:
                 # hard-fail to avoid silently evaluating against non-official or missing gold
                 raise ValueError(
                     "Missing official gold conversation id (conv_id/conversation_id). "
-                    "Ensure you're using the official Ubuntu IRC test set with gold labels."
+                    "Ensure you're using the official Ubuntu IRC dev set with gold labels."
                 )
 
             msg = Message(
                 mid=mid, text=text, session_id=str(session_id),
-                ts=ts, is_system=is_system, gold=gold, role=role, author=author
+                is_context=is_ctx, is_system=is_system, gold=gold, role=role, author=author
             )
             sessions[str(session_id)].append(msg)
 
@@ -149,19 +206,22 @@ class UbuntuIrcDataset:
             logger.warning("No messages loaded for split=%s from %s", self.split, path)
 
         # 2) Sort within each session
-        for s in sessions.values():
-            s.sort(key=lambda m: (m.ts, m.mid))
+        """for s in sessions.values():
+            s.sort(key=lambda m: (m.mid))"""
 
         # 3) Emit EXACT chunk_size chunks per session (drop remainder)
         chunks: List[Chunk] = []
         for sess_id, msgs in sessions.items():
-            n = len(msgs)
+            # Only annotated rows go into 50-message windows
+            annotated = [m for m in msgs if not m.is_context]
+
+            n = len(annotated)
             if n < self.chunk_size:
                 continue
             for start in range(0, n - self.chunk_size + 1, self.chunk_size):
-                window = msgs[start:start + self.chunk_size]
+                window = annotated[start:start + self.chunk_size]
                 if len(window) != self.chunk_size:
-                    continue  # exact size only
+                    continue
 
                 # Collect gold labels for the window (if all present)
                 window_gold = [m.gold for m in window]
@@ -189,8 +249,31 @@ class UbuntuIrcDataset:
 
                 # stable, human-readable chunk_id
                 chunk_id = f"{sess_id}_{start:06d}"
-                # NOTE: gold_list is expected to be non-None for canonical test; assert if you want
+                # NOTE: gold_list is expected to be non-None for canonical dev; assert if you want
                 # assert gold_list is not None, "Chunk includes rows without gold."
+
+                # --- BEGIN: targeted debug for two chunks only ---
+                if chunk_id in {"2005-08-07_000000", "2005-08-07_000050"}:
+                    import hashlib, json as _json
+                    fp = hashlib.sha256(_json.dumps({
+                        "ids": ids,
+                        "authors": authors,
+                        "texts": texts,
+                        "is_system": is_system
+                    }, ensure_ascii=False).encode("utf-8")).hexdigest()
+                    unk = sum(1 for a in authors if not a)
+                    sys_cnt = sum(1 for s in is_system if s)
+                    logger.info("[CHK %s] sha256=%s | unknown_authors=%d/50 | is_system=%d/50",
+                                chunk_id, fp, unk, sys_cnt)
+                    # Optional: write exact content to inspect if needed
+                    with open(f"tmp_{chunk_id}_content.json", "w", encoding="utf-8") as _f:
+                        _json.dump({
+                            "ids": ids,
+                            "authors": authors,
+                            "texts": texts,
+                            "is_system": is_system
+                        }, _f, ensure_ascii=False)
+                # --- END: targeted debug ---
 
                 chunks.append(Chunk(
                     chunk_id=chunk_id,
