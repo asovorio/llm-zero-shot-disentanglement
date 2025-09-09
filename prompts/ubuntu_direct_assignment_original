@@ -8,11 +8,7 @@ responding to / following up to .
 Alternatively , if the last chat message
 seems to be starting its own
 conversation , respond with
-{" conversation_id ": 0}.
-If you are not entirely sure the message
-belongs to an existing conversation ID ,
-respond with {" conversation_id ": 0}.
-If the last chat
+{" conversation_id ": 0}. If the last chat
 message is just a system message ,
 respond with {" conversation_id ": 0}.
 
