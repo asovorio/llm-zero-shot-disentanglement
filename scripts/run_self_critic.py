@@ -4,7 +4,7 @@ import argparse
 from pathlib import Path
 from src.disentangle.config import load_config
 from src.disentangle.datasets.ubuntu_irc import UbuntuIrcDataset
-from src.disentangle.api import OpenAIClient
+from src.disentangle.api import get_client
 from src.disentangle.methods import SelfCriticRefiner
 from src.disentangle.prompting import PromptLoader
 from src.disentangle.utils.io import read_jsonl, write_jsonl, ensure_dir
@@ -21,8 +21,9 @@ def main():
     cfg = load_config(args.config)
 
     prompts = PromptLoader(Path(cfg.paths.prompts_dir))
-    client = OpenAIClient(model=cfg.model.name, temperature=cfg.model.temperature,
-                          max_tokens=cfg.model.max_tokens, structured=cfg.model.structured_outputs)
+    client = get_client(cfg.model.provider, model=cfg.model.name,
+                        temperature=cfg.model.temperature,
+                        max_tokens=cfg.model.max_tokens, structured=cfg.model.structured_outputs)
     refiner = SelfCriticRefiner(client=client, prompts=prompts)
 
     ds = UbuntuIrcDataset(

@@ -6,7 +6,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from src.disentangle.config import load_config
 from src.disentangle.datasets.ubuntu_irc import UbuntuIrcDataset
-from src.disentangle.api import OpenAIClient
+from src.disentangle.api import get_client
 from src.disentangle.methods import BestResponseRunner
 from src.disentangle.prompting import PromptLoader
 from src.disentangle.utils.io import write_jsonl, ensure_dir
@@ -47,12 +47,13 @@ def main():
     prompts = PromptLoader(Path(cfg.paths.prompts_dir))
 
     # Enforce paper-parity decoding for base methods:
-    model_name = _pin_model_snapshot(cfg.model.name)
-    client = OpenAIClient(
+    model_name = _pin_model_snapshot(cfg.model.name) if cfg.model.provider.lower() == "openai" else cfg.model.name
+    client = get_client(
+        cfg.model.provider,
         model=model_name,
-        temperature=0,                   # force temperature = 0
+        temperature=0,
         max_tokens=cfg.model.max_tokens,
-        structured=cfg.model.structured_outputs  # force Structured Outputs (JSON)
+        structured=cfg.model.structured_outputs
     )
 
     # Dataset (Ubuntu IRC for this script)

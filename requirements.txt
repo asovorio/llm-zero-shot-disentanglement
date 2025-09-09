@@ -1,4 +1,5 @@
 openai>=1.40.0
+anthropic>=0.26.0
 pyyaml>=6.0
 numpy>=1.26
 scikit-learn>=1.5
