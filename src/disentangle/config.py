@@ -18,6 +18,7 @@ class ModelConfig:
     temperature: float
     max_tokens: int
     structured_outputs: bool
+    reasoning_effort: str
 
 @dataclass
 class PathsConfig:

@@ -11,7 +11,7 @@ class OpenAIClient:
     """
     Thin wrapper for OpenAI Chat Completions with optional JSON response_format.
     """
-    def __init__(self, model: str, temperature: float = 0.0, max_tokens: int = 400, structured: bool = True):
+    def __init__(self, model: str, temperature: float = 0.0, max_tokens: int = 400, structured: bool = True, reasoning_effort: Optional[str] = None):
         if OpenAI is None:
             raise ImportError("openai package not installed. pip install openai>=1.40.0")
         api_key = os.getenv("OPENAI_API_KEY")
@@ -22,6 +22,7 @@ class OpenAIClient:
         self.temperature = temperature
         self.max_tokens = max_tokens
         self.structured = structured
+        self.reasoning_effort = reasoning_effort
 
     def chat(self, system: str, user: str) -> str:
         kwargs: Dict[str, Any] = dict(
@@ -35,5 +36,7 @@ class OpenAIClient:
         )
         if self.structured:
             kwargs["response_format"] = {"type": "json_object"}
+        #if self.reasoning_effort:
+            #kwargs["reasoning"] = {"effort": self.reasoning_effort}
         resp = self.client.chat.completions.create(**kwargs)
         return resp.choices[0].message.content or ""
