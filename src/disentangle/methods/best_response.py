@@ -204,4 +204,5 @@ class BestResponseRunner:
             "chunk_id": chunk_id,
             "clusters": labels,
             "num_conversations": len(set(labels)),
+            "parents": parents,
         }
