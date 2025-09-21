@@ -1,0 +1,29 @@
+run:
+  dataset: ubuntu_irc              # or movie_dialogue
+  split: dev                       # train/dev/test (as applicable)
+  chunk_size: 50                   # Ubuntu IRC protocol
+  seed: 0
+
+model:
+  provider: openai
+  name: gpt-5
+  temperature: 0
+  max_tokens: 64
+  structured_outputs: true
+  reasoning_effort: medium
+
+paths:
+  data_dir: ./data/raw
+  processed_dir: ./data/processed
+  results_dir: ./data/results_batch     # separate bucket for batch runs
+  prompts_dir: ./prompts
+
+eval:
+  metrics: [nmi, ari, shen_f, vi, one_to_one, exact_p, exact_r, exact_f]
+  report_json: true
+  report_csv: true
+
+batch:
+  input_path: ./batch/in/requests.jsonl
+  output_path: ./batch/out/output.jsonl
+  completion_window: 24h               # 24h or 4h
