@@ -61,7 +61,7 @@ def _build_user_prompt_for_step(
     else:
         parts.append(_render_history(display_ids, authors, texts, i))
     parts.append("")
-    parts.append("Next message:")
+    parts.append("Last message:")
     auth_i = authors[i] if authors and authors[i] else "UNKNOWN"
     parts.append(f"{display_ids[i]}: {auth_i}: {texts[i]}")
     return "\n".join(parts)

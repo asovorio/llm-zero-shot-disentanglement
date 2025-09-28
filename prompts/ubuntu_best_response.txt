@@ -1,15 +1,7 @@
-You will be provided a chat log where
-each message has a unique ID , as well as
-the next chat message in the sequence .
-Respond with a JSON object that contains
-the ID of the message the last chat
-message is responding to / following up
-to . Alternatively , if the last chat
-message seems to be starting its own
-conversation , respond with the chat
-message 's ID . If the last chat message
-is just a system message , respond with
-the chat message 's ID .
+An Ubuntu IRC chat log with a unique ID for each message will be provided , as well as the last chat message .
+Respond with a JSON object only that contains the ID of the message the last chat message is responding to / following up to .
+Alternatively , if the last chat message does not seem to be following up to any previous message and is starting its own conversation ,
+respond with the last chat message 's own ID . If the last chat message is just a system message , respond with the last chat message 's own ID .
 
 Example : {" response_to ": 19}
 Example : {" response_to ": 4}
