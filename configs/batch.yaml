@@ -6,7 +6,7 @@ run:
 
 model:
   provider: openai
-  name: gpt-5-mini
+  name: gpt-5
   temperature: 0
   max_tokens: 64
   structured_outputs: true

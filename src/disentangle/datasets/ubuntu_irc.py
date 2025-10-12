@@ -5,7 +5,7 @@ from typing import List, Dict, Any, Optional, Iterable
 import json
 from collections import defaultdict
 import re
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 import math
 
 # Reuse your project’s logger if you have it
@@ -82,6 +82,54 @@ def ts_to_yyyymmdd(ts: Any) -> str:
     except Exception:
         pass
     return "unknown"
+
+def ts_to_yyyymmdd_with_fix(ts: Any) -> str:
+    """
+    Convert timestamp-like values to 'YYYY-MM-DD' (UTC) with a heuristic fix
+    specific to Ubuntu IRC preprocessing quirks.
+
+    If the UTC hour is >= 13 (1 PM or later), shift the day by +1.
+    This compensates for messages that were effectively recorded relative to
+    a PST-like clock and appear one calendar day earlier when interpreted as UTC.
+    """
+    try:
+        # Numeric path
+        if isinstance(ts, (int, float)):
+            x = float(ts)
+        elif isinstance(ts, str) and ts.strip():
+            try:
+                x = float(ts.strip())
+            except Exception:
+                x = None
+        else:
+            x = None
+
+        if x is not None and math.isfinite(x):
+            if x > 1e12:
+                x = x / 1000.0
+            dt = datetime.utcfromtimestamp(x)
+            if dt.hour >= 13:
+                dt = dt + timedelta(days=1)
+            return dt.strftime("%Y-%m-%d")
+
+        # ISO-8601 path
+        if isinstance(ts, str) and ts.strip():
+            s = ts.strip().replace("Z", "+00:00")
+            try:
+                dt = datetime.fromisoformat(s)
+                if dt.tzinfo is None:
+                    dt = dt.replace(tzinfo=timezone.utc)
+                else:
+                    dt = dt.astimezone(timezone.utc)
+                if dt.hour >= 13:
+                    dt = dt + timedelta(days=1)
+                return dt.strftime("%Y-%m-%d")
+            except Exception:
+                pass
+    except Exception:
+        pass
+    # Fallback to plain conversion
+    return ts_to_yyyymmdd(ts)
 
 @dataclass
 class Message:
@@ -170,6 +218,9 @@ class UbuntuIrcDataset:
         # 1) Load and normalize messages
         sessions: Dict[str, List[Message]] = defaultdict(list)
         for idx, row in enumerate(self._open_jsonl(path)):
+            # determine context flag early
+            is_ctx = bool(self._coalesce(row, "is_context", default=False))
+
             session_id = self._coalesce(row, "session_id", "sid", "session")
             if not session_id:
                 day = row.get("day") or row.get("date")
@@ -177,13 +228,12 @@ class UbuntuIrcDataset:
                     session_id = str(day)
                 else:
                     ts = self._coalesce(row, "timestamp", "ts")
-                    session_id = ts_to_yyyymmdd(ts) if ts is not None else "unknown"
+                    session_id = ts_to_yyyymmdd_with_fix(ts) if ts is not None else "unknown"
             session_id = str(session_id)
             mid       = str(self._coalesce(row, "mid", "id", "msg_id", default=f"{session_id}:{idx}"))
             text      = self._coalesce(row, "text", "message", "content", default="")
             role      = str(self._coalesce(row, "role", default="")).lower()
             is_system = bool(self._coalesce(row, "is_system", default=(role == "system")))
-            is_ctx = bool(self._coalesce(row, "is_context", default=False))
             # NEW: author/speaker/nick (if available)
             author    = self._coalesce(row, "author", "speaker", "user", "nick", "username", default=None)
 
