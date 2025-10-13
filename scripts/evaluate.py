@@ -192,11 +192,16 @@ def _load_gold_and_pred_movie(cfg, predictions_path: Path):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", required=True)
-    ap.add_argument("--predictions", required=True, help="path to predictions.jsonl")
+    ap.add_argument("--predictions", help="path to predictions.jsonl (defaults to results_dir/split/predictions.jsonl)")
     args = ap.parse_args()
 
     cfg = load_config(args.config)
-    predictions_path = Path(args.predictions)
+
+    if args.predictions:
+        predictions_path = Path(args.predictions)
+    else:
+        predictions_path = Path(cfg.paths.results_dir) / cfg.run.split / "predictions.jsonl"
+        logger.info("--predictions not provided; defaulting to %s", predictions_path)
 
     dataset = cfg.run.dataset.lower()
     if dataset == "ubuntu_irc":
@@ -280,7 +285,11 @@ def main():
             report.aggregate["link_f"] = float(micro_f)
 
     # Save outputs EXACTLY as before
-    out_dir = ensure_dir(Path(cfg.paths.results_dir) / "eval" / cfg.run.dataset / cfg.run.split)
+    results_root = Path(cfg.paths.results_dir)
+    if results_root.name == "voting_links":
+        out_dir = ensure_dir(results_root / "eval" / cfg.run.split)
+    else:
+        out_dir = ensure_dir(results_root / "eval" / cfg.run.dataset / cfg.run.split)
     save_report(out_dir / "per_chunk.jsonl", out_dir / "summary.json", report)
 
 if __name__ == "__main__":

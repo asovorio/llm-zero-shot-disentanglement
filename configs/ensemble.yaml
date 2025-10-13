@@ -1,0 +1,30 @@
+run:
+  dataset: ubuntu_irc
+  split: dev
+  chunk_size: 50
+  seed: 0
+
+model:
+  provider: openai
+  name: gpt-5-mini
+  temperature: 0
+  max_tokens: 64
+  structured_outputs: true
+  reasoning_effort: medium
+
+paths:
+  data_dir: ./data/raw
+  processed_dir: ./data/processed
+  results_dir: ./data/results_ensemble/br_majority_clusters
+  prompts_dir: ./prompts
+
+eval:
+  metrics: [nmi, ari, shen_f, vi, one_to_one, exact_p, exact_r, exact_f]
+  report_json: true
+  report_csv: true
+
+ensemble:
+  structure_predictions: ./data/results/jonathans_models/dev/predictions-structure-dev.jsonl
+  ff_predictions: ./data/results/jonathans_models/dev/predictions-ff-dev.jsonl
+  best_response_predictions: ./data/results_batch/best_response/predictions.jsonl
+  direct_assignment_predictions: ./data/results/direct_assignment/dev/predictions.jsonl
