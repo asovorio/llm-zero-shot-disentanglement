@@ -216,7 +216,7 @@ def main():
     order = {c.chunk_id: idx for idx, c in enumerate(chunks)}
     rows.sort(key=lambda r: order.get(r["chunk_id"], 10 ** 9))
 
-    pred_path = Path(paths.results_dir) / "best_response" / "predictions.jsonl"
+    pred_path = Path(paths.results_dir) / "best_response" / cfg.run.split / "predictions.jsonl"
     ensure_dir(pred_path.parent)
     write_jsonl(pred_path, rows)
     logger.info("Wrote predictions to %s", pred_path)
