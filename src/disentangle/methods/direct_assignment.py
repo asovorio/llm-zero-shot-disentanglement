@@ -115,8 +115,6 @@ class DirectAssignmentRunner:
         # Choose system prompt per dataset
         if self.dataset == "ubuntu_irc":
             system_prompt = self.prompts.load("ubuntu_direct_assignment.txt")
-        else:
-            system_prompt = self.prompts.load("movie_direct_assignment.txt")
 
         # DISPLAY ids for the prompt only: 1..n
         display_ids: List[str] = [str(j + 1) for j in range(n)]

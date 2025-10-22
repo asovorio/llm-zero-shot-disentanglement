@@ -6,7 +6,6 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from src.disentangle.config import load_config
 from src.disentangle.datasets.ubuntu_irc import UbuntuIrcDataset
-# from src.disentangle.datasets.movie_dialogue import MovieDialogueDataset
 from src.disentangle.api import get_client
 from src.disentangle.methods.direct_assignment import DirectAssignmentRunner
 from src.disentangle.prompting import PromptLoader
@@ -60,9 +59,6 @@ def main():
             seed=cfg.run.seed,
         )
         dataset_key = "ubuntu_irc"
-    elif dataset_name == "movie_dialogue":
-        # ds = MovieDialogueDataset(...); dataset_key = "movie_dialogue"
-        raise SystemExit("Wire up MovieDialogueDataset here.")
     else:
         raise SystemExit(f"Unknown dataset: {cfg.run.dataset}")
 

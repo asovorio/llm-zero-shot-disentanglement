@@ -136,8 +136,6 @@ class BestResponseRunner:
         # System prompt per dataset
         if self.dataset.lower() == "ubuntu_irc":
             system_prompt = self.prompts.load("ubuntu_best_response.txt")
-        else:
-            system_prompt = self.prompts.load("movie_best_response.txt")
 
         # DISPLAY ids: 1..n (prompt only; internal logic keeps original ids)
         display_ids = [str(j + 1) for j in range(n)]

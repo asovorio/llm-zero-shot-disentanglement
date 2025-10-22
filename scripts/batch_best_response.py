@@ -8,7 +8,6 @@ from openai import OpenAI
 
 from src.disentangle.config import load_config
 from src.disentangle.datasets.ubuntu_irc import UbuntuIrcDataset
-from src.disentangle.datasets.movie_dialogue import MovieDialogueDataset
 from src.disentangle.prompting.loader import PromptLoader
 from src.disentangle.prompting.schema import parse_json_object
 from src.disentangle.utils.io import ensure_dir, write_jsonl
@@ -54,11 +53,6 @@ def _make_dataset(name: str, paths, run):
             data_root=Path(paths.processed_dir) / "ubuntu_irc",
             split=run.split, chunk_size=run.chunk_size, seed=run.seed
         )
-    if name == "movie_dialogue":
-        return MovieDialogueDataset(
-            data_root=Path(paths.processed_dir) / "movie_dialogue",
-            split=run.split, chunk_size=run.chunk_size, seed=run.seed
-        )
     raise ValueError(f"Unknown dataset: {name}")
 
 def main():
@@ -83,8 +77,6 @@ def main():
     # System prompt by dataset (mirrors BR runner)
     if run.dataset.lower() == "ubuntu_irc":
         system_prompt = prompts.load("ubuntu_best_response.txt")
-    else:
-        system_prompt = prompts.load("movie_best_response.txt")
 
     model_name = model.name
     structured = bool(model.structured_outputs)

@@ -7,7 +7,6 @@ import json
 
 from src.disentangle.config import load_config
 from src.disentangle.datasets.ubuntu_irc import UbuntuIrcDataset
-from src.disentangle.datasets.movie_dialogue import MovieDialogueDataset
 from src.disentangle.eval.scorer import evaluate_chunks, save_report, EvaluationReport
 from src.disentangle.utils.io import read_jsonl, ensure_dir
 from src.disentangle.utils.logging import setup_logger
@@ -149,43 +148,6 @@ def _load_gold_and_pred_ubuntu(cfg, predictions_path: Path):
 
     return golds, preds, order_ids, by_id
 
-def _load_gold_and_pred_movie(cfg, predictions_path: Path):
-    ds = MovieDialogueDataset(
-        data_root=(Path(cfg.paths.data_dir) / "movie_dialogue_src" / "repo" / "dataset"),
-        split=cfg.run.split,
-    )
-    diags = ds.load_dialogues()
-    pred_rows = read_jsonl(predictions_path)
-    golds, preds = [], []
-    by_id = {d.did: d for d in diags}
-    order_ids: List[str] = []
-
-    for row in pred_rows:
-        did = row["chunk_id"]
-        d = by_id[did]
-        pred = row["clusters"] if "clusters" in row else None
-        if pred is None and "parents" in row:
-            parents = _sanitize_parents(row["parents"])
-            n = len(parents)
-            roots: Dict[int, int] = {}
-            clusters = [0]*n
-            next_cid = 0
-            def root(i: int) -> int:
-                seen=set()
-                while parents[i] != i and i not in seen and 0 <= parents[i] < n:
-                    seen.add(i); i = parents[i]
-                return i
-            for i in range(n):
-                r = root(i)
-                if r not in roots:
-                    roots[r] = next_cid; next_cid += 1
-                clusters[i] = roots[r]
-            pred = clusters
-
-        golds.append(d.gold)
-        preds.append(pred)
-        order_ids.append(did)
-    return golds, preds, order_ids, by_id
 
 # -------------------- main --------------------
 
@@ -206,8 +168,6 @@ def main():
     dataset = cfg.run.dataset.lower()
     if dataset == "ubuntu_irc":
         golds, preds, order_ids, by_id = _load_gold_and_pred_ubuntu(cfg, predictions_path)
-    elif dataset == "movie_dialogue":
-        golds, preds, order_ids, by_id = _load_gold_and_pred_movie(cfg, predictions_path)
     else:
         raise SystemExit(f"Unknown dataset: {cfg.run.dataset}")
 
