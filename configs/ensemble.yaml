@@ -15,7 +15,7 @@ model:
 paths:
   data_dir: ./data/raw
   processed_dir: ./data/processed
-  results_dir: ./data/results_ensemble/br_majority_clusters
+  results_dir: ./data/results_ensemble/br-da-6-gpt-5
   prompts_dir: ./prompts
 
 eval:
@@ -28,3 +28,12 @@ ensemble:
   ff_predictions: ./data/results/jonathans_models/dev/predictions-ff-dev.jsonl
   best_response_predictions: ./data/results_batch/best_response/predictions.jsonl
   direct_assignment_predictions: ./data/results/direct_assignment/dev/predictions.jsonl
+  threshold_ff_predictions: ./data/results/jonathans_models/dev/predictions-threshold-ff-dev.jsonl
+  br_runs:
+    - ./data/results_batch/best_response/predictions-run1.jsonl
+    - ./data/results_batch/best_response/predictions-run2.jsonl
+    - ./data/results_batch/best_response/predictions-run3.jsonl
+  da_runs:
+    - ./data/results/direct_assignment/dev/predictions-run1.jsonl
+    - ./data/results/direct_assignment/dev/predictions-run2.jsonl
+    - ./data/results/direct_assignment/dev/predictions-run3.jsonl

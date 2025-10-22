@@ -6,7 +6,7 @@ run:
 
 model:
   provider: openai                    # or anthropic
-  name: gpt-5-mini                    # or claude-sonnet-4-20250514
+  name: gpt-5                    # or claude-sonnet-4-20250514
   temperature: 0
   max_tokens: 64                  # adjust per prompt
   structured_outputs: true         # JSON-only outputs for core methods
