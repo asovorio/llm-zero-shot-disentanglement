@@ -1,5 +1,5 @@
 run:
-  dataset: ubuntu_irc              # or movie_dialogue
+  dataset: ubuntu_irc              
   split: dev                       # train/dev/test (as applicable)
   chunk_size: 50                   # Ubuntu IRC protocol
   seed: 0
