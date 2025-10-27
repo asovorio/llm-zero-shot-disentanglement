@@ -7,8 +7,8 @@ from collections import defaultdict, Counter
 import json, sys
 
 # --- config (edit if needed) ---
-PRED_PATH     = Path("data/results/direct_assignment/dev/predictions.jsonl")
-CONFIG_YAML   = "configs/default.yaml"
+PRED_PATH     = Path("data/results_batch/best_response/predictions-run1.jsonl")
+CONFIG_YAML   = "configs/batch.yaml"
 EXPECTED_SIZE = 50
 # --------------------------------
 
@@ -103,7 +103,13 @@ def main():
     print(f"Aced non-singleton clusters (overall): {total_aced} / {total_gold_ns}  >>> {pct_total:.2f}%\n")
 
     # Order: 2..15, then 16-20, then 21+
-    order = [str(s) for s in range(2,16)] + ["16-20", "21+"]
+    order = [str(s) for s in range(2, 16)] + ["16-20", "21+"]
+
+    # NEW: compute widths so arrows/percentages align
+    present = [b for b in order if total_by_bin.get(b, 0) > 0]
+    aw = max((len(str(aced_by_bin.get(b, 0))) for b in present), default=1)
+    tw = max((len(str(total_by_bin.get(b, 0))) for b in present), default=1)
+
     print("Size  Count")
     for b in order:
         t = total_by_bin.get(b, 0)
@@ -111,7 +117,8 @@ def main():
             continue  # skip bins that don't appear
         a = aced_by_bin.get(b, 0)
         pct = (100.0 * a / t) if t else 0.0
-        print(f"{b:<5} {a} / {t}  >>> {pct:.2f}%")
+        # fixed-width "a / t", then aligned arrows and percent
+        print(f"{b:<5} {a:>{aw}} / {t:<{tw}}  >>> {pct:6.2f}%")
 
 if __name__ == "__main__":
     main()

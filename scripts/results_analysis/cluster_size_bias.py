@@ -8,7 +8,7 @@ from collections import defaultdict, Counter
 import json, sys
 
 # --- config (edit if needed) ---
-PRED_PATH     = Path("data/results_batch/best_response/predictions-run1.jsonl")
+PRED_PATH     = Path("data/results/direct_assignment/dev/predictions-run2.jsonl")
 CONFIG_YAML   = "configs/batch.yaml"
 EXPECTED_SIZE = 50
 # --------------------------------
