@@ -1,7 +1,3 @@
-This repo contains a state-of-the-art zero-shot LLM system for the Ubuntu IRC dataset. 
-We began reimplementing this Anonymous ACL submission https://openreview.net/pdf?id=jUCowqC6Lc and iterated on it, via prompt tuning, the building of several ensembles and upgrading it to more advanced LLMs.
-It improves previous SOTA of ~52 for Conversation-level Precision and Recall to >70 for both our tuned Direct Assignment and Best Response systems (as of November 2025). Adjusted Random Index also improves from previous SOTA of ~83 to ~89.
-
 # LLM Zero-Shot Disentanglement
 
 ## Overview
@@ -22,6 +18,7 @@ This repository hosts the code for a state-of-the-art zero-shot large-language-m
 
 ## Set-up
 **Environment**  
+
 Create a virtual environment (for best-practices) and run the following command to install all the required libraries:
 pip install -r requirements.txt
 
@@ -30,12 +27,10 @@ Add your OPENAI_API_KEY (and optionally ANTHROPIC_API_KEY if you switch provider
 All command-line tools read keys from environment variables.
 
 **Data Preparation**:
+
 The current repo already has all the data ready to run the models but, if you want to rerun the preparation of the data then:
 
-python scripts/data_preparation/prepare_data.py ^
-  --input data/raw/ubuntu_irc/ubuntu_validation.jsonl ^
-  --split dev ^
-  --out data/processed/ubuntu_irc
+python scripts/data_preparation/prepare_data.py --input data/raw/ubuntu_irc/ubuntu_validation.jsonl --split dev --out data/processed/ubuntu_irc
 
 This command prepares the data for the dev split of the Ubuntu IRC dataset, and writes it in data/processed.
 
@@ -43,6 +38,7 @@ You can then also use scripts/data_preparation/create_subset.py to down-sample f
 
 
 **Configuration**
+
 Every runner accepts --config <yaml>. Editing the respective YAML is the supported way to modify datasets, model snapshots, prompt roots, result directories, and evaluation settings, that way no code changes required and there is no hard-coding in code.
 
 configs/default.yaml -> powers synchronous API runs of DA and BR.
@@ -64,6 +60,7 @@ python scripts/run_best_response.py --config configs/default.yaml --workers 4
 Results are written to data/results/best_response/<split>/predictions.jsonl.
 
 **Batch API Support for DA and BR**
+
 Use the OpenAI Batch API for large DA jobs or any experiment for BR (its latency isn't as affected using the Batch API since only one Batch API call is necessary instead of 50, one per message inside a chunk, for DA.):
 
 python scripts/batch_direct_assignment.py --config configs/batch.yaml
@@ -77,6 +74,7 @@ python scripts/query_batch.py --id batch_XXXXXXXX
 
 
 **Ensembles**
+
 Blend multiple prediction.jsonl sources. 
 For example, to run the consensus conversations (intersection) of DA+BR ensemble run:
 
@@ -86,8 +84,17 @@ configs/ensemble.yaml lists the constituent prediction files and writes the cons
 
 
 **Evaluation**
+
 Score any predictions.jsonl file against the gold chunk labels, using the respective yaml file used for the experiment that generated that predictions.jsonl:
 
 python scripts/evaluate.py --config configs/default.yaml --predictions data/results/direct_assignment/dev/predictions.jsonl
 
 The evaluator computes all clustering/link metrics (nmi, ari, exact_p, etc.) and can be reused for DA, BR, batch, or ensemble outputs.
+
+**Results analysis**
+
+There are several scripts in scripts/results_analysis/ to analyze the results of the models to uncover error patterns, biases in the models, etc.
+
+For instance, to run a script that prints a chunk of 50 messages with the predicted clusterings and the true clusterings:
+
+python scripts/ensembles/diagnose_pred_errors.py
