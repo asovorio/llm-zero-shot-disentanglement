@@ -1,0 +1,520 @@
+{"id": "8516", "author": "SYSTEM", "text": "=== satellit is now known as satellit_TS", "timestamp": 1377957600.0, "conv_id": 5586, "is_system": true, "is_context": false}
+{"id": "8644", "author": "SYSTEM", "text": "=== kevin_ is now known as kevin", "timestamp": 1377957600.0, "conv_id": 5587, "is_system": true, "is_context": false}
+{"id": "8653", "author": "SYSTEM", "text": "=== g_byers is now known as gbyers[Away]", "timestamp": 1377957600.0, "conv_id": 5588, "is_system": true, "is_context": false}
+{"id": "8682", "author": "SYSTEM", "text": "=== slide23 is now known as slide[LSU]", "timestamp": 1377957600.0, "conv_id": 5589, "is_system": true, "is_context": false}
+{"id": "8690", "author": "SYSTEM", "text": "=== FreezingCold is now known as xv", "timestamp": 1377957600.0, "conv_id": 5590, "is_system": true, "is_context": false}
+{"id": "8701", "author": "SYSTEM", "text": "=== xv is now known as a", "timestamp": 1377957600.0, "conv_id": 5591, "is_system": true, "is_context": false}
+{"id": "8704", "author": "SYSTEM", "text": "=== a is now known as FreezingCold", "timestamp": 1377957600.0, "conv_id": 5592, "is_system": true, "is_context": false}
+{"id": "8824", "author": "SYSTEM", "text": "[04:13]  * zykotick9 is unignoring wilee-nilee, although he recommeds using non-free software on a regular bases...", "timestamp": 1377957600.0, "conv_id": 5593, "is_system": true, "is_context": false}
+{"id": "8835", "author": "SYSTEM", "text": "[04:19]  * zykotick9 is re-ignoring wilee-nilee, because he supports non-free software on a regular bases...  [OPs: i know annoucing ignores is frowned upon, it's only because i annouced the unignore, that i'm doing this]", "timestamp": 1377957600.0, "conv_id": 5593, "is_system": true, "is_context": false}
+{"id": "8838", "author": "SYSTEM", "text": "[04:20]  * xmetal wonders if anyone really cares", "timestamp": 1377957600.0, "conv_id": 5593, "is_system": true, "is_context": false}
+{"id": "8840", "author": "SYSTEM", "text": "[04:20]  * conathan has an interest", "timestamp": 1377957600.0, "conv_id": 5593, "is_system": true, "is_context": false}
+{"id": "8863", "author": "SYSTEM", "text": "=== River_Rat is now known as RiverRat", "timestamp": 1377957600.0, "conv_id": 5594, "is_system": true, "is_context": false}
+{"id": "8867", "author": "SYSTEM", "text": "=== deamonologist is now known as pal", "timestamp": 1377957600.0, "conv_id": 5595, "is_system": true, "is_context": false}
+{"id": "8970", "author": "SYSTEM", "text": "=== LoganG is now known as LoganG|off", "timestamp": 1377957600.0, "conv_id": 5596, "is_system": true, "is_context": false}
+{"id": "9005", "author": "SYSTEM", "text": "", "timestamp": 1377957600.0, "conv_id": 5597, "is_system": true, "is_context": false}
+{"id": "8505", "author": "SixtyFold", "text": "but other sites with flash ive been using chromium current edition with it's built in flash and it runs fine too, havent tried youtube in that", "timestamp": 1377964800.0, "conv_id": 5794, "is_system": false, "is_context": false}
+{"id": "8506", "author": "SixtyFold", "text": "vp18 - also, what are your specs out of curiousity?", "timestamp": 1377964860.0, "conv_id": 5792, "is_system": false, "is_context": false}
+{"id": "8507", "author": "vp18", "text": "on my laptop?", "timestamp": 1377964860.0, "conv_id": 5792, "is_system": false, "is_context": false}
+{"id": "8508", "author": "SixtyFold", "text": "hardware wise, yes", "timestamp": 1377964920.0, "conv_id": 5792, "is_system": false, "is_context": false}
+{"id": "8509", "author": "zykotick9", "text": "vp18: chrome using it's own flash...  try in a different browser.", "timestamp": 1377964920.0, "conv_id": 5792, "is_system": false, "is_context": false}
+{"id": "8510", "author": "vp18", "text": "AMD A6 Quad core processor", "timestamp": 1377964920.0, "conv_id": 5792, "is_system": false, "is_context": false}
+{"id": "8511", "author": "LeinardoSmith_", "text": "could someone help me set up cups to serve drivers to windows?", "timestamp": 1377964920.0, "conv_id": 5795, "is_system": false, "is_context": false}
+{"id": "8512", "author": "SixtyFold", "text": "A6 has integrated graphics right?", "timestamp": 1377964920.0, "conv_id": 5792, "is_system": false, "is_context": false}
+{"id": "8513", "author": "vp18", "text": "i think yes", "timestamp": 1377964920.0, "conv_id": 5792, "is_system": false, "is_context": false}
+{"id": "8514", "author": "SixtyFold", "text": "yah, i might be talking out my ass, so someone call me on it, but i believe that could be a glitch too", "timestamp": 1377964980.0, "conv_id": 5792, "is_system": false, "is_context": false}
+{"id": "8515", "author": "SixtyFold", "text": "amd cards dont work the best with linux", "timestamp": 1377964980.0, "conv_id": 5792, "is_system": false, "is_context": false}
+{"id": "8517", "author": "vp18", "text": "but i had this for over a year no problem", "timestamp": 1377964980.0, "conv_id": 5792, "is_system": false, "is_context": false}
+{"id": "8518", "author": "SixtyFold", "text": "when did you start having issues with flash?", "timestamp": 1377965040.0, "conv_id": 5792, "is_system": false, "is_context": false}
+{"id": "8519", "author": "wiak", "text": "http://cdimage.ubuntu.com/releases/12.04.3/release/ ese", "timestamp": 1377965100.0, "conv_id": 5790, "is_system": false, "is_context": false}
+{"id": "8520", "author": "SixtyFold", "text": "i went through like 5 distros and multiple derivatives before i got an acer with an amd c-60 and amd 6250 dedicated graphics card netbook working with linux and youtube without constant glitching and stutters, *shrugs*", "timestamp": 1377965100.0, "conv_id": 5792, "is_system": false, "is_context": false}
+{"id": "8521", "author": "vp18", "text": "just now", "timestamp": 1377965100.0, "conv_id": 5792, "is_system": false, "is_context": false}
+{"id": "8522", "author": "vp18", "text": "i even uninstall the plugin", "timestamp": 1377965100.0, "conv_id": 5792, "is_system": false, "is_context": false}
+{"id": "8523", "author": "coccinelle", "text": "s", "timestamp": 1377965160.0, "conv_id": 5796, "is_system": false, "is_context": false}
+{"id": "8524", "author": "vp18", "text": "maybe i need to try chronium", "timestamp": 1377965160.0, "conv_id": 5792, "is_system": false, "is_context": false}
+{"id": "8525", "author": "SixtyFold", "text": "chromium is chrome for linux", "timestamp": 1377965160.0, "conv_id": 5792, "is_system": false, "is_context": false}
+{"id": "8526", "author": "SixtyFold", "text": "youre using it already", "timestamp": 1377965160.0, "conv_id": 5792, "is_system": false, "is_context": false}
+{"id": "8527", "author": "vp18", "text": "no just pure google chrome", "timestamp": 1377965160.0, "conv_id": 5792, "is_system": false, "is_context": false}
+{"id": "8528", "author": "coccinelle", "text": "je parle francais", "timestamp": 1377965160.0, "conv_id": 5797, "is_system": false, "is_context": false}
+{"id": "8529", "author": "SixtyFold", "text": "how are you doing that?", "timestamp": 1377965160.0, "conv_id": 5792, "is_system": false, "is_context": false}
+{"id": "8530", "author": "lotuspsychje", "text": "!fr | coccinelle", "timestamp": 1377965160.0, "conv_id": 5797, "is_system": false, "is_context": false}
+{"id": "8531", "author": "ubottu", "text": "coccinelle: Nous sommes desoles mais ce canal est en anglais uniquement. Si vous avez besoin d'aide ou voulez discuter en français, veuillez taper /join #ubuntu-fr ou /join #ubuntu-qc. Merci.", "timestamp": 1377965160.0, "conv_id": 5797, "is_system": false, "is_context": false}
+{"id": "8532", "author": "vp18", "text": "google.com", "timestamp": 1377965220.0, "conv_id": 5792, "is_system": false, "is_context": false}
+{"id": "8533", "author": "SixtyFold", "text": "yah, try chromium man or firefox with the old 11.2 flash, should work, idk why it wouldnt", "timestamp": 1377965220.0, "conv_id": 5792, "is_system": false, "is_context": false}
+{"id": "8534", "author": "vp18", "text": "they have chrome for linux", "timestamp": 1377965220.0, "conv_id": 5792, "is_system": false, "is_context": false}
+{"id": "8535", "author": "zykotick9", "text": "SixtyFold: chromium is NOT chrome, they are different.", "timestamp": 1377965220.0, "conv_id": 5792, "is_system": false, "is_context": false}
+{"id": "8536", "author": "lotuspsychje", "text": "!info google-chrome | vp18", "timestamp": 1377965220.0, "conv_id": 5792, "is_system": false, "is_context": false}
+{"id": "8537", "author": "ubottu", "text": "vp18: Package google-chrome does not exist in raring", "timestamp": 1377965220.0, "conv_id": 5792, "is_system": false, "is_context": false}
+{"id": "8538", "author": "SixtyFold", "text": "just sudo apt-get install chromium-browser then", "timestamp": 1377965220.0, "conv_id": 5792, "is_system": false, "is_context": false}
+{"id": "8539", "author": "SixtyFold", "text": "and try that", "timestamp": 1377965220.0, "conv_id": 5792, "is_system": false, "is_context": false}
+{"id": "8540", "author": "vp18", "text": "im already downloading", "timestamp": 1377965280.0, "conv_id": 5792, "is_system": false, "is_context": false}
+{"id": "8541", "author": "SixtyFold", "text": "zykotick9 - i thought chromium was the only google browser available for linux, i thought chrome was just for mac/windows, my bad", "timestamp": 1377965280.0, "conv_id": 5792, "is_system": false, "is_context": false}
+{"id": "8542", "author": "xmetal", "text": "chrome is chromium with flash built in and google branding", "timestamp": 1377965280.0, "conv_id": 5792, "is_system": false, "is_context": false}
+{"id": "8543", "author": "SixtyFold", "text": "chromium is the open source version of chrome yah?", "timestamp": 1377965280.0, "conv_id": 5792, "is_system": false, "is_context": false}
+{"id": "8544", "author": "xmetal", "text": "if i am not mistaken", "timestamp": 1377965280.0, "conv_id": 5792, "is_system": false, "is_context": false}
+{"id": "8545", "author": "zykotick9", "text": "SixtyFold: yes.", "timestamp": 1377965280.0, "conv_id": 5792, "is_system": false, "is_context": false}
+{"id": "8546", "author": "xmetal", "text": "other google added stuff too i am sure", "timestamp": 1377965280.0, "conv_id": 5792, "is_system": false, "is_context": false}
+{"id": "8547", "author": "xmetal", "text": "yeah", "timestamp": 1377965340.0, "conv_id": 5792, "is_system": false, "is_context": false}
+{"id": "8548", "author": "ese", "text": "hi, is there a way i can force ubuntu 12.10 x64 to install in legacy mode?", "timestamp": 1377965340.0, "conv_id": 5741, "is_system": false, "is_context": false}
+{"id": "8549", "author": "lotuspsychje", "text": "xmetal: hows your e17 working out for you?", "timestamp": 1377965340.0, "conv_id": 5798, "is_system": false, "is_context": false}
+{"id": "8550", "author": "xmetal", "text": "since i (i am not going on a rant about that) dont use anything google now, if i was going to use one (I dont like either, but thats my opinion) ... i'd go with Chromium", "timestamp": 1377965340.0, "conv_id": 5792, "is_system": false, "is_context": false}
+{"id": "8551", "author": "xmetal", "text": "basically because that is what Google Chrome is based on anyway .. and its open source (lol ... i think)", "timestamp": 1377965400.0, "conv_id": 5792, "is_system": false, "is_context": false}
+{"id": "8552", "author": "lotuspsychje", "text": "ese: whats your issue exactly?", "timestamp": 1377965460.0, "conv_id": 5741, "is_system": false, "is_context": false}
+{"id": "8553", "author": "zykotick9", "text": "ese: what is \"legacy mode\", if you mean 32bit - the answer is no.", "timestamp": 1377965460.0, "conv_id": 5741, "is_system": false, "is_context": false}
+{"id": "8554", "author": "xmetal", "text": "just fine :) .. never heard of it before you mentioned it ... i go from DE to DE ... basically trying them all out", "timestamp": 1377965460.0, "conv_id": 5798, "is_system": false, "is_context": false}
+{"id": "8555", "author": "hanasaki", "text": "n931732  go away", "timestamp": 1377965460.0, "conv_id": 5799, "is_system": false, "is_context": false}
+{"id": "8556", "author": "lotuspsychje", "text": "xmetal: try using the tab for nick autofill", "timestamp": 1377965520.0, "conv_id": 5800, "is_system": false, "is_context": false}
+{"id": "8557", "author": "hanasaki", "text": "ummm refur1975  go away..", "timestamp": 1377965520.0, "conv_id": 5799, "is_system": false, "is_context": false}
+{"id": "8558", "author": "improvised", "text": "I dated a guy named ubuntu once.  He was black as the night and used to \"play the bongos\" on my ass.", "timestamp": 1377965520.0, "conv_id": 5801, "is_system": false, "is_context": false}
+{"id": "8559", "author": "improvised", "text": "I dated a guy named ubuntu once.  He was black as the night and used to \"play the bongos\" on my ass.", "timestamp": 1377965520.0, "conv_id": 5801, "is_system": false, "is_context": false}
+{"id": "8560", "author": "lotuspsychje", "text": "hanasaki: you can report spammer in #ubuntu-ops", "timestamp": 1377965580.0, "conv_id": 5799, "is_system": false, "is_context": false}
+{"id": "8561", "author": "hanasaki", "text": "what would cause thunderbird to just show the account names but not the folders?   if I make a new profile and setup the account again it is fine", "timestamp": 1377965580.0, "conv_id": 5802, "is_system": false, "is_context": false}
+{"id": "8562", "author": "xmetal", "text": "something \"wrong\" with the profile folder ?", "timestamp": 1377965640.0, "conv_id": 5802, "is_system": false, "is_context": false}
+{"id": "8563", "author": "xmetal", "text": "(where the mail is locally stored)", "timestamp": 1377965640.0, "conv_id": 5802, "is_system": false, "is_context": false}
+{"id": "8564", "author": "SixtyFold", "text": "what's e17?", "timestamp": 1377965640.0, "conv_id": 5798, "is_system": false, "is_context": false}
+{"id": "8565", "author": "wilee-nilee", "text": "SixtyFold, a desktop", "timestamp": 1377965640.0, "conv_id": 5798, "is_system": false, "is_context": false}
+{"id": "8566", "author": "hanasaki", "text": "xmetal:  all the perms aer fine", "timestamp": 1377965640.0, "conv_id": 5802, "is_system": false, "is_context": false}
+{"id": "8567", "author": "lotuspsychje", "text": "!info e17 | SixtyFold", "timestamp": 1377965640.0, "conv_id": 5798, "is_system": false, "is_context": false}
+{"id": "8568", "author": "ubottu", "text": "SixtyFold: e17 (source: e17): Enlightenment DR17 Window Manager. In component universe, is optional. Version 0.16.999.70492-2 (raring), package size 2455 kB, installed size 6280 kB", "timestamp": 1377965640.0, "conv_id": 5798, "is_system": false, "is_context": false}
+{"id": "8569", "author": "xmetal", "text": "(just a guess)", "timestamp": 1377965640.0, "conv_id": 5802, "is_system": false, "is_context": false}
+{"id": "8570", "author": "xmetal", "text": "sorry for the fragmented posts too, lol", "timestamp": 1377965640.0, "conv_id": 5802, "is_system": false, "is_context": false}
+{"id": "8571", "author": "SixtyFold", "text": "is it lighter weight than LXDE?", "timestamp": 1377965640.0, "conv_id": 5798, "is_system": false, "is_context": false}
+{"id": "8572", "author": "hanasaki", "text": "lotuspsychje:  thanks", "timestamp": 1377965640.0, "conv_id": 5799, "is_system": false, "is_context": false}
+{"id": "8573", "author": "kostkon", "text": "SixtyFold, naah", "timestamp": 1377965640.0, "conv_id": 5798, "is_system": false, "is_context": false}
+{"id": "8574", "author": "lotuspsychje", "text": "SixtyFold: remember oldskool enlightment?", "timestamp": 1377965640.0, "conv_id": 5798, "is_system": false, "is_context": false}
+{"id": "8575", "author": "wilee-nilee", "text": "hanasaki, The info was in >config", "timestamp": 1377965640.0, "conv_id": 5802, "is_system": false, "is_context": false}
+{"id": "8576", "author": "wilee-nilee", "text": ".config", "timestamp": 1377965700.0, "conv_id": 5802, "is_system": false, "is_context": false}
+{"id": "8577", "author": "SixtyFold", "text": "lotus - naw, never seen that one before", "timestamp": 1377965700.0, "conv_id": 5798, "is_system": false, "is_context": false}
+{"id": "8578", "author": "SixtyFold", "text": "will have to give it a try though, see what it's like", "timestamp": 1377965700.0, "conv_id": 5798, "is_system": false, "is_context": false}
+{"id": "8579", "author": "xmetal", "text": "i wanted to try lxde ande e17 on my old laptop but i am having issues", "timestamp": 1377965700.0, "conv_id": 5798, "is_system": false, "is_context": false}
+{"id": "8580", "author": "hanasaki", "text": "wilee-nilee:  huh?", "timestamp": 1377965700.0, "conv_id": 5802, "is_system": false, "is_context": false}
+{"id": "8581", "author": "xmetal", "text": "(think the laptop's hardware is dying)", "timestamp": 1377965700.0, "conv_id": 5798, "is_system": false, "is_context": false}
+{"id": "8582", "author": "lotuspsychje", "text": "SixtyFold: you should try it, i think lubuntu remains the lightest one", "timestamp": 1377965700.0, "conv_id": 5798, "is_system": false, "is_context": false}
+{"id": "8583", "author": "zykotick9", "text": "kostkon: i'd think e17 and lxde would be \"close\" in resource usage...", "timestamp": 1377965700.0, "conv_id": 5798, "is_system": false, "is_context": false}
+{"id": "8584", "author": "xmetal", "text": "i think those two DE's would do good on that system", "timestamp": 1377965700.0, "conv_id": 5798, "is_system": false, "is_context": false}
+{"id": "8585", "author": "wilee-nilee", "text": "hanasaki, Thought was worng sorry", "timestamp": 1377965760.0, "conv_id": 5802, "is_system": false, "is_context": false}
+{"id": "8586", "author": "legend321", "text": "Hi there. How do i backup every setting in ubnutu 12.04 without backing up any personal files just in case i mess up anything and may not be able to boot anymore or correct a setting?", "timestamp": 1377965760.0, "conv_id": 5803, "is_system": false, "is_context": false}
+{"id": "8587", "author": "hanasaki", "text": "wilee-nilee:  what is in config?>", "timestamp": 1377965760.0, "conv_id": 5802, "is_system": false, "is_context": false}
+{"id": "8588", "author": "kostkon", "text": "zykotick9, i think lxde is lighter, with less graphical effects. i think now e17 is opengl based or smthing. at least it uses a lot of compositing", "timestamp": 1377965760.0, "conv_id": 5798, "is_system": false, "is_context": false}
+{"id": "8589", "author": "hayer", "text": "since #rtorrent is dead.. what happens if I delete a rtorrent session file?", "timestamp": 1377965820.0, "conv_id": 5804, "is_system": false, "is_context": false}
+{"id": "8590", "author": "xmetal", "text": "i have to use a crt with it since the LCD lamp is out (not worth fixing that on a \"2001/2002\" laptop, in my opinion) ... and even just booting the liveUSB, everything seems to be starting fine and then the CRT goes out and doesn't come back on", "timestamp": 1377965820.0, "conv_id": 5798, "is_system": false, "is_context": false}
+{"id": "8591", "author": "lotuspsychje", "text": "hayer: try transmission aswell, pretty neat package", "timestamp": 1377965820.0, "conv_id": 5804, "is_system": false, "is_context": false}
+{"id": "8592", "author": "xmetal", "text": "i mean booting up ... its like it shuts off and stays \"off\" .. the CRT itself is fine", "timestamp": 1377965820.0, "conv_id": 5798, "is_system": false, "is_context": false}
+{"id": "8593", "author": "hayer", "text": "lotuspsychje: no. im using rtorrent + rutorrent", "timestamp": 1377965820.0, "conv_id": 5804, "is_system": false, "is_context": false}
+{"id": "8594", "author": "xmetal", "text": "no lose cables either", "timestamp": 1377965820.0, "conv_id": 5798, "is_system": false, "is_context": false}
+{"id": "8595", "author": "zykotick9", "text": "kostkon: e17 is actually very light... i've only used it myself in it's 16.999 version (almost 17) but it's very light actually (i'd find opengl/composting hard to believe actually - i found it too buggy at the time)", "timestamp": 1377965880.0, "conv_id": 5798, "is_system": false, "is_context": false}
+{"id": "8596", "author": "xmetal", "text": "my newer laptops is fine with almost all of the DE's (it doesn't 'need\" e17 .. but i do like E17, myself)", "timestamp": 1377965880.0, "conv_id": 5798, "is_system": false, "is_context": false}
+{"id": "8597", "author": "kostkon", "text": "zykotick9, right, i believe you. youve actually tried it, unlike myself, so yeah :D", "timestamp": 1377965940.0, "conv_id": 5798, "is_system": false, "is_context": false}
+{"id": "8598", "author": "wilee-nilee", "text": "hanasaki, It's .config in home unhide the folders and take a look it is many setups for your regular and added apps.", "timestamp": 1377965940.0, "conv_id": 5802, "is_system": false, "is_context": false}
+{"id": "8599", "author": "lotuspsychje", "text": "for recent computers E17 will run fine with low resources", "timestamp": 1377965940.0, "conv_id": 5798, "is_system": false, "is_context": false}
+{"id": "8600", "author": "hanasaki", "text": "wilee-nilee:  thanks... nothing on thunderbird there", "timestamp": 1377966000.0, "conv_id": 5802, "is_system": false, "is_context": false}
+{"id": "8601", "author": "wilee-nilee", "text": "hanasaki, Yeah I saw that I thought there would be.", "timestamp": 1377966000.0, "conv_id": 5802, "is_system": false, "is_context": false}
+{"id": "8602", "author": "wilee-nilee", "text": "its all in the .thunderbird folder", "timestamp": 1377966060.0, "conv_id": 5802, "is_system": false, "is_context": false}
+{"id": "8603", "author": "hanasaki", "text": "wilee-nilee: looks like the easy way is to make a new profile and setup all the accounts again :(", "timestamp": 1377966240.0, "conv_id": 5802, "is_system": false, "is_context": false}
+{"id": "8604", "author": "wilee-nilee", "text": "hanasaki, were you setting up an encrypt?", "timestamp": 1377966300.0, "conv_id": 5802, "is_system": false, "is_context": false}
+{"id": "8605", "author": "hanasaki", "text": "wilee-nilee:  nope  why/", "timestamp": 1377966300.0, "conv_id": 5802, "is_system": false, "is_context": false}
+{"id": "8606", "author": "zykotick9", "text": "kostkon: FYI i see \"!info e17\" shows ubuntu is using the 16.999 version of e17 (ie NOT the e17 final)", "timestamp": 1377966360.0, "conv_id": 5798, "is_system": false, "is_context": false}
+{"id": "8607", "author": "wilee-nilee", "text": "hanasaki, JUst thought that might have been a cause, just a guess, someone was on earlier doing that.", "timestamp": 1377966360.0, "conv_id": 5802, "is_system": false, "is_context": false}
+{"id": "8608", "author": "kostkon", "text": "zykotick9, true. e17 (0.16.999.70492-2)", "timestamp": 1377966420.0, "conv_id": 5798, "is_system": false, "is_context": false}
+{"id": "8609", "author": "zykotick9", "text": "kostkon: well, i tried e17 0.17.3, it was a 30MB download!  BUT, it's segfaulting in my VM (possibly due to lack of 3d support?  which this VM doesn't have.  or perhaps because it's still buggy ;)  but i can't verify if it needs 3d or not...", "timestamp": 1377966840.0, "conv_id": 5798, "is_system": false, "is_context": false}
+{"id": "8610", "author": "kostkon", "text": "zykotick9, it could be. i still think it requires opengl capable graphics drivers :P", "timestamp": 1377966960.0, "conv_id": 5798, "is_system": false, "is_context": false}
+{"id": "8611", "author": "zykotick9", "text": "kostkon: by way of comparison, lxde is a 270MB download!", "timestamp": 1377966960.0, "conv_id": 5798, "is_system": false, "is_context": false}
+{"id": "8612", "author": "kostkon", "text": "zykotick9, hmm weird", "timestamp": 1377966960.0, "conv_id": 5798, "is_system": false, "is_context": false}
+{"id": "8613", "author": "zykotick9", "text": "kostkon: e17 is CRAZY light man...", "timestamp": 1377966960.0, "conv_id": 5798, "is_system": false, "is_context": false}
+{"id": "8614", "author": "kostkon", "text": "zykotick9, lol", "timestamp": 1377966960.0, "conv_id": 5798, "is_system": false, "is_context": false}
+{"id": "8615", "author": "TScum", "text": "looking for some cute gay geek under 18", "timestamp": 1377967080.0, "conv_id": 5805, "is_system": false, "is_context": false}
+{"id": "8616", "author": "TScum", "text": "(INAPPROPRIATE CONTENT)", "timestamp": 1377967080.0, "conv_id": 5805, "is_system": false, "is_context": false}
+{"id": "8617", "author": "Dr_Willis", "text": "I rember back ages ago when E was heavy. ;) but that was when a Pent 100 was high end. ;P", "timestamp": 1377967080.0, "conv_id": 5798, "is_system": false, "is_context": false}
+{"id": "8618", "author": "TScum", "text": "pm me if interested", "timestamp": 1377967080.0, "conv_id": 5805, "is_system": false, "is_context": false}
+{"id": "8619", "author": "lotuspsychje", "text": "Dr_Willis: true :p", "timestamp": 1377967140.0, "conv_id": 5798, "is_system": false, "is_context": false}
+{"id": "8620", "author": "tim", "text": "Any one that can help me with LibreOffice Writer macros?", "timestamp": 1377967200.0, "conv_id": 5806, "is_system": false, "is_context": false}
+{"id": "8621", "author": "xmetal", "text": "i remember when i thought @500mhz was blazing fast", "timestamp": 1377967200.0, "conv_id": 5798, "is_system": false, "is_context": false}
+{"id": "8622", "author": "xmetal", "text": "how times change", "timestamp": 1377967200.0, "conv_id": 5798, "is_system": false, "is_context": false}
+{"id": "8623", "author": "kostkon", "text": "zykotick9, hmm 270 v 30. it's a lot. dont know where is coming from. maybe because lubuntu-desktop has a long list of deps. however, just the lxde package alone depends on much fewer packages.", "timestamp": 1377967380.0, "conv_id": 5798, "is_system": false, "is_context": false}
+{"id": "8624", "author": "zykotick9", "text": "kostkon: that 270 is just the lxde package(s) ;)  it's ALMOST finished installing.", "timestamp": 1377967380.0, "conv_id": 5798, "is_system": false, "is_context": false}
+{"id": "8625", "author": "wilee-nilee", "text": "tim, Just tell the channel the problem for help. ;)", "timestamp": 1377967380.0, "conv_id": 5806, "is_system": false, "is_context": false}
+{"id": "8626", "author": "kostkon", "text": "zykotick9, oh ok", "timestamp": 1377967440.0, "conv_id": 5798, "is_system": false, "is_context": false}
+{"id": "8627", "author": "mosh", "text": "xmetal; now I think my 2.7ghz Dual Core is slow, lol.", "timestamp": 1377967500.0, "conv_id": 5798, "is_system": false, "is_context": false}
+{"id": "8628", "author": "ghgh555", "text": "hello", "timestamp": 1377967500.0, "conv_id": 5807, "is_system": false, "is_context": false}
+{"id": "8629", "author": "raphael", "text": "algum brasileiro por ai?", "timestamp": 1377967620.0, "conv_id": 5808, "is_system": false, "is_context": false}
+{"id": "8630", "author": "wilee-nilee", "text": "!br | raphael", "timestamp": 1377967620.0, "conv_id": 5808, "is_system": false, "is_context": false}
+{"id": "8631", "author": "ubottu", "text": "raphael: Por favor, use #ubuntu-br para ajuda em português. Para entrar no canal por favor faça \"/join #ubuntu-br\" sem as aspas. Para a comunidade local portuguêsa, use #ubuntu-pt. Obrigada.", "timestamp": 1377967620.0, "conv_id": 5808, "is_system": false, "is_context": false}
+{"id": "8632", "author": "adrimirc", "text": "join ubuntu-es", "timestamp": 1377967680.0, "conv_id": 5808, "is_system": false, "is_context": false}
+{"id": "8633", "author": "raphael", "text": "ok valew", "timestamp": 1377967680.0, "conv_id": 5808, "is_system": false, "is_context": false}
+{"id": "8634", "author": "raphael", "text": "alguem meche com pentets?", "timestamp": 1377967680.0, "conv_id": 5808, "is_system": false, "is_context": false}
+{"id": "8635", "author": "tim", "text": "Hello, I am having trouble figuring out macros. Specifically SetRowHeight in libreoffice writer. I used the record macro but this is the only setting that didn't get recorded. I'm positive it is a simple quick fix in the script. What to do?", "timestamp": 1377967680.0, "conv_id": 5806, "is_system": false, "is_context": false}
+{"id": "8636", "author": "wilee-nilee", "text": "raphael, english here.", "timestamp": 1377967680.0, "conv_id": 5808, "is_system": false, "is_context": false}
+{"id": "8637", "author": "zykotick9", "text": "tim: i'm 95% sure there is a libreoffice channel (either on freenode or oftc), i'd suggest trying to find it (on freenode try alis, \"/msg ubottu alis\" for details)", "timestamp": 1377967740.0, "conv_id": 5806, "is_system": false, "is_context": false}
+{"id": "8638", "author": "xmetal", "text": "hmm there a open/libre office channel ?? ..that may be a better place to look", "timestamp": 1377967740.0, "conv_id": 5806, "is_system": false, "is_context": false}
+{"id": "8639", "author": "adrimirc", "text": "Hi I need help, when I click in the System Configuration icon the cursor starts to load but the System Configuration menu dont open", "timestamp": 1377967740.0, "conv_id": 5809, "is_system": false, "is_context": false}
+{"id": "8640", "author": "wilee-nilee", "text": "several closet seemed to be #libreoffice-devs", "timestamp": 1377967800.0, "conv_id": 5806, "is_system": false, "is_context": false}
+{"id": "8641", "author": "adrimirc", "text": "Can someone help me?", "timestamp": 1377967800.0, "conv_id": 5809, "is_system": false, "is_context": false}
+{"id": "8642", "author": "tim", "text": "zykotick9: no one is replying so I am trying here...", "timestamp": 1377967920.0, "conv_id": 5806, "is_system": false, "is_context": false}
+{"id": "8643", "author": "tim", "text": "I feel like any one who know BASIC could help here.", "timestamp": 1377967920.0, "conv_id": 5806, "is_system": false, "is_context": false}
+{"id": "8645", "author": "wilee-nilee", "text": "tim, ##linux maybe", "timestamp": 1377967980.0, "conv_id": 5806, "is_system": false, "is_context": false}
+{"id": "8646", "author": "osolus", "text": "Not sure what to try next, I can only get two monitors to work in windows. In linux my system crashes and I am afraid to try again, this problem has occurred with different drivers and on different distributions.", "timestamp": 1377968220.0, "conv_id": 5617, "is_system": false, "is_context": false}
+{"id": "8647", "author": "CountryfiedLinux", "text": "Where can I get the Ubuntu boot screen and login screen and how do I apply them so they can be used? Thanks in advance.", "timestamp": 1377968400.0, "conv_id": 5810, "is_system": false, "is_context": false}
+{"id": "8648", "author": "wilee-nilee", "text": "CountryfiedLinux, Can you give the back on why they are missing?", "timestamp": 1377968400.0, "conv_id": 5810, "is_system": false, "is_context": false}
+{"id": "8649", "author": "zykotick9", "text": "kostkon: lxde ends up pulling in, quite a bit of gnome (i guess understandably), which explains it's MUCH larger size than e17.  BUT... e17 failed on my VM, lxde works OOTB!  so my scorecard: e17 = 0 vs lxde = 1 (there is a clear winner from where i sit ;)  thanks for reminding me that e17 exists, and that it's still isn't up to \"my\" quality standards ;)  [i enjoyed the \"test\" though :) ]", "timestamp": 1377968460.0, "conv_id": 5798, "is_system": false, "is_context": false}
+{"id": "8650", "author": "kostkon", "text": "zykotick9, :)", "timestamp": 1377968460.0, "conv_id": 5798, "is_system": false, "is_context": false}
+{"id": "8651", "author": "ianananan", "text": "I'm trying to figure out why I can't download boot-repair to a linux livecd.", "timestamp": 1377968460.0, "conv_id": 5811, "is_system": false, "is_context": false}
+{"id": "8652", "author": "Ben66", "text": "ianananan: dylan: https://help.ubuntu.com/community/Boot-Repair", "timestamp": 1377968520.0, "conv_id": 5811, "is_system": false, "is_context": false}
+{"id": "8654", "author": "ianananan", "text": "I'm running 11.04 (narwhal) and using \"sudo add-apt-repository ppa:yannubuntu\"", "timestamp": 1377968520.0, "conv_id": 5811, "is_system": false, "is_context": false}
+{"id": "8655", "author": "ianananan", "text": "but no dice.", "timestamp": 1377968520.0, "conv_id": 5811, "is_system": false, "is_context": false}
+{"id": "8656", "author": "Ben66", "text": "uh... 11.04 is not supported", "timestamp": 1377968520.0, "conv_id": 5811, "is_system": false, "is_context": false}
+{"id": "8657", "author": "wilee-nilee", "text": "ianananan, I doubt there is a 11.04 release there, its not supported.", "timestamp": 1377968520.0, "conv_id": 5811, "is_system": false, "is_context": false}
+{"id": "8658", "author": "ianananan", "text": "mk", "timestamp": 1377968520.0, "conv_id": 5811, "is_system": false, "is_context": false}
+{"id": "8659", "author": "zykotick9", "text": "!11.04 | ianananan", "timestamp": 1377968580.0, "conv_id": 5811, "is_system": false, "is_context": false}
+{"id": "8660", "author": "ubottu", "text": "ianananan: Ubuntu 11.04 (Natty Narwhal) was the fourteenth release of Ubuntu. Desktop support ended on October 28, 2012. See !upgrade, !lts and !eol for more details.", "timestamp": 1377968580.0, "conv_id": 5811, "is_system": false, "is_context": false}
+{"id": "8661", "author": "kostkon", "text": "ianananan, 11.04 is eol", "timestamp": 1377968580.0, "conv_id": 5811, "is_system": false, "is_context": false}
+{"id": "8662", "author": "ianananan", "text": "it's a bit of a dated cd anyway :3", "timestamp": 1377968580.0, "conv_id": 5811, "is_system": false, "is_context": false}
+{"id": "8663", "author": "ianananan", "text": "kostkon: eol?", "timestamp": 1377968580.0, "conv_id": 5811, "is_system": false, "is_context": false}
+{"id": "8664", "author": "Ben66", "text": "hasn't been supported since october 2012", "timestamp": 1377968580.0, "conv_id": 5811, "is_system": false, "is_context": false}
+{"id": "8665", "author": "kostkon", "text": "!eol | ianananan", "timestamp": 1377968580.0, "conv_id": 5811, "is_system": false, "is_context": false}
+{"id": "8666", "author": "ubottu", "text": "ianananan: End-Of-Life is the time when security updates and support for an Ubuntu release stop, see https://wiki.ubuntu.com/Releases for more information. Looking to upgrade from an EOL release? See https://help.ubuntu.com/community/EOLUpgrades", "timestamp": 1377968580.0, "conv_id": 5811, "is_system": false, "is_context": false}
+{"id": "8667", "author": "wilee-nilee", "text": "ianananan, this a 11.04 install or just the disc?", "timestamp": 1377968580.0, "conv_id": 5811, "is_system": false, "is_context": false}
+{"id": "8668", "author": "ianananan", "text": "wilee-nilee: just a livecd", "timestamp": 1377968640.0, "conv_id": 5811, "is_system": false, "is_context": false}
+{"id": "8669", "author": "ianananan", "text": "Ugh, I haven't got anything recent laying around.", "timestamp": 1377968640.0, "conv_id": 5811, "is_system": false, "is_context": false}
+{"id": "8670", "author": "wilee-nilee", "text": "ianananan, you can run this for the script to pastebin. http://bootinfoscript.sourceforge.net/", "timestamp": 1377968640.0, "conv_id": 5811, "is_system": false, "is_context": false}
+{"id": "8671", "author": "ianananan", "text": "Would it be possible to use boot-repair from an archlinux livecd?", "timestamp": 1377968640.0, "conv_id": 5811, "is_system": false, "is_context": false}
+{"id": "8672", "author": "mini", "text": "is Linux Mint good? better than Ubuntu 13.04?", "timestamp": 1377968700.0, "conv_id": 5812, "is_system": false, "is_context": false}
+{"id": "8673", "author": "wilee-nilee", "text": "that is the bootinfo summary on boot repair", "timestamp": 1377968700.0, "conv_id": 5811, "is_system": false, "is_context": false}
+{"id": "8674", "author": "wilee-nilee", "text": "!mint", "timestamp": 1377968700.0, "conv_id": 5812, "is_system": false, "is_context": false}
+{"id": "8675", "author": "ubottu", "text": "Linux Mint is not a supported derivative of Ubuntu. Please seek support in #linuxmint-help on irc.spotchat.org", "timestamp": 1377968700.0, "conv_id": 5812, "is_system": false, "is_context": false}
+{"id": "8676", "author": "kostkon", "text": "!poll | mini", "timestamp": 1377968700.0, "conv_id": 5812, "is_system": false, "is_context": false}
+{"id": "8677", "author": "ubottu", "text": "mini: Usually, there is no single \"best\" application to perform a given task. It's up to you to choose, depending on your preferences, features you require, and other factors. Do NOT take polls in the channel. If you insist on getting people's opinions, ask BestBot in #ubuntu-bots.", "timestamp": 1377968700.0, "conv_id": 5812, "is_system": false, "is_context": false}
+{"id": "8678", "author": "mini", "text": "ok i relly have not any problems with this 13.04", "timestamp": 1377968760.0, "conv_id": 5812, "is_system": false, "is_context": false}
+{"id": "8679", "author": "ianananan", "text": "wilee-nilee: Hm. Can I run that script from 11.04?", "timestamp": 1377968760.0, "conv_id": 5811, "is_system": false, "is_context": false}
+{"id": "8680", "author": "wilee-nilee", "text": "ianananan, yep", "timestamp": 1377968820.0, "conv_id": 5811, "is_system": false, "is_context": false}
+{"id": "8681", "author": "raphael", "text": "--installgrub .... /dev/sda", "timestamp": 1377968820.0, "conv_id": 5811, "is_system": false, "is_context": false}
+{"id": "8683", "author": "raphael", "text": "of livecd", "timestamp": 1377968820.0, "conv_id": 5811, "is_system": false, "is_context": false}
+{"id": "8684", "author": "wilee-nilee", "text": "raphael, could be a uefi, lets see the script", "timestamp": 1377968820.0, "conv_id": 5811, "is_system": false, "is_context": false}
+{"id": "8685", "author": "raphael", "text": "ok", "timestamp": 1377968820.0, "conv_id": 5811, "is_system": false, "is_context": false}
+{"id": "8686", "author": "wilee-nilee", "text": "and that needs a chroot or mount of the partition", "timestamp": 1377968820.0, "conv_id": 5811, "is_system": false, "is_context": false}
+{"id": "8687", "author": "mini", "text": "i have 13.04 and have a small usb as wifi, is there a way it can reconnect automatically without me having to click \"connect\" multiple times?", "timestamp": 1377968820.0, "conv_id": 5813, "is_system": false, "is_context": false}
+{"id": "8688", "author": "wilee-nilee", "text": "mini, There is auto connect in the network manager, are you asked for a password on the wifi?", "timestamp": 1377968880.0, "conv_id": 5813, "is_system": false, "is_context": false}
+{"id": "8689", "author": "mini", "text": "yes", "timestamp": 1377968880.0, "conv_id": 5813, "is_system": false, "is_context": false}
+{"id": "8691", "author": "mini", "text": "and it is set and i just have to click connect", "timestamp": 1377968940.0, "conv_id": 5813, "is_system": false, "is_context": false}
+{"id": "8692", "author": "mini", "text": "but multiple times", "timestamp": 1377968940.0, "conv_id": 5813, "is_system": false, "is_context": false}
+{"id": "8693", "author": "wilee-nilee", "text": "mini, That popup I believe has a auto connect box", "timestamp": 1377968940.0, "conv_id": 5813, "is_system": false, "is_context": false}
+{"id": "8694", "author": "xmetal", "text": ":| i can not comment on that since i have used ubuntu since 10.10", "timestamp": 1377968940.0, "conv_id": 5812, "is_system": false, "is_context": false}
+{"id": "8695", "author": "merdam", "text": "(INAPPROPRIATE CONTENT)", "timestamp": 1377968940.0, "conv_id": 5814, "is_system": false, "is_context": false}
+{"id": "8696", "author": "ianananan", "text": "raphael: i'm afraid i don't follow", "timestamp": 1377968940.0, "conv_id": 5811, "is_system": false, "is_context": false}
+{"id": "8697", "author": "xmetal", "text": "(which one is better)", "timestamp": 1377968940.0, "conv_id": 5812, "is_system": false, "is_context": false}
+{"id": "8698", "author": "merdam", "text": "(INAPPROPRIATE CONTENT)", "timestamp": 1377968940.0, "conv_id": 5814, "is_system": false, "is_context": false}
+{"id": "8699", "author": "wilee-nilee", "text": "!ops | merdam", "timestamp": 1377968940.0, "conv_id": 5814, "is_system": false, "is_context": false}
+{"id": "8700", "author": "ubottu", "text": "merdam: Help! Channel emergency! (ONLY use this trigger in emergencies) - elky, Madpilot, tritium, Nalioth, tonyyarusso, PriceChild, Amaranth, jrib, Myrtti, mneptok, Pici,  jpds,  gnomefreak, bazhang,  Flannel, ikonia, maco, h00k, IdleOne, bkerensa, nhandler, Jordan_U, DJones or k1l!", "timestamp": 1377968940.0, "conv_id": 5814, "is_system": false, "is_context": false}
+{"id": "8702", "author": "xmetal", "text": "aww that windows channel guy is in here now", "timestamp": 1377969000.0, "conv_id": 5814, "is_system": false, "is_context": false}
+{"id": "8703", "author": "xmetal", "text": "lol", "timestamp": 1377969000.0, "conv_id": 5814, "is_system": false, "is_context": false}
+{"id": "8705", "author": "wilee-nilee", "text": "mini, THis on the install desktop or one you have added?", "timestamp": 1377969000.0, "conv_id": 5813, "is_system": false, "is_context": false}
+{"id": "8706", "author": "raphael", "text": "goodnight", "timestamp": 1377969060.0, "conv_id": 5815, "is_system": false, "is_context": false}
+{"id": "8707", "author": "mini", "text": "i only have 1", "timestamp": 1377969060.0, "conv_id": 5813, "is_system": false, "is_context": false}
+{"id": "8708", "author": "LeinardoSmith_", "text": "no one knows how to resolve this? NT_STATUS_ACCESS_DENIED", "timestamp": 1377969060.0, "conv_id": 5602, "is_system": false, "is_context": false}
+{"id": "8709", "author": "wilee-nilee", "text": "mini, Cool, I believe when that password popup pops up it has a auto box", "timestamp": 1377969060.0, "conv_id": 5813, "is_system": false, "is_context": false}
+{"id": "8710", "author": "LeinardoSmith_", "text": "I am using this command: net -S localhost -U root rpc rights grant root SePrintOperatorPrivalege", "timestamp": 1377969120.0, "conv_id": 5602, "is_system": false, "is_context": false}
+{"id": "8711", "author": "mini", "text": "ok i will check next time", "timestamp": 1377969120.0, "conv_id": 5813, "is_system": false, "is_context": false}
+{"id": "8712", "author": "wilee-nilee", "text": "mini, Or it's in the network manager", "timestamp": 1377969180.0, "conv_id": 5813, "is_system": false, "is_context": false}
+{"id": "8713", "author": "LeinardoSmith_", "text": "anyone know what to do?", "timestamp": 1377969180.0, "conv_id": 5602, "is_system": false, "is_context": false}
+{"id": "8714", "author": "mini", "text": "no it comes on a pop up window", "timestamp": 1377969180.0, "conv_id": 5813, "is_system": false, "is_context": false}
+{"id": "8715", "author": "wilee-nilee", "text": "cool", "timestamp": 1377969180.0, "conv_id": 5813, "is_system": false, "is_context": false}
+{"id": "8716", "author": "max64", "text": "my laptop work with ubuntu 13.4 .. it alwayes get frozen and i have to unplug the electricity .. what is solution?", "timestamp": 1377969180.0, "conv_id": 5816, "is_system": false, "is_context": false}
+{"id": "8717", "author": "xmetal", "text": "thats NOT good", "timestamp": 1377969240.0, "conv_id": 5816, "is_system": false, "is_context": false}
+{"id": "8718", "author": "xmetal", "text": "try a different DE", "timestamp": 1377969240.0, "conv_id": 5816, "is_system": false, "is_context": false}
+{"id": "8719", "author": "xmetal", "text": "!DE", "timestamp": 1377969240.0, "conv_id": 5816, "is_system": false, "is_context": false}
+{"id": "8720", "author": "ubottu", "text": "In den meisten Ubuntu-Kanälen wird nur Englisch gesprochen. Für deutschsprachige Hilfe besuche bitte #ubuntu-de, #kubuntu-de, #edubuntu-de oder #ubuntu-at. Einfach \"/join #ubuntu-de\" eingeben. Danke für Dein Verständnis!", "timestamp": 1377969240.0, "conv_id": 5816, "is_system": false, "is_context": false}
+{"id": "8721", "author": "xmetal", "text": "(i am not even sure thats the right command)", "timestamp": 1377969240.0, "conv_id": 5816, "is_system": false, "is_context": false}
+{"id": "8722", "author": "sam113101", "text": "hahaha", "timestamp": 1377969240.0, "conv_id": 5816, "is_system": false, "is_context": false}
+{"id": "8723", "author": "xmetal", "text": "oops", "timestamp": 1377969240.0, "conv_id": 5816, "is_system": false, "is_context": false}
+{"id": "8724", "author": "sam113101", "text": "it's not", "timestamp": 1377969240.0, "conv_id": 5816, "is_system": false, "is_context": false}
+{"id": "8725", "author": "xmetal", "text": "lol nope", "timestamp": 1377969240.0, "conv_id": 5816, "is_system": false, "is_context": false}
+{"id": "8726", "author": "xmetal", "text": "i can see that now", "timestamp": 1377969300.0, "conv_id": 5816, "is_system": false, "is_context": false}
+{"id": "8727", "author": "sam113101", "text": "it's de for Deutsch", "timestamp": 1377969300.0, "conv_id": 5816, "is_system": false, "is_context": false}
+{"id": "8728", "author": "xmetal", "text": "!Desktop", "timestamp": 1377969300.0, "conv_id": 5816, "is_system": false, "is_context": false}
+{"id": "8729", "author": "ubottu", "text": "A desktop environment is what \"puts the pieces of a !GUI together\". The available desktop environments in Ubuntu are !GNOME (ubuntu-desktop), !KDE (kubuntu-desktop), !Xfce (xubuntu-desktop), !LXDE (lubuntu-desktop), IceWM, !Fluxbox, WindowMaker (wmaker), FVWM and others - See also !Flavors", "timestamp": 1377969300.0, "conv_id": 5816, "is_system": false, "is_context": false}
+{"id": "8730", "author": "xmetal", "text": "thats it", "timestamp": 1377969300.0, "conv_id": 5816, "is_system": false, "is_context": false}
+{"id": "8731", "author": "ianananan", "text": "wilee-nilee: thanks for all the help. I'm gonna get back at this tmrw.", "timestamp": 1377969300.0, "conv_id": 5811, "is_system": false, "is_context": false}
+{"id": "8732", "author": "wilee-nilee", "text": "ianananan, no problem.", "timestamp": 1377969300.0, "conv_id": 5811, "is_system": false, "is_context": false}
+{"id": "8733", "author": "zykotick9", "text": "max64: 1) it's 13.04 2) do you have ANY other details?  did it always happen?  does it happen when you are doing something in specific?  are you using nvidia/ati/other non-free graphics drivers?", "timestamp": 1377969360.0, "conv_id": 5816, "is_system": false, "is_context": false}
+{"id": "8734", "author": "LeinardoSmith_", "text": "can anyone help me with my problem?", "timestamp": 1377969360.0, "conv_id": 5602, "is_system": false, "is_context": false}
+{"id": "8735", "author": "wilee-nilee", "text": "max64, WE need details to help, hardware might be a good start, and what you have done so far.", "timestamp": 1377969360.0, "conv_id": 5816, "is_system": false, "is_context": false}
+{"id": "8736", "author": "wilee-nilee", "text": "LeinardoSmith_, If someone knows they answer generally", "timestamp": 1377969420.0, "conv_id": 5602, "is_system": false, "is_context": false}
+{"id": "8737", "author": "LeinardoSmith_", "text": "I am using cupsaddsmb", "timestamp": 1377969420.0, "conv_id": 5602, "is_system": false, "is_context": false}
+{"id": "8738", "author": "max64", "text": "zyko,wille:it was doing well tell 3 months ago .. now it hangs after about 20 min .. i use intel graphic card in HP compac 6730s machine", "timestamp": 1377969480.0, "conv_id": 5816, "is_system": false, "is_context": false}
+{"id": "8739", "author": "LeinardoSmith_", "text": "and I get this error: Unable to copy Windows 2000 printer driver files (1).", "timestamp": 1377969480.0, "conv_id": 5602, "is_system": false, "is_context": false}
+{"id": "8740", "author": "zykotick9", "text": "!tab | max64", "timestamp": 1377969480.0, "conv_id": 5816, "is_system": false, "is_context": false}
+{"id": "8741", "author": "ubottu", "text": "max64: You can use your <tab> key for autocompletion of nicknames in IRC, as well as for completion of filenames and programs on the command line.", "timestamp": 1377969480.0, "conv_id": 5816, "is_system": false, "is_context": false}
+{"id": "8742", "author": "wilee-nilee", "text": "max64, HOw many times have you unplugged it?", "timestamp": 1377969540.0, "conv_id": 5816, "is_system": false, "is_context": false}
+{"id": "8743", "author": "max64", "text": "wilee-nilee:i alwayes unplug electricity after hanging", "timestamp": 1377969600.0, "conv_id": 5816, "is_system": false, "is_context": false}
+{"id": "8744", "author": "hexacode", "text": "anyone know anything about a virtual network based computer or is that virtual machine such as xen? i want to hook like 3 rasberry pie-like devices together and have them function as one computer tasking proccesses distributively", "timestamp": 1377969600.0, "conv_id": 5817, "is_system": false, "is_context": false}
+{"id": "8745", "author": "wilee-nilee", "text": "max64, That can damage a OS alone, how many times?", "timestamp": 1377969600.0, "conv_id": 5816, "is_system": false, "is_context": false}
+{"id": "8746", "author": "xmetal", "text": "i agree with wilee-nilee", "timestamp": 1377969660.0, "conv_id": 5816, "is_system": false, "is_context": false}
+{"id": "8747", "author": "max64", "text": "when i start the laptop it get hanged after about 20 min then i have to unplug", "timestamp": 1377969660.0, "conv_id": 5816, "is_system": false, "is_context": false}
+{"id": "8748", "author": "max64", "text": "i did it now about 3 times", "timestamp": 1377969660.0, "conv_id": 5816, "is_system": false, "is_context": false}
+{"id": "8749", "author": "xmetal", "text": "when is it hanging?", "timestamp": 1377969660.0, "conv_id": 5816, "is_system": false, "is_context": false}
+{"id": "8750", "author": "zykotick9", "text": "hexacode: what you are looking for is called \"clustering\", and that's NOT what xen does (xen is for virtualization, the opposite).  fyi, clustering is pretty complicated...  best of luck.", "timestamp": 1377969720.0, "conv_id": 5817, "is_system": false, "is_context": false}
+{"id": "8751", "author": "max64", "text": "xmetal:when i open programs", "timestamp": 1377969720.0, "conv_id": 5816, "is_system": false, "is_context": false}
+{"id": "8752", "author": "wilee-nilee", "text": "max64, I would make another user and see if this happens there, this is a knock out the variables situation, could be any number of possibilities from hardware to software", "timestamp": 1377969780.0, "conv_id": 5816, "is_system": false, "is_context": false}
+{"id": "8753", "author": "xmetal", "text": "i'd look at what is starting when linux starts ... and remove anything i dont need (also a useful tip to solve issues in other OSs too)", "timestamp": 1377969780.0, "conv_id": 5816, "is_system": false, "is_context": false}
+{"id": "8754", "author": "xmetal", "text": "thats another way to solve it (@ what willie said", "timestamp": 1377969780.0, "conv_id": 5816, "is_system": false, "is_context": false}
+{"id": "8755", "author": "xmetal", "text": "oops", "timestamp": 1377969780.0, "conv_id": 5816, "is_system": false, "is_context": false}
+{"id": "8756", "author": "xmetal", "text": "wilee", "timestamp": 1377969780.0, "conv_id": 5816, "is_system": false, "is_context": false}
+{"id": "10006", "author": "Stevie24", "text": "Hello", "timestamp": 1403061120.0, "conv_id": 7643, "is_system": false, "is_context": false}
+{"id": "10007", "author": "Stevie24", "text": "Can anyone tell me how can I extract & delete from file1, the lines containing specific strings, and move them to a new file named file2 ? the string is dynamic; example : I'm interested to extract all lines containing DOG, 192168, IL. All 3 are separate patterns. Thanks in advance.", "timestamp": 1403061120.0, "conv_id": 7644, "is_system": false, "is_context": false}
+{"id": "10009", "author": "skrrp", "text": "Guest7100: install BSD. joking aside there are many small and big things you can do to secure your system. start with sshd_config. move the ssh port to a high number in the user range, disable root login. use nmap to scan your system for open ports (services). disable any you don't need. kill inetd if it's running. kill any insecure ftp programs. you might consider a firewall (shorewall) or...", "timestamp": 1403061180.0, "conv_id": 7641, "is_system": false, "is_context": false}
+{"id": "10010", "author": "skrrp", "text": "...selinux. you could opt for just not having ports open rather than firewalls. read up on port knocking if you are truly paranoid", "timestamp": 1403061180.0, "conv_id": 7641, "is_system": false, "is_context": false}
+{"id": "10011", "author": "KarameL-", "text": "salut les blaireaux :)", "timestamp": 1403061420.0, "conv_id": 7645, "is_system": false, "is_context": false}
+{"id": "10012", "author": "pavlos", "text": "!fr| KarameL-", "timestamp": 1403061420.0, "conv_id": 7645, "is_system": false, "is_context": false}
+{"id": "10013", "author": "ubottu", "text": "KarameL-: Nous sommes desoles mais ce canal est en anglais uniquement. Si vous avez besoin d'aide ou voulez discuter en français, veuillez taper /join #ubuntu-fr ou /join #ubuntu-qc. Merci.", "timestamp": 1403061420.0, "conv_id": 7645, "is_system": false, "is_context": false}
+{"id": "10014", "author": "KarameL-", "text": "ok thanks :)", "timestamp": 1403061480.0, "conv_id": 7645, "is_system": false, "is_context": false}
+{"id": "10015", "author": "KarameL-", "text": "its nice to have french room :)", "timestamp": 1403061480.0, "conv_id": 7645, "is_system": false, "is_context": false}
+{"id": "10016", "author": "jack", "text": "qc? ubuntu-quebec?", "timestamp": 1403061600.0, "conv_id": 7645, "is_system": false, "is_context": false}
+{"id": "10017", "author": "jack", "text": "wow", "timestamp": 1403061600.0, "conv_id": 7645, "is_system": false, "is_context": false}
+{"id": "10018", "author": "NGC982", "text": "ubuntu-quake.", "timestamp": 1403061600.0, "conv_id": 7645, "is_system": false, "is_context": false}
+{"id": "10019", "author": "histo", "text": "Stevie24: with sed", "timestamp": 1403061720.0, "conv_id": 7644, "is_system": false, "is_context": false}
+{"id": "10020", "author": "krypto", "text": "how can we know the package which provides top command ,is there any similar command for yum provides?", "timestamp": 1403061720.0, "conv_id": 7646, "is_system": false, "is_context": false}
+{"id": "10021", "author": "histo", "text": "Stevie24: well grep  and sed", "timestamp": 1403061720.0, "conv_id": 7644, "is_system": false, "is_context": false}
+{"id": "10022", "author": "cfhowlett", "text": "!info top", "timestamp": 1403061780.0, "conv_id": 7646, "is_system": false, "is_context": false}
+{"id": "10023", "author": "ubottu", "text": "Package top does not exist in trusty", "timestamp": 1403061780.0, "conv_id": 7646, "is_system": false, "is_context": false}
+{"id": "10024", "author": "histo", "text": "!apt-file | krypto", "timestamp": 1403061780.0, "conv_id": 7646, "is_system": false, "is_context": false}
+{"id": "10025", "author": "ubottu", "text": "krypto: apt-file is a program that can tell you which package(s) contain(s) a given filename. To install it and generate the database it needs, run \"sudo apt-get install apt-file && sudo apt-file update\"", "timestamp": 1403061780.0, "conv_id": 7646, "is_system": false, "is_context": false}
+{"id": "10026", "author": "histo", "text": "Stevie24: you still around?", "timestamp": 1403062020.0, "conv_id": 7644, "is_system": false, "is_context": false}
+{"id": "10028", "author": "leeyaa", "text": "hello", "timestamp": 1403062320.0, "conv_id": 7647, "is_system": false, "is_context": false}
+{"id": "10029", "author": "leeyaa", "text": "does anyone know why after i installed xen on 14.04 LTS i have no xenconsole ?", "timestamp": 1403062320.0, "conv_id": 7648, "is_system": false, "is_context": false}
+{"id": "10030", "author": "leeyaa", "text": "what could be the reason", "timestamp": 1403062320.0, "conv_id": 7648, "is_system": false, "is_context": false}
+{"id": "10031", "author": "cfhowlett", "text": "!info xenconsole", "timestamp": 1403062380.0, "conv_id": 7648, "is_system": false, "is_context": false}
+{"id": "10032", "author": "ubottu", "text": "Package xenconsole does not exist in trusty", "timestamp": 1403062380.0, "conv_id": 7648, "is_system": false, "is_context": false}
+{"id": "10033", "author": "cfhowlett", "text": "!info xen", "timestamp": 1403062380.0, "conv_id": 7648, "is_system": false, "is_context": false}
+{"id": "10034", "author": "ubottu", "text": "Package xen does not exist in trusty", "timestamp": 1403062380.0, "conv_id": 7648, "is_system": false, "is_context": false}
+{"id": "10035", "author": "Stevie24", "text": "histo, sorry. I was on the phone.", "timestamp": 1403062560.0, "conv_id": 7644, "is_system": false, "is_context": false}
+{"id": "10036", "author": "Stevie24", "text": "That means I will need a script, is that correct?", "timestamp": 1403062620.0, "conv_id": 7644, "is_system": false, "is_context": false}
+{"id": "10037", "author": "Stevie24", "text": "Just a sed command woudn't do it?", "timestamp": 1403062620.0, "conv_id": 7644, "is_system": false, "is_context": false}
+{"id": "10038", "author": "histo", "text": "Stevie24: you could one liner it with a ;", "timestamp": 1403062620.0, "conv_id": 7644, "is_system": false, "is_context": false}
+{"id": "10039", "author": "Stevie24", "text": "ah, ok", "timestamp": 1403062680.0, "conv_id": 7644, "is_system": false, "is_context": false}
+{"id": "10040", "author": "histo", "text": "Stevie24: grep searchterm somefile > newfile ; sed -ie 's/searchterm//g' somefile", "timestamp": 1403062680.0, "conv_id": 7644, "is_system": false, "is_context": false}
+{"id": "10041", "author": "Stevie24", "text": "But isn't that impossible, since I have 24 separate strings ?", "timestamp": 1403062740.0, "conv_id": 7644, "is_system": false, "is_context": false}
+{"id": "10042", "author": "Stevie24", "text": "That would mean 24 x grep + 24 x sed. Am I wrong?", "timestamp": 1403062740.0, "conv_id": 7644, "is_system": false, "is_context": false}
+{"id": "10043", "author": "SpecialEd", "text": "Hello, I am looking for a real time cpu/ram/bandwidth monitor for 6 remote servers that will display on a single web page. Currently I have SSH sessions into my servers with htop and bwm-ng running. Does anyone know a good way to do this via the web? I have tried munin and nagios and I don't believe they really show real time (their real time is 1 min refresh)", "timestamp": 1403062920.0, "conv_id": 7649, "is_system": false, "is_context": false}
+{"id": "10044", "author": "histo", "text": "Stevie24: you can do multiple patterns", "timestamp": 1403062980.0, "conv_id": 7644, "is_system": false, "is_context": false}
+{"id": "10045", "author": "holstein", "text": "nagios is an industry standard", "timestamp": 1403062980.0, "conv_id": 7649, "is_system": false, "is_context": false}
+{"id": "10046", "author": "SpecialEd", "text": "holstein: I agree, but is there a way to make it work so it shows like 1 second refresh ?", "timestamp": 1403062980.0, "conv_id": 7649, "is_system": false, "is_context": false}
+{"id": "10047", "author": "SpecialEd", "text": "for 6 servers?", "timestamp": 1403062980.0, "conv_id": 7649, "is_system": false, "is_context": false}
+{"id": "10048", "author": "SpecialEd", "text": "If so then Ill head over to #nagios", "timestamp": 1403062980.0, "conv_id": 7649, "is_system": false, "is_context": false}
+{"id": "10049", "author": "holstein", "text": "Stevie24: im just saying, if nagios didnt do what i wanted, id rethink what i want.. probably not necessary to have a 1 second refresh", "timestamp": 1403063040.0, "conv_id": 7649, "is_system": false, "is_context": false}
+{"id": "10050", "author": "SpecialEd", "text": "holstein: servers run development operations and i'd like to be able to spot spikes", "timestamp": 1403063100.0, "conv_id": 7649, "is_system": false, "is_context": false}
+{"id": "10052", "author": "SpecialEd", "text": "holstein: therefore 1 minute refresh won't likely show spikes...", "timestamp": 1403063100.0, "conv_id": 7649, "is_system": false, "is_context": false}
+{"id": "10053", "author": "histo", "text": "Stevie24 both grep and sed can use the -e for_pattern  so grep -i -e pattern1 -e pattern2 > somefile  sed -i -e 's/pattern1//g' -e 's/pattern2//g'", "timestamp": 1403063160.0, "conv_id": 7644, "is_system": false, "is_context": false}
+{"id": "10054", "author": "Stevie24", "text": "Great histo, thank you so much !!", "timestamp": 1403063160.0, "conv_id": 7644, "is_system": false, "is_context": false}
+{"id": "10055", "author": "n1n0", "text": "hi. couldn't log into my user account on 13.10. changed it in the recovery mode, didn't help(couldn't even login as guest). reinstlled from live stick with the \"automatic login\" settings, and apps and docs are supposedly saved. couldn't login again (left the same username). changed the password again from within the recovery mode (the command line said it was successfully changed), yet...", "timestamp": 1403063220.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10056", "author": "n1n0", "text": "...nothing again. can login as guest thoug", "timestamp": 1403063220.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10057", "author": "histo", "text": "Stevie24: np just becarefull and backup the original data first", "timestamp": 1403063220.0, "conv_id": 7644, "is_system": false, "is_context": false}
+{"id": "10058", "author": "n1n0", "text": "h", "timestamp": 1403063220.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10059", "author": "Stevie24", "text": "yes, I will histo, thanks:)", "timestamp": 1403063220.0, "conv_id": 7644, "is_system": false, "is_context": false}
+{"id": "10060", "author": "cfhowlett", "text": "n1n0 did you reinstall???", "timestamp": 1403063220.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10061", "author": "n1n0", "text": "yes", "timestamp": 1403063220.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10062", "author": "histo", "text": "n1n0: what happens when you try to login as your user?", "timestamp": 1403063220.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10063", "author": "n1n0", "text": "the instalation that says to leave the old data on", "timestamp": 1403063220.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10064", "author": "cfhowlett", "text": "n1n0 boot into single user mode ...", "timestamp": 1403063220.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10065", "author": "holstein", "text": "!info cacti", "timestamp": 1403063280.0, "conv_id": 7649, "is_system": false, "is_context": false}
+{"id": "10066", "author": "ubottu", "text": "cacti (source: cacti): web interface for graphing of monitoring systems. In component universe, is extra. Version 0.8.8b+dfsg-5 (trusty), package size 1615 kB, installed size 4900 kB", "timestamp": 1403063280.0, "conv_id": 7649, "is_system": false, "is_context": false}
+{"id": "10067", "author": "SpecialEd", "text": "holstein: I'll just try #nagios i guess", "timestamp": 1403063280.0, "conv_id": 7649, "is_system": false, "is_context": false}
+{"id": "10068", "author": "n1n0", "text": "cfhowlet how", "timestamp": 1403063280.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10069", "author": "n1n0", "text": "with or without live cd", "timestamp": 1403063280.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10070", "author": "n1n0", "text": "?", "timestamp": 1403063280.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10071", "author": "cfhowlett", "text": "!singleuser", "timestamp": 1403063280.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10072", "author": "cfhowlett", "text": "n1n0 http://askubuntu.com/questions/132965/how-do-i-boot-into-single-user-mode-from-grub", "timestamp": 1403063340.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10073", "author": "holstein", "text": "n1n0: looks like, the desktop session could have been crashing , and making you think the password was bad.. could you login via tty?", "timestamp": 1403063400.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10074", "author": "n1n0", "text": "holstein yes", "timestamp": 1403063400.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10076", "author": "holstein", "text": "n1n0: then, its not a password problem", "timestamp": 1403063400.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10078", "author": "n1n0", "text": "holstein than what to do?", "timestamp": 1403063400.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10079", "author": "n1n0", "text": "will retry the tty now when reinstalled", "timestamp": 1403063460.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10080", "author": "holstein", "text": "n1n0: what i would do is, remove the offending config from the users /home.. you can literally move *all* the .hidden .config files out of the way", "timestamp": 1403063460.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10081", "author": "n1n0", "text": "holstein would if i knew how", "timestamp": 1403063460.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10082", "author": "holstein", "text": "n1n0: new fresh default config files will be generated, then you can test login, and put back what you want/need", "timestamp": 1403063460.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10083", "author": "holstein", "text": "n1n0: if you knew what, friend? what to move? im saying, literally *anything* in the users /home that is a .config.. hidden with a dot", "timestamp": 1403063520.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10084", "author": "holstein", "text": "n1n0: you can elaborate as to what destkop you are using, and i could give more direct suggestions for specific hidden directories", "timestamp": 1403063580.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10085", "author": "holstein", "text": "n1n0: you can make a new user to move/delete these.. you can use a live CD.. regardless, you should backup your important data.. then, you know that you can do a fresh install and *not* keep the user data in place with the errors, and be ok.. you konw that its not a password problem", "timestamp": 1403063640.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10086", "author": "marscher", "text": "is there a way to let rsync only show those files, which will be transfered in a dry run?", "timestamp": 1403063700.0, "conv_id": 6672, "is_system": false, "is_context": false}
+{"id": "10087", "author": "jogger", "text": "helo", "timestamp": 1403063760.0, "conv_id": 7651, "is_system": false, "is_context": false}
+{"id": "10088", "author": "marscher", "text": "have checked the manual, but didnt find something", "timestamp": 1403063760.0, "conv_id": 6672, "is_system": false, "is_context": false}
+{"id": "10089", "author": "histo", "text": "marscher: -n", "timestamp": 1403063760.0, "conv_id": 6672, "is_system": false, "is_context": false}
+{"id": "10090", "author": "marscher", "text": "histo, -n is dry-run yes. But it shows all files from source (which is super large)", "timestamp": 1403063760.0, "conv_id": 6672, "is_system": false, "is_context": false}
+{"id": "10091", "author": "marscher", "text": "I want only those files to be printed, which will be transfered (after application of exclude patterns)", "timestamp": 1403063820.0, "conv_id": 6672, "is_system": false, "is_context": false}
+{"id": "10092", "author": "n1n0", "text": "holstein thanx for the long info. some kind of link on how to do it would be very much appreciated", "timestamp": 1403063820.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10093", "author": "holstein", "text": "n1n0: with *any* filemanager, friend", "timestamp": 1403063820.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10094", "author": "histo", "text": "marscher: why do you want to do that?", "timestamp": 1403063820.0, "conv_id": 6672, "is_system": false, "is_context": false}
+{"id": "10095", "author": "marscher", "text": "histo, I have a backup, and want only to partially restore it. So I need a \"diff\" of files first", "timestamp": 1403063880.0, "conv_id": 6672, "is_system": false, "is_context": false}
+{"id": "10096", "author": "holstein", "text": "n1n0: what desktop environment are you using? with more informaiton, i can help you pinpoint what might be more specifically causing the issues.. otherwise, literally anything with a dot in front of it in your users home.. which you can access from any filemanager", "timestamp": 1403063880.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10097", "author": "marscher", "text": "a diff of the file list ideally", "timestamp": 1403063880.0, "conv_id": 6672, "is_system": false, "is_context": false}
+{"id": "10098", "author": "histo", "text": "marscher: diff /directory1 /directory2", "timestamp": 1403063880.0, "conv_id": 6672, "is_system": false, "is_context": false}
+{"id": "10099", "author": "marscher", "text": "histo, does this work recursively and for binary files?!", "timestamp": 1403063940.0, "conv_id": 6672, "is_system": false, "is_context": false}
+{"id": "10100", "author": "n1n0", "text": "holstein what is the command line in tty to tell you the desktop environment", "timestamp": 1403063940.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10101", "author": "n1n0", "text": "?", "timestamp": 1403063940.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10102", "author": "holstein", "text": "n1n0: what do you have installed, friend? main ubuntu? xubuntu? lubuntu? kubuntu?", "timestamp": 1403063940.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10103", "author": "marscher", "text": "histo, a line by line comparision for 200k files would be total overkill, despite I only need to find out, which files has been deleted", "timestamp": 1403063940.0, "conv_id": 6672, "is_system": false, "is_context": false}
+{"id": "10104", "author": "prepangolin", "text": "Hello guys.", "timestamp": 1403064000.0, "conv_id": 7652, "is_system": false, "is_context": false}
+{"id": "10105", "author": "n1n0", "text": "ubuntu 13.10 holstein", "timestamp": 1403064060.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10106", "author": "n1n0", "text": "32 bit", "timestamp": 1403064060.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10107", "author": "holstein", "text": "n1n0: maybe you would find it easier to just fresh install 14.04 at this point.. you should back up your personal data regardless, since all hard drives fail.. then you would be up to date", "timestamp": 1403064120.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10108", "author": "histo", "text": "marscher: I'm thinking about it. But i'm extremely tired, give me a few", "timestamp": 1403064120.0, "conv_id": 6672, "is_system": false, "is_context": false}
+{"id": "10109", "author": "n1n0", "text": "holstein i usually do it, yet, didn't bookmarks, and it is the only thing i need from there", "timestamp": 1403064120.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10110", "author": "holstein", "text": "n1n0: http://www.webupd8.org/2012/10/how-to-reset-compiz-and-unity-in-ubuntu.html is what i suggest using to reset the unity configs in 13.10", "timestamp": 1403064120.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10111", "author": "holstein", "text": "n1n0: *all* drives fail.. so, work out backing up what you need, regardless", "timestamp": 1403064180.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10112", "author": "holstein", "text": "n1n0: you can try the commands at the link above to help reset unity configs in your users /home", "timestamp": 1403064180.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10113", "author": "marscher", "text": "histo, np, take your time ;)", "timestamp": 1403064240.0, "conv_id": 6672, "is_system": false, "is_context": false}
+{"id": "10114", "author": "n1n0", "text": "holstein thank you a lot for the help", "timestamp": 1403064240.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10115", "author": "holstein", "text": "!13.10", "timestamp": 1403064240.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10116", "author": "ubottu", "text": "Ubuntu 13.10 (Saucy Salamander) was the 19th release of Ubuntu. Download at http://releases.ubuntu.com/13.10 - Read the release notes at https://wiki.ubuntu.com/SaucySalamander/ReleaseNotes", "timestamp": 1403064240.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10117", "author": "histo", "text": "marscher: try diff -qr /dir1 /dir2", "timestamp": 1403064240.0, "conv_id": 6672, "is_system": false, "is_context": false}
+{"id": "10118", "author": "holstein", "text": "n1n0: you can see that support for 13.10 is soon to end.. 14.04 is a long term support release,which you can use with support for 5 years..", "timestamp": 1403064300.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10119", "author": "n1n0", "text": "but holstein, how to reset it from terminal, when cannot even access the terminal (except from the guest acc). you mean from the tty? (for the link you sent)?", "timestamp": 1403064360.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10120", "author": "n1n0", "text": "13.10 was around for very short, right?", "timestamp": 1403064360.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10121", "author": "holstein", "text": "n1n0: the link i gave has only terminal commands listed, friend.. have you opened it? and referenced it?", "timestamp": 1403064360.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10122", "author": "histo", "text": "marscher: using that if a only in results in a directory then it won't recurse further because there is no point. e.g. only in /dir1: somedir   then it won't go into somedir", "timestamp": 1403064360.0, "conv_id": 6672, "is_system": false, "is_context": false}
+{"id": "10123", "author": "holstein", "text": "n1n0: 13.10 *is* still supported, but you can reference the link i gave and see that the EOL is in july.. just next month", "timestamp": 1403064360.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10124", "author": "n1n0", "text": "holstein cannot access the terminal except from the guest", "timestamp": 1403064420.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10125", "author": "holstein", "text": "n1n0: you can login to your user account from tty", "timestamp": 1403064420.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10126", "author": "holstein", "text": "n1n0: there are recovery modes in the kernel as well..", "timestamp": 1403064420.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10127", "author": "holstein", "text": "https://wiki.ubuntu.com/RecoveryMode", "timestamp": 1403064420.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10128", "author": "delac", "text": "any way to hide applications from Dash? Using Alacarte doesn't seem to have effect.", "timestamp": 1403064480.0, "conv_id": 7653, "is_system": false, "is_context": false}
+{"id": "10129", "author": "n1n0", "text": "did in tty, now it says n1n0(myusername which i cannot access)@lap (computer name", "timestamp": 1403064480.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10130", "author": "histo", "text": "marscher: also try with rsync -rnu dir1 dir2  should only show files that will be overwritten", "timestamp": 1403064480.0, "conv_id": 6672, "is_system": false, "is_context": false}
+{"id": "10131", "author": "n1n0", "text": "so that means the password is ok?", "timestamp": 1403064480.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10132", "author": "histo", "text": "marscher: -u is the key", "timestamp": 1403064480.0, "conv_id": 6672, "is_system": false, "is_context": false}
+{"id": "10133", "author": "holstein", "text": "n1n0: sure.. so run the commands *as* that user", "timestamp": 1403064480.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10134", "author": "n1n0", "text": "ok", "timestamp": 1403064480.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10135", "author": "holstein", "text": "n1n0: though, i personally think your time will be well spent backing up your data with a live CD, and doing a fresh install of 14.04 where you *dont* keep the offending user data in place during install", "timestamp": 1403064540.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10137", "author": "marscher", "text": "histo, thanks for all this information, but I currently noticed, that I cant perform any of them in my current environment, since I've mounted an btrfs image, which shares the same uuid like an already mounted volume....", "timestamp": 1403064600.0, "conv_id": 6672, "is_system": false, "is_context": false}
+{"id": "10138", "author": "marscher", "text": "and it seems, there is no way around this.", "timestamp": 1403064600.0, "conv_id": 6672, "is_system": false, "is_context": false}
+{"id": "10139", "author": "marscher", "text": "so I guess I first have to transfer all files from the backup image to another filesystem (which is superstupid... :()", "timestamp": 1403064660.0, "conv_id": 6672, "is_system": false, "is_context": false}
+{"id": "10140", "author": "histo", "text": "marscher: can't you mount by label?", "timestamp": 1403064720.0, "conv_id": 6672, "is_system": false, "is_context": false}
+{"id": "10141", "author": "marscher", "text": "histo, my research so far results, that the uuid is stored inherently in the filesystem(image)", "timestamp": 1403064720.0, "conv_id": 6672, "is_system": false, "is_context": false}
+{"id": "10142", "author": "marscher", "text": "and is not changeable", "timestamp": 1403064780.0, "conv_id": 6672, "is_system": false, "is_context": false}
+{"id": "10143", "author": "histo", "text": "marscher: how do you have matching uuid's what are you trying to do?", "timestamp": 1403064780.0, "conv_id": 6672, "is_system": false, "is_context": false}
+{"id": "10144", "author": "marscher", "text": "so how would a label change that?", "timestamp": 1403064780.0, "conv_id": 6672, "is_system": false, "is_context": false}
+{"id": "10145", "author": "marscher", "text": "trying to mount an image of my currently running system on a loopback device", "timestamp": 1403064780.0, "conv_id": 6672, "is_system": false, "is_context": false}
+{"id": "10146", "author": "histo", "text": "marscher: ahh", "timestamp": 1403064840.0, "conv_id": 6672, "is_system": false, "is_context": false}
+{"id": "10147", "author": "marscher", "text": "but because those uuids are the same (image and source), the mounted image shows exactly the same contents like current", "timestamp": 1403064840.0, "conv_id": 6672, "is_system": false, "is_context": false}
+{"id": "10148", "author": "marscher", "text": "funy :D", "timestamp": 1403064840.0, "conv_id": 6672, "is_system": false, "is_context": false}
+{"id": "10149", "author": "marscher", "text": "histo, https://unix.stackexchange.com/questions/104067/modifying-a-btrfs-filesystem-uuid", "timestamp": 1403064840.0, "conv_id": 6672, "is_system": false, "is_context": false}
+{"id": "10150", "author": "CREEEPEREXPLOSIV", "text": "hello", "timestamp": 1403064900.0, "conv_id": 7654, "is_system": false, "is_context": false}
+{"id": "10152", "author": "histo", "text": "marscher: you can set the uuid with tune2fs", "timestamp": 1403065080.0, "conv_id": 6672, "is_system": false, "is_context": false}
+{"id": "10153", "author": "marscher", "text": "tune2fs for btrfs???", "timestamp": 1403065140.0, "conv_id": 6672, "is_system": false, "is_context": false}
+{"id": "10154", "author": "histo", "text": "marscher: nope just caught that you were using btrfs", "timestamp": 1403065140.0, "conv_id": 6672, "is_system": false, "is_context": false}
+{"id": "10155", "author": "k0nceast", "text": "marscher: tune2fs does not work on brtfs afaik", "timestamp": 1403065200.0, "conv_id": 6672, "is_system": false, "is_context": false}
+{"id": "10156", "author": "CREEEPEREXPLOSIV", "text": "hi", "timestamp": 1403065200.0, "conv_id": 7654, "is_system": false, "is_context": false}
+{"id": "10157", "author": "marscher", "text": "k0nceast, yes that is what one would expect", "timestamp": 1403065260.0, "conv_id": 6672, "is_system": false, "is_context": false}
+{"id": "10158", "author": "k0nceast", "text": "marscher: i think everything should go through the btrfs or btrfsctl commands", "timestamp": 1403065380.0, "conv_id": 6672, "is_system": false, "is_context": false}
+{"id": "10163", "author": "k0nceast", "text": "the 'man btrfs' page might give you a better explanation (probability of man vs me being correct is far higher than 'might') and otherwise look into the btrfs-utils package", "timestamp": 1403065560.0, "conv_id": 6672, "is_system": false, "is_context": false}
+{"id": "10164", "author": "Guest19759", "text": "Hey, I have an Ubuntu live USB booted. I've installed some things and am wondering if I can make a persistant overlay with what I currently have? I googled around, but all I can find is stuff on creating the overlay, not saving current stuff to it. I know there must be some way, but I'm kinda stuck.", "timestamp": 1403065560.0, "conv_id": 6675, "is_system": false, "is_context": false}
+{"id": "10165", "author": "marscher", "text": "k0nceast, histo, there is no way documentated to perform this. So I will dump my files on another filesystem. Thank you both for your help/time!", "timestamp": 1403065620.0, "conv_id": 6672, "is_system": false, "is_context": false}
+{"id": "10166", "author": "histo", "text": "marscher: np", "timestamp": 1403065620.0, "conv_id": 6672, "is_system": false, "is_context": false}
+{"id": "10167", "author": "yyx", "text": "?", "timestamp": 1403065680.0, "conv_id": 7655, "is_system": false, "is_context": false}
+{"id": "10168", "author": "k0nceast", "text": "Guest19759: not while you're booted", "timestamp": 1403065680.0, "conv_id": 6675, "is_system": false, "is_context": false}
+{"id": "10169", "author": "yyx", "text": "hello buddy", "timestamp": 1403065680.0, "conv_id": 7656, "is_system": false, "is_context": false}
+{"id": "10170", "author": "Solution-X", "text": "anyone here do much with MAAS? I have a fresh install of 14.04 installed as MAAS controller that is being cranky and refuses to load the images. Installed OS, booted up, apt-upgrade, reboot, create MAAS user, login, click download images. Also tried \"sudo maas-import-pxe-files\" after as a backup and that completes but does not result in the webpage recognizing the images' existence", "timestamp": 1403065740.0, "conv_id": 7657, "is_system": false, "is_context": false}
+{"id": "10171", "author": "dknezev_", "text": "can't seem to find an answer on the net and hoping someone here knows. using 12.04 google chrome, where are the flash files stored?", "timestamp": 1403065800.0, "conv_id": 7658, "is_system": false, "is_context": false}
+{"id": "10172", "author": "k0nceast", "text": "Guest19759: it's a boot-time kernel option iirc", "timestamp": 1403065860.0, "conv_id": 6675, "is_system": false, "is_context": false}
+{"id": "10173", "author": "Guest19759", "text": "k0nceast: Yeah, but is there some way to just dump the changes to a file and then reboot from it?", "timestamp": 1403065860.0, "conv_id": 6675, "is_system": false, "is_context": false}
+{"id": "10174", "author": "k0nceast", "text": "depends on what you've changed", "timestamp": 1403065920.0, "conv_id": 6675, "is_system": false, "is_context": false}
+{"id": "10175", "author": "k0nceast", "text": "you could make a folder on your windrive and save all changed config files there", "timestamp": 1403065920.0, "conv_id": 6675, "is_system": false, "is_context": false}
+{"id": "10176", "author": "Pici", "text": "Solution-X: You may want to try asking in #ubuntu-server too", "timestamp": 1403065980.0, "conv_id": 7657, "is_system": false, "is_context": false}
+{"id": "10177", "author": "Solution-X", "text": "Pici- good call, thanks", "timestamp": 1403065980.0, "conv_id": 7657, "is_system": false, "is_context": false}
+{"id": "10178", "author": "k0nceast", "text": "(eg. the files and folders in your home folder that start with a . (dot), hidden by default", "timestamp": 1403065980.0, "conv_id": 6675, "is_system": false, "is_context": false}
+{"id": "10179", "author": "delac", "text": "any way to hide applications from Dash? Using Alacarte doesn't seem to have effect.", "timestamp": 1403066040.0, "conv_id": 7653, "is_system": false, "is_context": false}
+{"id": "10180", "author": "pavlos", "text": "dknezev_, /opt/google/chrome/PepperFlash/libpepflashplayer.so", "timestamp": 1403066040.0, "conv_id": 7658, "is_system": false, "is_context": false}
+{"id": "10181", "author": "k0nceast", "text": "Guest19759: but that doesn't count for everything", "timestamp": 1403066040.0, "conv_id": 6675, "is_system": false, "is_context": false}
+{"id": "10182", "author": "k0nceast", "text": "eg. added apps", "timestamp": 1403066040.0, "conv_id": 6675, "is_system": false, "is_context": false}
+{"id": "10183", "author": "Guest19759", "text": "k0nceast: Yeah, the apps are mainly what I want to save. I know I could just re-add Universe and reinstall the stuff I've gotten, but I wonder if there's a way to create the persistant file and dump everything that's changed since boot or something", "timestamp": 1403066100.0, "conv_id": 6675, "is_system": false, "is_context": false}
+{"id": "10184", "author": "k0nceast", "text": "Guest19759: if you've added repo's for apps, then add the /etc/sources.list file and /etc/sources.d/ dir to the folder", "timestamp": 1403066160.0, "conv_id": 6675, "is_system": false, "is_context": false}
+{"id": "10185", "author": "k0nceast", "text": "w8", "timestamp": 1403066160.0, "conv_id": 6675, "is_system": false, "is_context": false}
+{"id": "10186", "author": "k0nceast", "text": "/etc/dpkg/sources.list and .d respectively", "timestamp": 1403066160.0, "conv_id": 6675, "is_system": false, "is_context": false}
+{"id": "10187", "author": "dknezev_", "text": "pavlos - not really sure what you mean by that. aren't .so library files", "timestamp": 1403066220.0, "conv_id": 7658, "is_system": false, "is_context": false}
+{"id": "10188", "author": "k0nceast", "text": "and in the dpkg folder might also be a list with names of installed packages, which you could copy there as well", "timestamp": 1403066220.0, "conv_id": 6675, "is_system": false, "is_context": false}
+{"id": "10189", "author": "chicaros_", "text": "hi fo all", "timestamp": 1403066220.0, "conv_id": 7659, "is_system": false, "is_context": false}
+{"id": "10190", "author": "chicaros_", "text": "i need help", "timestamp": 1403066220.0, "conv_id": 7659, "is_system": false, "is_context": false}
+{"id": "10191", "author": "histo", "text": "!clone | Guest19759", "timestamp": 1403066280.0, "conv_id": 6675, "is_system": false, "is_context": false}
+{"id": "10192", "author": "ubottu", "text": "Guest19759: To replicate your packages selection on another machine (or restore it if re-installing), you can use the !software package \"apt-clone\" - See also !automate", "timestamp": 1403066280.0, "conv_id": 6675, "is_system": false, "is_context": false}
+{"id": "10193", "author": "k0nceast", "text": "Guest19759: and when installed, you could replace the content of the file in the install with the content of the files on your winpartition", "timestamp": 1403066280.0, "conv_id": 6675, "is_system": false, "is_context": false}
+{"id": "10194", "author": "k0nceast", "text": "histo: No way!!!", "timestamp": 1403066280.0, "conv_id": 6675, "is_system": false, "is_context": false}
+{"id": "10195", "author": "chicaros_", "text": "same one know redmine?", "timestamp": 1403066280.0, "conv_id": 7660, "is_system": false, "is_context": false}
+{"id": "10196", "author": "pavlos", "text": "dknezev_, I run 12.04, have chrome, gave you the path of the flash lib. I dont know what you're looking for", "timestamp": 1403066340.0, "conv_id": 7658, "is_system": false, "is_context": false}
+{"id": "10197", "author": "k0nceast", "text": "that'd saved me hours if i'd known that some years earlier", "timestamp": 1403066340.0, "conv_id": 6675, "is_system": false, "is_context": false}
+{"id": "10198", "author": "sovereignentity", "text": "how do I get to ~/.local/share/applications/", "timestamp": 1403066400.0, "conv_id": 7661, "is_system": false, "is_context": false}
+{"id": "10199", "author": "chicaros_", "text": "i need help", "timestamp": 1403066400.0, "conv_id": 7660, "is_system": false, "is_context": false}
+{"id": "10200", "author": "chicaros_", "text": "redmine", "timestamp": 1403066400.0, "conv_id": 7660, "is_system": false, "is_context": false}
+{"id": "10201", "author": "Guest19759", "text": "Ah ok. Would be a neet feature at some point though to be able to create a persistant file from what currently is. Thanks all for your help and suggestions, though.", "timestamp": 1403066400.0, "conv_id": 6675, "is_system": false, "is_context": false}
+{"id": "10202", "author": "histo", "text": "k0nceast: you could easily dpkg --get-selections > somefile", "timestamp": 1403066400.0, "conv_id": 6675, "is_system": false, "is_context": false}
+{"id": "10203", "author": "histo", "text": "k0nceast: nad --set-selections on the other side", "timestamp": 1403066460.0, "conv_id": 6675, "is_system": false, "is_context": false}
+{"id": "10204", "author": "umonkey", "text": "Hello. Is there a way to contact paste.ubuntu.com admins? There was a patch that added replaygain to mocp, but it's now gone, perhaps expired. Apparently that was the only location of that patch. Maybe there's a way to extract it from backups, or something.", "timestamp": 1403066520.0, "conv_id": 7662, "is_system": false, "is_context": false}
+{"id": "10205", "author": "histo", "text": "k0nceast: and then you can install them.", "timestamp": 1403066520.0, "conv_id": 6675, "is_system": false, "is_context": false}
+{"id": "10206", "author": "k0nceast", "text": "im on arch nowadays", "timestamp": 1403066520.0, "conv_id": 6675, "is_system": false, "is_context": false}
+{"id": "10207", "author": "histo", "text": "k0nceast: same here", "timestamp": 1403066520.0, "conv_id": 6675, "is_system": false, "is_context": false}
+{"id": "10209", "author": "dfgas", "text": "anyone know how to enable remote logins on 13.10?", "timestamp": 1403066580.0, "conv_id": 7663, "is_system": false, "is_context": false}
+{"id": "10210", "author": "k0nceast", "text": "i have Ubuntu for my SO and a few of my friends (I switched them)", "timestamp": 1403066580.0, "conv_id": 6675, "is_system": false, "is_context": false}
+{"id": "10211", "author": "k0nceast", "text": "people are a lot easier to switch nowadays, since android and iPhones", "timestamp": 1403066640.0, "conv_id": 6675, "is_system": false, "is_context": false}
+{"id": "10212", "author": "dknezev_", "text": "pavlos, i'm looking for the cached files that must be stored locally which I'm hoping to copy for later viewing, thanks.", "timestamp": 1403066640.0, "conv_id": 7658, "is_system": false, "is_context": false}
+{"id": "10213", "author": "histo", "text": "dfgas: remote logins for what?", "timestamp": 1403066700.0, "conv_id": 7663, "is_system": false, "is_context": false}
+{"id": "10214", "author": "dfgas", "text": "to login to X remotely", "timestamp": 1403066700.0, "conv_id": 7663, "is_system": false, "is_context": false}
+{"id": "10215", "author": "dfgas", "text": "not vnc or teamviewer", "timestamp": 1403066700.0, "conv_id": 7663, "is_system": false, "is_context": false}
+{"id": "10216", "author": "k0nceast", "text": "maybe b/c people are known to the idea of finding alternative apps/workflows than Windows", "timestamp": 1403066700.0, "conv_id": 6675, "is_system": false, "is_context": false}
+{"id": "10217", "author": "histo", "text": "dfgas: Okay what client do you intend on using then?", "timestamp": 1403066700.0, "conv_id": 7663, "is_system": false, "is_context": false}
+{"id": "10218", "author": "dfgas", "text": "histo: xdmcp?", "timestamp": 1403066760.0, "conv_id": 7663, "is_system": false, "is_context": false}
+{"id": "10219", "author": "ActionParsnip", "text": "k0nceast: you'll probably find its because its lighter and fater and more works out of the box", "timestamp": 1403066820.0, "conv_id": 6675, "is_system": false, "is_context": false}
+{"id": "10220", "author": "histo", "text": "dfgas: https://wiki.ubuntu.com/xdmcp", "timestamp": 1403066820.0, "conv_id": 7663, "is_system": false, "is_context": false}
+{"id": "10221", "author": "histo", "text": "ActionParsnip: what's lighter and faster?", "timestamp": 1403066820.0, "conv_id": 6675, "is_system": false, "is_context": false}
+{"id": "10223", "author": "ActionParsnip", "text": "histo: ubuntu uses a lot fewer resources than windows in most cases", "timestamp": 1403066880.0, "conv_id": 6675, "is_system": false, "is_context": false}
+{"id": "10224", "author": "n1n0", "text": "holstein tried the link you posted (the second step), without success", "timestamp": 1403066940.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10225", "author": "Jeroen_Mathon", "text": "histo: Mainly becouse ti does not have as much bloatware as windows", "timestamp": 1403066940.0, "conv_id": 6675, "is_system": false, "is_context": false}
+{"id": "10227", "author": "Jeroen_Mathon", "text": "histo: Well we all disable that after a while right", "timestamp": 1403066940.0, "conv_id": 6675, "is_system": false, "is_context": false}
+{"id": "10228", "author": "holstein", "text": "!details > n1n0", "timestamp": 1403066940.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10229", "author": "ubottu", "text": "n1n0, please see my private message", "timestamp": 1403066940.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10231", "author": "Phlogistique", "text": "Hi", "timestamp": 1403067000.0, "conv_id": 7664, "is_system": false, "is_context": false}
+{"id": "10232", "author": "Phlogistique", "text": "did anyone use upstart successfully in a chroot, when the host machine is _not_ using upstart?", "timestamp": 1403067060.0, "conv_id": 7665, "is_system": false, "is_context": false}
+{"id": "10233", "author": "Phlogistique", "text": "I cannot figure how to do it", "timestamp": 1403067060.0, "conv_id": 7665, "is_system": false, "is_context": false}
+{"id": "10234", "author": "n1n0", "text": "can the bookmarks from te default user account can be accessed from within the guest account on the same machine?", "timestamp": 1403067120.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10235", "author": "n1n0", "text": "...be accessed", "timestamp": 1403067120.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10237", "author": "Jeroen_Mathon", "text": "n1n0: Depends on your browser", "timestamp": 1403067120.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10238", "author": "n1n0", "text": "firefox", "timestamp": 1403067120.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10239", "author": "Jeroen_Mathon", "text": "Not sure about that.", "timestamp": 1403067120.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10240", "author": "Jeroen_Mathon", "text": "Should not be accesable since it got its own home directory", "timestamp": 1403067180.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10241", "author": "Jeroen_Mathon", "text": "That users home directory got its own configuration of firefox", "timestamp": 1403067180.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10242", "author": "welly", "text": "Hello all, I'm trying to ssh to account@localhost but keep getting roaming now allowed on server error. I've checked and set the permissions for my account user .ssh directory and the files under there (700 for .ssh and 600 for the contained files) but am having no luck. Anyone with any suggestions?", "timestamp": 1403067180.0, "conv_id": 7666, "is_system": false, "is_context": false}
+{"id": "10243", "author": "Jeroen_Mathon", "text": "So no they do not share bookmarks", "timestamp": 1403067180.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10244", "author": "ActionParsnip", "text": "welly: try:  ssh -vvv account@localhost", "timestamp": 1403067180.0, "conv_id": 7666, "is_system": false, "is_context": false}
+{"id": "10245", "author": "boolean", "text": "morning .. is iptables a 1st match style firewall?", "timestamp": 1403067180.0, "conv_id": 6679, "is_system": false, "is_context": false}
+{"id": "10246", "author": "histo", "text": "boolean: 1st match?", "timestamp": 1403067240.0, "conv_id": 6679, "is_system": false, "is_context": false}
+{"id": "10247", "author": "ActionParsnip", "text": "histo: when a rule is matched, no others are processed", "timestamp": 1403067240.0, "conv_id": 6679, "is_system": false, "is_context": false}
+{"id": "10248", "author": "histo", "text": "ahh", "timestamp": 1403067240.0, "conv_id": 6679, "is_system": false, "is_context": false}
+{"id": "10249", "author": "boolean", "text": "ActionParsnip: beat me to it :) thanks", "timestamp": 1403067240.0, "conv_id": 6679, "is_system": false, "is_context": false}
+{"id": "10250", "author": "ActionParsnip", "text": "boolean: usually traffic will only satisfy one rule, otherwise you should have a deny all rule at the bottom that the rest will hit and be denied", "timestamp": 1403067300.0, "conv_id": 6679, "is_system": false, "is_context": false}
+{"id": "10251", "author": "welly", "text": "ActionParsnip, got the following: http://pastie.org/9302249 but mainly \"Roaming not allowed by server\" I suspect is the cause", "timestamp": 1403067300.0, "conv_id": 7666, "is_system": false, "is_context": false}
+{"id": "10253", "author": "histo", "text": "Phlogistique: afaik upstart doesn't work in a chroot", "timestamp": 1403067300.0, "conv_id": 7665, "is_system": false, "is_context": false}
+{"id": "10254", "author": "Phlogistique", "text": "histo: alright", "timestamp": 1403067360.0, "conv_id": 7665, "is_system": false, "is_context": false}
+{"id": "10255", "author": "sovereignentity", "text": "what does ~ mean in a path", "timestamp": 1403067360.0, "conv_id": 7667, "is_system": false, "is_context": false}
+{"id": "10256", "author": "boolean", "text": "ActoinParsnip: therefore, if I have the following mid way through the chain: ACCEPT     all  --  anywhere             anywhere, the packet will pass and all other rules ignore, correct?", "timestamp": 1403067360.0, "conv_id": 6679, "is_system": false, "is_context": false}
+{"id": "10257", "author": "dimitry7", "text": "Hi guys, does ubuntu server include graphical mode in live cd?", "timestamp": 1403067360.0, "conv_id": 7668, "is_system": false, "is_context": false}
+{"id": "10258", "author": "ActionParsnip", "text": "welly: check from line 92 down", "timestamp": 1403067360.0, "conv_id": 7666, "is_system": false, "is_context": false}
+{"id": "10259", "author": "histo", "text": "sovereignentity: /home/username", "timestamp": 1403067360.0, "conv_id": 7667, "is_system": false, "is_context": false}
+{"id": "10260", "author": "geirha", "text": "sovereignentity: home directory if it's at the start", "timestamp": 1403067360.0, "conv_id": 7667, "is_system": false, "is_context": false}
+{"id": "10261", "author": "welly", "text": "Oh hmm", "timestamp": 1403067360.0, "conv_id": 7666, "is_system": false, "is_context": false}
+{"id": "10262", "author": "ActionParsnip", "text": "boolean: to my knowledge, yes", "timestamp": 1403067420.0, "conv_id": 6679, "is_system": false, "is_context": false}
+{"id": "10263", "author": "Jeroen_Mathon", "text": "dimitry7: Yes", "timestamp": 1403067420.0, "conv_id": 7668, "is_system": false, "is_context": false}
+{"id": "10264", "author": "histo", "text": "Jeroen_Mathon: ??", "timestamp": 1403067420.0, "conv_id": 7650, "is_system": false, "is_context": false}
+{"id": "10265", "author": "dimitry7", "text": "Jeroen_Mathon, thank you!! :-)", "timestamp": 1403067420.0, "conv_id": 7668, "is_system": false, "is_context": false}
+{"id": "10266", "author": "ActionParsnip", "text": "boolean: there is an iptables channel, may help", "timestamp": 1403067420.0, "conv_id": 6679, "is_system": false, "is_context": false}
+{"id": "10267", "author": "Jeroen_Mathon", "text": "No problem ^_^", "timestamp": 1403067420.0, "conv_id": 7668, "is_system": false, "is_context": false}
+{"id": "10268", "author": "boolean", "text": "ActionParsnip: ah kewl .. thanks", "timestamp": 1403067420.0, "conv_id": 6679, "is_system": false, "is_context": false}
+{"id": "10269", "author": "welly", "text": "ActionParsnip, but why would it want a dsa public key when it's already been provided with an rsa public key?", "timestamp": 1403067420.0, "conv_id": 7666, "is_system": false, "is_context": false}
+{"id": "10270", "author": "welly", "text": "I guess if it wants it, I should give it", "timestamp": 1403067480.0, "conv_id": 7666, "is_system": false, "is_context": false}
+{"id": "10271", "author": "WooWooWoo", "text": "Hi anyone good at using httrack?", "timestamp": 1403067480.0, "conv_id": 7669, "is_system": false, "is_context": false}
+{"id": "10272", "author": "sovereignentity", "text": "how do i get the home folder to show hidden files", "timestamp": 1403067480.0, "conv_id": 7670, "is_system": false, "is_context": false}
+{"id": "10273", "author": "WooWooWoo", "text": "ctr+h", "timestamp": 1403067480.0, "conv_id": 7670, "is_system": false, "is_context": false}
+{"id": "10274", "author": "Jeroen_Mathon", "text": "Yeah", "timestamp": 1403067480.0, "conv_id": 7669, "is_system": false, "is_context": false}
+{"id": "10275", "author": "histo", "text": "welly: why are you ssh'ng localhost?", "timestamp": 1403067480.0, "conv_id": 7666, "is_system": false, "is_context": false}
+{"id": "10276", "author": "histo", "text": "sovereignentity: ls -a", "timestamp": 1403067540.0, "conv_id": 7670, "is_system": false, "is_context": false}
+{"id": "10277", "author": "welly", "text": "histo, it's more a test than anything. I'm setting up jenkins and don't have a remote server to test on", "timestamp": 1403067540.0, "conv_id": 7666, "is_system": false, "is_context": false}
+{"id": "10278", "author": "ptite_chloe", "text": "salut", "timestamp": 1403067600.0, "conv_id": 7671, "is_system": false, "is_context": false}
+{"id": "10279", "author": "dknezev_", "text": "pavlos, ...", "timestamp": 1403067600.0, "conv_id": 7658, "is_system": false, "is_context": false}
+{"id": "10280", "author": "geirha", "text": "sovereignentity: In shell (terminal) or GUI?", "timestamp": 1403067600.0, "conv_id": 7670, "is_system": false, "is_context": false}
+{"id": "10281", "author": "boolean", "text": "ActionParsnip: ugh ... iptables doesnt list which interface ( ipytables -L ) the rules apply thus the all to all was for the local loopback", "timestamp": 1403067660.0, "conv_id": 6679, "is_system": false, "is_context": false}
+{"id": "10283", "author": "welly", "text": "Ah ha. It was the formatting of my public key in authorized_keys", "timestamp": 1403067660.0, "conv_id": 7666, "is_system": false, "is_context": false}
