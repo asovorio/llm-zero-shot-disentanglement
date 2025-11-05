@@ -1,4 +1,9 @@
 #!/usr/bin/env python
+
+"""
+This script runs an ensemble of several DA and BR predictions.jsonl files and keeps the intersection of their conversation clusterings
+"""
+
 from __future__ import annotations
 
 import argparse

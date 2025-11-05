@@ -16,7 +16,7 @@ def parse_json_object(s: str) -> Dict[str, Any]:
     # Find first balanced JSON object
     first = s.find("{")
     last = s.rfind("}")
-    if first >= 0 and last > first:
+    if 0 <= first < last:
         s = s[first:last+1]
     try:
         obj = json.loads(s)

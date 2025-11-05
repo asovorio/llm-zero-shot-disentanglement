@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 """
-Prepare Ubuntu IRC gold JSONL with conv_id per message.
+This file prepares Ubuntu IRC gold JSONL with conv_id per message for a split of data (train, test or dev)
 
-Usage (from repo root):
+Example usage from repo root:
   python scripts/prepare_data.py --input data/raw/ubuntu_hf_export/ubuntu_test.jsonl --split test --out data/processed/ubuntu_irc
 
 Output:
   data/processed/ubuntu_irc/ubuntu_<split>.jsonl
-  Rows contain: id, author, text, timestamp, conv_id, is_system, is_context
+  Resulting rows contain: id, author, text, timestamp, conv_id, is_system, is_context
 """
 
 from __future__ import annotations
@@ -19,12 +19,14 @@ from typing import Any, Dict, List, Optional
 
 SYSTEM_PAT = re.compile(r"\b(join|part|quit|nick|mode|topic)\b", re.I)
 
+
 # -----------------------------
 # I/O helpers
 # -----------------------------
 def _ensure_dir(p: Path) -> Path:
     p.mkdir(parents=True, exist_ok=True)
     return p
+
 
 def _list_candidates(root: Path, split: str) -> List[Path]:
     """Search for plausible raw files under a repo; prefer shorter paths."""
@@ -34,6 +36,7 @@ def _list_candidates(root: Path, split: str) -> List[Path]:
         out.extend(root.rglob(pat))
     out.sort(key=lambda p: (len(p.parts), p.name))
     return out
+
 
 def _read_json_or_jsonl(path: Path) -> List[Dict[str, Any]]:
     if path.suffix.lower() == ".jsonl":
@@ -62,6 +65,7 @@ def _read_json_or_jsonl(path: Path) -> List[Dict[str, Any]]:
             return rows
         raise ValueError(f"Don't know how to read structure in {path}")
 
+
 # -----------------------------
 # Field normalization
 # -----------------------------
@@ -71,21 +75,23 @@ def _norm_author(row: Dict[str, Any]) -> str:
             return str(row[k])
     return "UNK"
 
+
 def _norm_text(row: Dict[str, Any]) -> str:
     for k in ("text", "body", "message", "content"):
         if k in row and row[k] is not None:
             return str(row[k])
     return ""
 
+
 def _norm_id(row: Dict[str, Any]) -> str:
     for k in ("id", "mid", "message_id"):
         if k in row and row[k] is not None:
             return str(row[k])
-    # Fallback: synthesize from hash of text+author+ts
     a = _norm_author(row)
     t = _norm_text(row)
     ts = _norm_ts(row)
     return f"{hash((a,t,ts)) & 0xffffffff}"
+
 
 def _norm_ts(row: Dict[str, Any]) -> float:
     for k in ("timestamp", "ts", "time", "t"):
@@ -96,12 +102,14 @@ def _norm_ts(row: Dict[str, Any]) -> float:
                 pass
     return 0.0
 
+
 def _norm_parent(row: Dict[str, Any]) -> Optional[str]:
     """Extract a single explicit parent id if present; else None."""
     for k in ("reply_to", "parent", "parent_id"):
         if k in row and row[k] not in (None, "", 0):
             return str(row[k])
     return None
+
 
 def _norm_is_system(row: Dict[str, Any], text_fallback: str) -> bool:
     if "is_system" in row:
@@ -111,12 +119,14 @@ def _norm_is_system(row: Dict[str, Any], text_fallback: str) -> bool:
             pass
     return bool(SYSTEM_PAT.search(text_fallback)) if isinstance(text_fallback, str) else False
 
+
 def _norm_is_context(row: Dict[str, Any]) -> bool:
     # Pass through from your HF export; default False if missing
     try:
         return bool(row.get("is_context", False))
     except Exception:
         return False
+
 
 # -----------------------------
 # Union-Find for gold threads
@@ -125,11 +135,13 @@ class DSU:
     def __init__(self, n: int):
         self.parent = list(range(n))
         self.rank = [0] * n
+
     def find(self, x: int) -> int:
         while self.parent[x] != x:
             self.parent[x] = self.parent[self.parent[x]]
             x = self.parent[x]
         return x
+
     def union(self, a: int, b: int) -> None:
         ra, rb = self.find(a), self.find(b)
         if ra == rb:
@@ -141,6 +153,7 @@ class DSU:
         else:
             self.parent[rb] = ra
             self.rank[ra] += 1
+
 
 # -----------------------------
 # Main conversion
@@ -172,7 +185,7 @@ def convert(
             "timestamp": _norm_ts(r),
             "parent": _norm_parent(r),         # may be None
             "is_system": _norm_is_system(r, text),
-            "is_context": _norm_is_context(r), # <-- NEW
+            "is_context": _norm_is_context(r),
         }
         msgs.append(m)
 
@@ -220,6 +233,7 @@ def convert(
     print(f"Wrote {len(msgs)} messages to {out_file}")
     return out_file
 
+
 # -----------------------------
 # CLI
 # -----------------------------
@@ -234,6 +248,7 @@ def main():
     args = ap.parse_args()
 
     convert(args.input, args.ubuntu_repo, args.split, args.out)
+
 
 if __name__ == "__main__":
     main()

@@ -8,13 +8,8 @@ import re
 from datetime import datetime, timezone, timedelta
 import math
 
-# Reuse your project’s logger if you have it
-try:
-    from ..utils.logging import setup_logger
-    logger = setup_logger(__name__)
-except Exception:
-    import logging
-    logger = logging.getLogger(__name__)
+from ..utils.logging import setup_logger
+logger = setup_logger(__name__)
 
 PATTERNS = [
     re.compile(r"^\s*<\s*([A-Za-z0-9_\-\[\]\{\}|^`]+)\s*>\s+"),       # <nick> msg
@@ -34,6 +29,7 @@ def _fallback_author_from_text(t: str) -> str:
         if m:
             return m.group(1)
     return ""
+
 
 def ts_to_yyyymmdd(ts: Any) -> str:
     """
@@ -83,6 +79,7 @@ def ts_to_yyyymmdd(ts: Any) -> str:
         pass
     return "unknown"
 
+
 def ts_to_yyyymmdd_with_fix(ts: Any) -> str:
     """
     Convert timestamp-like values to 'YYYY-MM-DD' (UTC) with a heuristic fix
@@ -131,26 +128,27 @@ def ts_to_yyyymmdd_with_fix(ts: Any) -> str:
     # Fallback to plain conversion
     return ts_to_yyyymmdd(ts)
 
+
 @dataclass
 class Message:
-    mid: str                   # unique message ID
+    mid: str  # unique message ID
     text: str
     session_id: str
     is_context: bool = False
     is_system: bool = False
-    gold: Optional[Any] = None # original gold convo/thread id if present
+    gold: Optional[Any] = None  # original gold convo/thread id if present
     role: Optional[str] = None
-    author: Optional[str] = None  # <-- NEW: speaker/nick if available
+    author: Optional[str] = None  # speaker/nick if available
 
 
 @dataclass
 class Chunk:
     chunk_id: str
     messages: List[Message]
-    ids: List[str]                 # <-- NEW: convenience lists for runners
-    authors: List[str]             # <-- NEW
-    texts: List[str]               # <-- NEW
-    is_system: List[bool]          # <-- NEW
+    ids: List[str]
+    authors: List[str]
+    texts: List[str]
+    is_system: List[bool]
     # gold labels per message (length == chunk size), or None if unavailable
     gold: Optional[List[Any]] = None
 
@@ -172,7 +170,7 @@ class UbuntuIrcDataset:
         self.chunk_size = int(chunk_size)
         self.seed = seed
 
-    # ---------- helpers ----------
+    # helpers
     @staticmethod
     def _open_jsonl(path: Path) -> Iterable[Dict[str, Any]]:
         with path.open("r", encoding="utf-8") as f:
@@ -201,15 +199,15 @@ class UbuntuIrcDataset:
                 return p
         raise FileNotFoundError(f"Could not find split file for '{self.split}' in {self.data_root}")
 
-    # ---------- public API ----------
+    # public API
     def load_chunks(self) -> List[Chunk]:
         """
-        Paper-faithful chunking:
+        Chunking:
           - group by session_id
           - sort within session (by timestamp or original index)
           - split into non-overlapping windows of EXACTLY self.chunk_size
           - keep system messages
-          - drop last incomplete window
+          - drop last incomplete window (if it exists)
           - attach gold labels per chunk if available (list aligned to messages)
         """
         path = self._resolve_split_path()
@@ -230,12 +228,11 @@ class UbuntuIrcDataset:
                     ts = self._coalesce(row, "timestamp", "ts")
                     session_id = ts_to_yyyymmdd_with_fix(ts) if ts is not None else "unknown"
             session_id = str(session_id)
-            mid       = str(self._coalesce(row, "mid", "id", "msg_id", default=f"{session_id}:{idx}"))
-            text      = self._coalesce(row, "text", "message", "content", default="")
-            role      = str(self._coalesce(row, "role", default="")).lower()
+            mid = str(self._coalesce(row, "mid", "id", "msg_id", default=f"{session_id}:{idx}"))
+            text = self._coalesce(row, "text", "message", "content", default="")
+            role = str(self._coalesce(row, "role", default="")).lower()
             is_system = bool(self._coalesce(row, "is_system", default=(role == "system")))
-            # NEW: author/speaker/nick (if available)
-            author    = self._coalesce(row, "author", "speaker", "user", "nick", "username", default=None)
+            author = self._coalesce(row, "author", "speaker", "user", "nick", "username", default=None)
 
             # Accept only official gold fields
             gold = self._coalesce(row, "conv_id", "conversation_id", default=None)
@@ -256,6 +253,7 @@ class UbuntuIrcDataset:
             logger.warning("No messages loaded for split=%s from %s", self.split, path)
 
         # 2) Sort within each session
+        # Commented as message indexes come already sorted by time
         """for s in sessions.values():
             s.sort(key=lambda m: (m.mid))"""
 
@@ -279,7 +277,6 @@ class UbuntuIrcDataset:
                     gold_list: Optional[List[Any]] = window_gold
                 else:
                     gold_list = None
-                    # Optional: log once per bad window (helps debugging mismatched field names)
                     if any(g is not None for g in window_gold):
                         logger.debug(
                             "Partial gold found in chunk %s_%06d (some messages missing gold labels).",
@@ -287,14 +284,14 @@ class UbuntuIrcDataset:
                         )
 
                 # Convenience lists for runners (ids/authors/texts/is_system)
-                ids       = [m.mid for m in window]
+                ids = [m.mid for m in window]
                 authors = []
                 for m in window:
                     a = (m.author or "").strip()
                     if not a:
                         a = _fallback_author_from_text(m.text)
                     authors.append(a)
-                texts     = [m.text for m in window]
+                texts = [m.text for m in window]
                 is_system = [m.is_system for m in window]
 
                 # stable, human-readable chunk_id

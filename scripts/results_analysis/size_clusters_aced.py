@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
-# scripts/cluster_ace_histogram.py
-# Prints, for each cluster size s>=2:  (# exact-matched gold clusters of size s) / (total gold clusters of size s) >>> %
 from __future__ import annotations
 from pathlib import Path
 from collections import defaultdict, Counter
 import json, sys
 
+"""
+This script takes in a predictions.jsonl file and outputs the sizes of the perfectly predicted clusters
+"""
+
 # --- config (edit if needed) ---
-PRED_PATH     = Path("data/results_batch/best_response/predictions-run1.jsonl")
-CONFIG_YAML   = "configs/batch.yaml"
+PRED_PATH = Path("data/results_batch/best_response/predictions-run1.jsonl")
+CONFIG_YAML = "configs/batch.yaml"
 EXPECTED_SIZE = 50
-# --------------------------------
+
 
 def load_cfg_and_dataset():
     try:
@@ -29,6 +31,7 @@ def load_cfg_and_dataset():
         print(f"[warn] CONFIG chunk_size={cfg.run.chunk_size} != EXPECTED_SIZE={EXPECTED_SIZE}")
     return ds
 
+
 def read_predictions(path: Path):
     if not path.exists():
         sys.exit(f"Missing predictions file: {path}")
@@ -39,6 +42,7 @@ def read_predictions(path: Path):
         rows.append(json.loads(ln))
     return rows
 
+
 def index_sets(labels):
     """Return list of frozenset index sets (one per cluster label)."""
     mp = defaultdict(list)
@@ -46,10 +50,12 @@ def index_sets(labels):
         mp[int(c)].append(i)
     return [frozenset(ixs) for ixs in mp.values()]
 
+
 def bin_label(size: int) -> str:
     if 2 <= size <= 15: return str(size)
     if 16 <= size <= 20: return "16-20"
     return "21+"
+
 
 def main():
     ds = load_cfg_and_dataset()
@@ -119,6 +125,7 @@ def main():
         pct = (100.0 * a / t) if t else 0.0
         # fixed-width "a / t", then aligned arrows and percent
         print(f"{b:<5} {a:>{aw}} / {t:<{tw}}  >>> {pct:6.2f}%")
+
 
 if __name__ == "__main__":
     main()

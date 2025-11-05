@@ -1,4 +1,11 @@
 #!/usr/bin/env python
+
+"""
+This script runs an ensemble of the FF model, the StructureBERT model and our BR system.
+It keeps only those conversations 2/3 models agree on, with one of the two models being BR.
+It outputs a new predictions.jsonl file with the resulting conversations.
+"""
+
 from __future__ import annotations
 
 import argparse
@@ -203,4 +210,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

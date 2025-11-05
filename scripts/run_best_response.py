@@ -1,4 +1,9 @@
 #!/usr/bin/env python
+
+"""
+This file runs the BR system using the synchronous OpenAI API.
+"""
+
 from __future__ import annotations
 import argparse
 from pathlib import Path
@@ -14,21 +19,6 @@ from src.disentangle.utils.logging import setup_logger
 
 logger = setup_logger(__name__)
 
-def _pin_model_snapshot(name: str) -> str:
-    """
-    Paper parity: prefer exact snapshots. Adjust this function if your account
-    uses different snapshot aliases.
-    """
-    if name in {"gpt-4o"}:
-        pinned = "gpt-4o-2024-08-06"
-        logger.info("Pinning model %s -> %s for paper parity.", name, pinned)
-        return pinned
-    elif name in {"gpt-4o-mini"}:
-        pinned = "gpt-4o-mini-2024-07-18"
-        logger.info("Pinning model %s -> %s for paper parity.", name, pinned)
-        return pinned
-    # If user provided a specific dated snapshot already, keep it.
-    return name
 
 def main():
     ap = argparse.ArgumentParser()
@@ -46,11 +36,9 @@ def main():
     # Prompts + API client
     prompts = PromptLoader(Path(cfg.paths.prompts_dir))
 
-    # Enforce paper-parity decoding for base methods:
-    model_name = _pin_model_snapshot(cfg.model.name) if cfg.model.provider.lower() == "openai" else cfg.model.name
     client = get_client(
         cfg.model.provider,
-        model=model_name,
+        model=cfg.model.name,
         temperature=0,
         max_tokens=cfg.model.max_tokens,
         structured=cfg.model.structured_outputs
@@ -62,7 +50,7 @@ def main():
     ds = UbuntuIrcDataset(
         data_root=Path(cfg.paths.processed_dir) / "ubuntu_irc",
         split=cfg.run.split,
-        chunk_size=cfg.run.chunk_size,  # paper uses 50
+        chunk_size=cfg.run.chunk_size,
         seed=cfg.run.seed,
     )
     chunks = ds.load_chunks()
@@ -98,7 +86,7 @@ def main():
         with ThreadPoolExecutor(max_workers=args.workers) as ex:
             futs = {ex.submit(_process_chunk, ch): ch.chunk_id for ch in chunks}
             for fut in as_completed(futs):
-                out = fut.result()  # re-raise on exception
+                out = fut.result()
                 rows.append(out)
         # Preserve original chunk order in the output file
         rows.sort(key=lambda r: order_index.get(r["chunk_id"], 10**9))
@@ -106,6 +94,7 @@ def main():
     out_path = results_dir / "predictions.jsonl"
     write_jsonl(out_path, rows)
     logger.info("Wrote predictions to %s", out_path)
+
 
 if __name__ == "__main__":
     main()

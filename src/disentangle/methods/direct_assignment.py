@@ -9,9 +9,11 @@ from ..utils.logging import setup_logger
 
 logger = setup_logger(__name__)
 
+
 def _normalize_ids(ids: List[Any]) -> List[str]:
     # Force everything to str to avoid int/str mismatches downstream
     return [str(x) for x in ids]
+
 
 def _coerce_int(value: Any) -> Optional[int]:
     if value is None:
@@ -49,6 +51,7 @@ def _render_clusters(display_ids: List[str], authors: List[str], texts: List[str
         lines.append("")  # blank line between clusters
     return "\n".join(lines).rstrip()
 
+
 def _build_user_prompt_for_step(
     display_ids: List[str],
     authors: List[str],
@@ -69,6 +72,7 @@ def _build_user_prompt_for_step(
     lines.append(f"{display_ids[i]} | {auth_i}: {texts[i]}")
     return "\n".join(lines)
 
+
 @dataclass
 class DirectAssignmentRunner:
     client: OpenAIClient
@@ -84,7 +88,7 @@ class DirectAssignmentRunner:
         is_system: Optional[List[bool]] = None,
     ) -> Dict[str, Any]:
         """
-        Direct-Assignment as in the paper:
+        Direct Assignment:
 
           For i = 0..n-1:
             - Show ALL clusters formed so far (1..K), each with all members as "ID: text".
@@ -95,7 +99,7 @@ class DirectAssignmentRunner:
 
           We keep deterministic numbering: the first new conversation is 1, then 2, etc., in the order created.
 
-          Change in this version:
+          Also:
             - Use simple numeric DISPLAY IDs (1..n) in the prompt only (internal ids untouched).
         """
         ids = _normalize_ids(ids_in)

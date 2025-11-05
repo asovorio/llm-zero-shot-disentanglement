@@ -1,11 +1,7 @@
 from __future__ import annotations
-from typing import Any, Dict
 import json
+from anthropic import Anthropic
 
-try:
-    from anthropic import Anthropic
-except Exception:  # pragma: no cover
-    Anthropic = None  # type: ignore
 
 class AnthropicClient:
     """

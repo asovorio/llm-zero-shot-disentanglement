@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """
-Compute conversation-level precision/recall for every predictions JSONL file in a
-directory using the exact evaluation logic from scripts/evaluate.py, then emit a
+This script computes conversation-level precision/recall for every predictions JSONL file in a
+directory using the exact evaluation logic from scripts/evaluate.py, then emits a
 Matplotlib scatter plot (precision on the x-axis, recall on the y-axis).
 """
 

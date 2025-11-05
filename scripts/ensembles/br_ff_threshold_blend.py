@@ -1,4 +1,12 @@
 #!/usr/bin/env python
+
+"""
+This script runs an ensemble of the FF model and our BR system.
+It takes a predictions.jsonl file of the FF model that has an "x" for those message's whose parent it was <75% sure on.
+Then, it takes BR's prediction only on those messages' parents with an "x" and keeps that parent as a result.
+The output is a new predictions.jsonl file of the resulting ensemble.
+"""
+
 from __future__ import annotations
 
 import argparse
@@ -139,4 +147,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

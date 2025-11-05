@@ -1,11 +1,8 @@
 from __future__ import annotations
 import os
-from typing import Optional, Dict, Any, List
+from typing import Optional, Dict, Any
+from openai import OpenAI
 
-try:
-    from openai import OpenAI
-except Exception:  # pragma: no cover
-    OpenAI = None  # type: ignore
 
 class OpenAIClient:
     """
@@ -31,12 +28,12 @@ class OpenAIClient:
                 {"role": "system", "content": system},
                 {"role": "user", "content": user},
             ],
-            #temperature=self.temperature, # not used for gpt5-mini
-            #max_tokens=self.max_tokens,
+            # temperature=self.temperature, # not used for gpt-5
+            # max_tokens=self.max_tokens, # not used for gpt-5
         )
         if self.structured:
             kwargs["response_format"] = {"type": "json_object"}
-        #if self.reasoning_effort:
-            #kwargs["reasoning"] = {"effort": self.reasoning_effort}
+        # if self.reasoning_effort: # the best reasoning effort was found to be = medium already
+            # kwargs["reasoning"] = {"effort": self.reasoning_effort}
         resp = self.client.chat.completions.create(**kwargs)
         return resp.choices[0].message.content or ""

@@ -1,4 +1,9 @@
 #!/usr/bin/env python
+
+"""
+This file evaluates a predictions.jsonl file with all the specified (in the YAML file) metrics.
+"""
+
 from __future__ import annotations
 import argparse
 from pathlib import Path
@@ -13,7 +18,8 @@ from src.disentangle.utils.logging import setup_logger
 
 logger = setup_logger(__name__)
 
-# -------------------- minimal helpers for link metrics --------------------
+
+# helper functions for link metrics
 
 def _sanitize_parents(parents: List[Any]) -> List[int]:
     n = len(parents)
@@ -28,6 +34,7 @@ def _sanitize_parents(parents: List[Any]) -> List[int]:
         out.append(q)
     return out
 
+
 def _link_sets(gold_parents: List[int], pred_parents: List[int]) -> Tuple[set, set]:
     gp = _sanitize_parents(gold_parents)
     pp = _sanitize_parents(pred_parents)
@@ -36,13 +43,15 @@ def _link_sets(gold_parents: List[int], pred_parents: List[int]) -> Tuple[set, s
     pred_edges = {(i, pp[i]) for i in range(n) if pp[i] != i}  # exclude self-links
     return gold_edges, pred_edges
 
+
 def _link_prf(gold_parents: List[int], pred_parents: List[int]) -> Tuple[float, float, float, int, int, int]:
     gold_edges, pred_edges = _link_sets(gold_parents, pred_parents)
     tp = len(gold_edges & pred_edges)
-    P = (tp / len(pred_edges)) if pred_edges else 0.0
-    R = (tp / len(gold_edges)) if gold_edges else 0.0
-    F = (2 * P * R / (P + R)) if (P + R) > 0 else 0.0
-    return float(P), float(R), float(F), tp, len(pred_edges), len(gold_edges)
+    p = (tp / len(pred_edges)) if pred_edges else 0.0
+    r = (tp / len(gold_edges)) if gold_edges else 0.0
+    f = (2 * p * r / (p + r)) if (p + r) > 0 else 0.0
+    return float(p), float(r), float(f), tp, len(pred_edges), len(gold_edges)
+
 
 def _split_to_raw_stem(split: str) -> str:
     split = split.lower()
@@ -55,11 +64,11 @@ def _split_to_raw_stem(split: str) -> str:
     else:
         return "ubuntu_validation"
 
+
 def _load_reply_to_map(raw_root: Path, split: str) -> Dict[int, Optional[int]]:
     """
     Load gold reply edges: message_id -> reply_to_id (or None) from raw HF export.
-    NOTE: gold is single-parent here; we evaluate non-self edges, matching IBM's link P/R/F
-    (self-links are evaluated separately in their paper; we omit them). :contentReference[oaicite:2]{index=2}
+    We evaluate non-self link messages
     """
     stem = _split_to_raw_stem(split)
     path = raw_root / f"{stem}.jsonl"
@@ -90,7 +99,8 @@ def _load_reply_to_map(raw_root: Path, split: str) -> Dict[int, Optional[int]]:
             mp[mid] = rt
     return mp
 
-# -------------------- original-style loaders (unchanged clustering path) --------------------
+
+# Loader functions
 
 def _load_gold_and_pred_ubuntu(cfg, predictions_path: Path):
     ds = UbuntuIrcDataset(
@@ -127,10 +137,12 @@ def _load_gold_and_pred_ubuntu(cfg, predictions_path: Path):
             roots: Dict[int, int] = {}
             clusters = [0]*n
             next_cid = 0
+
             def root(i: int) -> int:
-                seen=set()
+                seen = set()
                 while parents[i] != i and i not in seen and 0 <= parents[i] < n:
-                    seen.add(i); i = parents[i]
+                    seen.add(i)
+                    i = parents[i]
                 return i
             for i in range(n):
                 r = root(i)
@@ -149,7 +161,7 @@ def _load_gold_and_pred_ubuntu(cfg, predictions_path: Path):
     return golds, preds, order_ids, by_id
 
 
-# -------------------- main --------------------
+# main function of the script
 
 def main():
     ap = argparse.ArgumentParser()
@@ -174,7 +186,7 @@ def main():
     # Standard clustering metrics (unchanged)
     report: EvaluationReport = evaluate_chunks(golds, preds, cfg.eval.metrics)
 
-    # ---------- Link metrics (IBM-style: non-self edges). Summary = MICRO ----------
+    # Link metrics
     pred_rows = read_jsonl(predictions_path)
     has_parents_any = any(isinstance(r.get("parents"), list) for r in pred_rows)
 
@@ -225,10 +237,10 @@ def main():
                         parent_idx[j] = j  # self if none/outside
 
             # per-chunk (macro) values for per_chunk.jsonl
-            P, R, F, tp, pred_e, gold_e = _link_prf(parent_idx, pp)
-            report.per_chunk[i]["link_p"] = P
-            report.per_chunk[i]["link_r"] = R
-            report.per_chunk[i]["link_f"] = F
+            p, r, f, tp, pred_e, gold_e = _link_prf(parent_idx, pp)
+            report.per_chunk[i]["link_p"] = p
+            report.per_chunk[i]["link_r"] = r
+            report.per_chunk[i]["link_f"] = f
 
             # accumulate MICRO counts for summary
             tot_tp += tp
@@ -251,6 +263,7 @@ def main():
     else:
         out_dir = ensure_dir(results_root / "eval" / cfg.run.dataset / cfg.run.split)
     save_report(out_dir / "per_chunk.jsonl", out_dir / "summary.json", report)
+
 
 if __name__ == "__main__":
     main()

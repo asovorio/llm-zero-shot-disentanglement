@@ -1,4 +1,11 @@
 #!/usr/bin/env python
+
+"""
+This script runs an ensemble of the FF model, the StructureBERT model and our BR system.
+It keeps only those parent-links 2/3 models agree on, and for those where all models disagree BR's prediction is kept.
+It outputs a new predictions.jsonl file with the resulting parent-links and conversations.
+"""
+
 from __future__ import annotations
 
 import argparse
@@ -148,4 +155,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

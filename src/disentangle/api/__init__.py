@@ -1,8 +1,6 @@
 from .openai_client import OpenAIClient
-try:
-    from .anthropic_client import AnthropicClient
-except Exception:  # pragma: no cover
-    AnthropicClient = None  # type: ignore
+from .anthropic_client import AnthropicClient
+
 
 def get_client(provider: str, *, model: str, temperature: float = 0.0, max_tokens: int = 400, structured: bool = True):
     p = (provider or "openai").lower()
@@ -13,5 +11,6 @@ def get_client(provider: str, *, model: str, temperature: float = 0.0, max_token
             raise ImportError("anthropic package not installed. `pip install anthropic`")
         return AnthropicClient(model=model, temperature=temperature, max_tokens=max_tokens, structured=structured)
     raise ValueError(f"Unknown provider: {provider}")
+
 
 __all__ = ["OpenAIClient", "AnthropicClient", "get_client"]

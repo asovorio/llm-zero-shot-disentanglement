@@ -1,14 +1,15 @@
 #!/usr/bin/env python
 from pathlib import Path
-import json, random, math
+import json, random
 from datetime import datetime, timezone
 from collections import defaultdict
 
-SRC = Path("data/processed/ubuntu_irc/ubuntu_dev.jsonl")
+SRC = Path("data/processed/ubuntu_irc/ubuntu_dev.jsonl")  # Hardcoded and not yaml because it's an assistance script
 DST = Path("data/subsets/ubuntu_irc/ubuntu_dev.jsonl")
 N_DAYS = 5
 TAKE_PER_DAY = 110
 SEED = 123
+
 
 def ts_to_yyyymmdd(ts):
     """Return UTC 'YYYY-MM-DD' from seconds/ms or ISO8601; 'unknown' on failure."""
@@ -33,6 +34,7 @@ def ts_to_yyyymmdd(ts):
         return datetime.utcfromtimestamp(x).strftime("%Y-%m-%d")
     except Exception:
         return "unknown"
+
 
 # Load
 lines = [s for s in SRC.read_text(encoding="utf-8").splitlines() if s.strip()]
@@ -71,5 +73,5 @@ with DST.open("w", encoding="utf-8") as f:
         r.pop("_idx", None)
         f.write(json.dumps(r, ensure_ascii=False) + "\n")
 
-print(f"✅ Picked days: {', '.join(day for day, _ in picked)}")
-print(f"➡️ Wrote {len(out)} rows (2 × {TAKE_PER_DAY}) to {DST}")
+print(f"Picked days: {', '.join(day for day, _ in picked)}")
+print(f"Wrote {len(out)} rows (2 × {TAKE_PER_DAY}) to {DST}")

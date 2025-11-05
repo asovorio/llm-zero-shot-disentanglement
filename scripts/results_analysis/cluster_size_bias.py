@@ -1,17 +1,20 @@
 #!/usr/bin/env python3
-# scripts/cluster_size_bias_by_gold.py
-# For each gold cluster size (>=2), report average size difference:
-# avg( |best_pred_for_g| - |g| ), where "best_pred_for_g" maximizes overlap with g inside the chunk.
+
+"""
+This script takes in a predictions.jsonl file and for each gold cluster size (>=2), reports the average size difference
+The objective is to find if the predictions are over-merging or under-merging clusters
+"""
+
 from __future__ import annotations
 from pathlib import Path
 from collections import defaultdict, Counter
 import json, sys
 
 # --- config (edit if needed) ---
-PRED_PATH     = Path("data/results/direct_assignment/dev/predictions-run2.jsonl")
-CONFIG_YAML   = "configs/batch.yaml"
+PRED_PATH = Path("data/results/direct_assignment/dev/predictions-run2.jsonl")
+CONFIG_YAML = "configs/batch.yaml"
 EXPECTED_SIZE = 50
-# --------------------------------
+
 
 def load_cfg_and_dataset():
     try:
@@ -30,15 +33,18 @@ def load_cfg_and_dataset():
         print(f"[warn] CONFIG chunk_size={cfg.run.chunk_size} != EXPECTED_SIZE={EXPECTED_SIZE}")
     return ds
 
+
 def read_predictions(path: Path):
     if not path.exists():
         sys.exit(f"Missing predictions file: {path}")
     rows = []
     for ln in path.read_text(encoding="utf-8").splitlines():
         ln = ln.strip()
-        if not ln: continue
+        if not ln:
+            continue
         rows.append(json.loads(ln))
     return rows
+
 
 def label_to_sets(labels):
     """Return list of sets of indices, one per cluster label."""
@@ -46,6 +52,7 @@ def label_to_sets(labels):
     for i, c in enumerate(labels):
         mp[int(c)].append(i)
     return [set(ixs) for ixs in mp.values()]
+
 
 def main():
     ds = load_cfg_and_dataset()
@@ -105,6 +112,7 @@ def main():
         avg = sum_diff[s] / n if n else 0.0
         # Negative = predicted smaller (under-split); Positive = predicted larger (over-merge)
         print(f"{str(s):<5} {avg:+7.3f}  {n}")
+
 
 if __name__ == "__main__":
     main()

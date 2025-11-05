@@ -1,18 +1,18 @@
 from __future__ import annotations
-from typing import List, Dict, Any, Tuple
+from typing import List, Dict, Tuple
 import numpy as np
 from sklearn.metrics import normalized_mutual_info_score, adjusted_rand_score
 from collections import defaultdict
 
-# ----------------------------
+
 # Helpers shared by metrics
-# ----------------------------
 
 def _clusters_from_labels(labels: List[int]) -> List[set]:
     buckets: Dict[int, set] = defaultdict(set)
     for i, l in enumerate(labels):
         buckets[l].add(i)
     return list(buckets.values())
+
 
 def _pairwise_same_cluster(labels: List[int]) -> np.ndarray:
     n = len(labels)
@@ -22,13 +22,12 @@ def _pairwise_same_cluster(labels: List[int]) -> np.ndarray:
         arr[i] = (L == L[i])
     return arr
 
-# ----------------------------
+
 # Shen-F (gold-weighted best-F1 per gold cluster)
-# ----------------------------
 
 def shen_f_score(true_labels: List[int], pred_labels: List[int]) -> float:
     """
-    Shen et al. (2006) style: for each gold conversation, take the best F1
+    For each gold conversation, take the best F1
     against any predicted conversation; average weighted by gold cluster size.
     """
     assert len(true_labels) == len(pred_labels)
@@ -52,22 +51,20 @@ def shen_f_score(true_labels: List[int], pred_labels: List[int]) -> float:
             if inter == 0:
                 continue
             prec = inter / psz
-            rec  = inter / gsz
+            rec = inter / gsz
             f1 = (2 * prec * rec) / (prec + rec) if (prec + rec) > 0 else 0.0
             if f1 > best_f1:
                 best_f1 = f1
         total += (gsz / n) * best_f1
     return float(total)
 
-# ----------------------------
+
 # VI (scaled 1 − VI / log(n))
-# ----------------------------
 
 def vi_one_minus(true_labels: List[int], pred_labels: List[int]) -> float:
     """
-    Kummerfeld et al. (2019) §4.3:
-      Scaled Variation of Information using the bound VI(X;Y) <= log(n).
-      We return 1 - VI/log(n) in [0,1], larger is better.
+    Scaled Variation of Information using the bound VI(X;Y) <= log(n).
+    We return 1 - VI/log(n) in [0,1], larger is better.
     """
     n = len(true_labels)
     if n <= 1:
@@ -111,9 +108,8 @@ def vi_one_minus(true_labels: List[int], pred_labels: List[int]) -> float:
     if scaled > 1.0: scaled = 1.0
     return float(scaled)
 
-# ----------------------------
+
 # 1-1 Overlap (optimal matching)
-# ----------------------------
 
 def _hungarian_min_cost(cost: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
     """
@@ -218,11 +214,11 @@ def _hungarian_min_cost(cost: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
                     break
     return row_ind, col_ind
 
+
 def one_to_one_overlap(true_labels: List[int], pred_labels: List[int]) -> float:
     """
-    Elsner & Charniak (2008) / Kummerfeld et al. (2019):
-      Maximize total overlap between gold/pred conversations with a 1-1 pairing.
-      We return (sum of matched overlaps) / n in [0,1], keeping system msgs.
+    Maximize total overlap between gold/pred conversations with a 1-1 pairing.
+    We return (sum of matched overlaps) / n in [0,1], keeping system msgs.
     """
     n = len(true_labels)
     if n == 0:
@@ -250,10 +246,9 @@ def one_to_one_overlap(true_labels: List[int], pred_labels: List[int]) -> float:
             total += W[i, j]
     return float(total / n)
 
-# ----------------------------
-# Exact Match (exclude singletons)
-# ----------------------------
 
+
+# Exact Match (exclude singletons)
 def exact_match_prf(true_labels: List[int], pred_labels: List[int]) -> Tuple[float, float, float]:
     """
     Exact match over conversations, excluding clusters of size 1 in both gold and pred.
@@ -273,13 +268,12 @@ def exact_match_prf(true_labels: List[int], pred_labels: List[int]) -> Tuple[flo
     F = (2 * P * R / (P + R)) if (P + R) > 0 else 0.0
     return float(P), float(R), float(F)
 
-# ----------------------------
+
 # Public entry
-# ----------------------------
 
 def compute_metrics(true_labels: List[int], pred_labels: List[int], metrics: List[str]) -> Dict[str, float]:
     """
-    Supported keys (case/alias tolerant):
+    Supported keys in yaml file (case/alias tolerant):
       - "nmi"                : sklearn NMI (0..1)
       - "ari"                : sklearn ARI (−1..1, usually 0..1 here)
       - "shen_f"             : Shen-style weighted F (0..1)
@@ -292,7 +286,6 @@ def compute_metrics(true_labels: List[int], pred_labels: List[int], metrics: Lis
     out: Dict[str, float] = {}
 
     if "nmi" in req:
-        # Be explicit about averaging method
         out["nmi"] = float(normalized_mutual_info_score(true_labels, pred_labels, average_method="arithmetic"))
     if "ari" in req:
         out["ari"] = float(adjusted_rand_score(true_labels, pred_labels))

@@ -1,15 +1,20 @@
 #!/usr/bin/env python3
-# scripts/pretty_print_chunk.py
+
+"""
+This script takes in a predictions.jsonl file, its yaml file and a specified chunk
+It prints that chunk with all its messages and predicted clusters and the true clusters
+The objective is to visually inspect the specific errors the model did
+"""
+
 from __future__ import annotations
 from pathlib import Path
 from collections import Counter, defaultdict
 import shutil, textwrap, json, re, sys, os, colorsys, hashlib, random
 
-# ---------- CONFIG (edit these) ----------
-CHUNK_ID   = "2005-06-27_000150"   # <-- the chunk to inspect
+# ---------- config (edit if needed) ---------
+CHUNK_ID = "2005-06-27_000150"   # <-- the chunk to inspect
 CONFIG_YAML = "configs/batch.yaml"   # <-- same config you used for predictions/eval
-PRED_PATH  = Path("data/results_batch/best_response/predictions-run1.jsonl")  # predictions JSONL
-# ----------------------------------------
+PRED_PATH = Path("data/results_batch/best_response/predictions-run1.jsonl")  # predictions JSONL
 
 # ANSI helpers
 ANSI_RESET = "\x1b[0m"
@@ -17,20 +22,24 @@ ansi_re = re.compile(r"\x1b\[[0-9;]*m")
 def strip_ansi(s): return ansi_re.sub("", s)
 def colorize(s, code): return f"\x1b[{code}m{s}{ANSI_RESET}"
 
+
 def term_width(default=120):
     try:
         return shutil.get_terminal_size((default, 40)).columns
     except Exception:
         return default
 
-# -------- Color system: Truecolor -> 256 -> basic fallback --------
+
+# -------- Color system --------
 def _supports_truecolor():
     ct = os.environ.get("COLORTERM", "").lower()
     return "truecolor" in ct or "24bit" in ct
 
+
 def _supports_256():
     term = os.environ.get("TERM", "").lower()
     return "256color" in term
+
 
 USE_TRUECOLOR = _supports_truecolor()
 USE_256 = _supports_256() or not USE_TRUECOLOR  # prefer 256 if truecolor off
@@ -38,9 +47,11 @@ USE_256 = _supports_256() or not USE_TRUECOLOR  # prefer 256 if truecolor off
 # Basic ANSI fallback (only if neither truecolor nor 256 is available)
 BASIC_FG = ["31","32","33","34","35","36","91","92","93","94","95","96"]
 
+
 def _hsv_to_rgb255(h, s, v):
     r, g, b = colorsys.hsv_to_rgb(h % 1.0, max(0,min(1,s)), max(0,min(1,v)))
     return int(round(r*255)), int(round(g*255)), int(round(b*255))
+
 
 def _rgb_to_256(r, g, b):
     # map to 6x6x6 cube (16..231)
@@ -48,6 +59,7 @@ def _rgb_to_256(r, g, b):
     gi = int(round(g / 255 * 5))
     bi = int(round(b / 255 * 5))
     return 16 + 36 * ri + 6 * gi + bi
+
 
 def _code_from_rgb(r, g, b):
     if USE_TRUECOLOR:
@@ -59,8 +71,10 @@ def _code_from_rgb(r, g, b):
     idx = int(round(h * (len(BASIC_FG)-1))) % len(BASIC_FG)
     return BASIC_FG[idx]
 
+
 def _seed_int(s: str) -> int:
     return int(hashlib.md5(s.encode("utf-8")).hexdigest(), 16) & 0xFFFFFFFF
+
 
 def build_distinct_palette(n: int, seed: str):
     """
@@ -75,7 +89,7 @@ def build_distinct_palette(n: int, seed: str):
     rnd.shuffle(order)   # randomize assignment order (not a straight rainbow)
 
     codes = [None] * n
-    hues  = [None] * n
+    hues = [None] * n
     for k, idx in enumerate(order):
         h = (base_h + k * phi) % 1.0
         # jitter saturation/value but keep them high for contrast
@@ -83,8 +97,9 @@ def build_distinct_palette(n: int, seed: str):
         v = 0.80 + 0.15 * rnd.random()   # 0.80..0.95
         r, g, b = _hsv_to_rgb255(h, s, v)
         codes[idx] = _code_from_rgb(r, g, b)
-        hues[idx]  = h
+        hues[idx] = h
     return codes, hues
+
 
 def read_predictions_for_chunk(pred_path: Path, chunk_id: str, expected_len: int = 50):
     if not pred_path.exists():
@@ -100,7 +115,7 @@ def read_predictions_for_chunk(pred_path: Path, chunk_id: str, expected_len: int
             return clusters
     sys.exit(f"Chunk {chunk_id} not found in {pred_path}")
 
-# Robust getters (works whether items are dicts or small objects)
+
 def get_field(obj, *names, default=None):
     if isinstance(obj, dict):
         for n in names:
@@ -113,6 +128,7 @@ def get_field(obj, *names, default=None):
             if v is not None:
                 return v
     return default
+
 
 def main():
     # 1) Load config & dataset like evaluate.py
@@ -152,7 +168,7 @@ def main():
     # 3) Read predictions for this chunk
     preds = read_predictions_for_chunk(PRED_PATH, CHUNK_ID, expected_len=len(gold))
 
-    # 4) Build local gold labels for coloring (compact 0..K-1)
+    # 4) Build local gold labels for coloring
     true_gold_ids = [int(get_field(m, "conv_id", default=g)) if isinstance(g, int) else int(g) for m, g in zip(msgs, gold)]
     seen = {}
     local_gold = []
@@ -185,9 +201,9 @@ def main():
     # Helper: similarity key for sorting golds per predicted
     def simkey(p, g):
         # higher is better
-        return (overlap.get((p, g), 0), -first_co.get((p, g), 10**9), -g)
+        return overlap.get((p, g), 0), -first_co.get((p, g), 10**9), -g
 
-    # For each GOLD, find its single "winner" predicted cluster (the one most similar to it)
+    # For each GOLD, find its single "winner" predicted cluster (the one most similar to it). This will ease visual comparison
     winners = {}
     for g in gold_labels:
         best_p = max(pred_labels, key=lambda p: simkey(p, g))
@@ -248,8 +264,8 @@ def main():
 
     for i, (m, p_label, g_local, gid_true) in enumerate(zip(msgs, preds, local_gold, true_gold_ids)):
         author = get_field(m, "author", "user", "username", "speaker", "nick", default="UNK")
-        text   = get_field(m, "text", "body", "message", "content", default="") or ""
-        text   = text.replace("\n", " ")
+        text = get_field(m, "text", "body", "message", "content", default="") or ""
+        text = text.replace("\n", " ")
         pfx = colorize(f"[{i:02}] P{p_label:02} ", pred_color[p_label])
         base = f"<{author}> "
         prefix_len = len(strip_ansi(pfx)) + len(base)
@@ -262,6 +278,7 @@ def main():
         print(left_colored + " " * pad + " | " + right[:RIGHT_W])
 
     print()
+
 
 if __name__ == "__main__":
     main()

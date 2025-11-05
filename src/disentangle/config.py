@@ -4,12 +4,14 @@ from pathlib import Path
 from typing import List
 import yaml
 
+
 @dataclass
 class RunConfig:
     dataset: str
     split: str
     chunk_size: int
     seed: int
+
 
 @dataclass
 class ModelConfig:
@@ -20,6 +22,7 @@ class ModelConfig:
     structured_outputs: bool
     reasoning_effort: str
 
+
 @dataclass
 class PathsConfig:
     data_dir: Path
@@ -27,11 +30,13 @@ class PathsConfig:
     results_dir: Path
     prompts_dir: Path
 
+
 @dataclass
 class EvalConfig:
     metrics: List[str]
     report_json: bool
     report_csv: bool
+
 
 @dataclass
 class Config:
@@ -39,6 +44,7 @@ class Config:
     model: ModelConfig
     paths: PathsConfig
     eval: EvalConfig
+
 
 def load_config(path: str | Path) -> Config:
     with open(path, "r", encoding="utf-8") as f:

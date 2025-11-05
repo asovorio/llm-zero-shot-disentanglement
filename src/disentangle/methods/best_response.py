@@ -9,8 +9,10 @@ from ..utils.logging import setup_logger
 
 logger = setup_logger(__name__)
 
+
 def _normalize_ids(ids: List[Any]) -> List[str]:
     return [str(x) for x in ids]
+
 
 def _coerce_parent_id(value: Any) -> Optional[str]:
     """
@@ -36,6 +38,7 @@ def _coerce_parent_id(value: Any) -> Optional[str]:
         return str(int(value))
     return None
 
+
 def _render_history(display_ids: List[str], authors: List[str], texts: List[str], upto: int) -> str:
     """
     Render messages 0..upto-1 as 'DISPLAY_ID: author: text' lines.
@@ -46,6 +49,7 @@ def _render_history(display_ids: List[str], authors: List[str], texts: List[str]
         auth = authors[j] if authors and authors[j] else "UNKNOWN"
         lines.append(f"{display_ids[j]}: {auth}: {texts[j]}")
     return "\n".join(lines)
+
 
 def _build_user_prompt_for_step(
     display_ids: List[str],
@@ -65,6 +69,7 @@ def _build_user_prompt_for_step(
     auth_i = authors[i] if authors and authors[i] else "UNKNOWN"
     parts.append(f"{display_ids[i]}: {auth_i}: {texts[i]}")
     return "\n".join(parts)
+
 
 def _collapse_parents(parents: List[int]) -> List[int]:
     """
@@ -96,11 +101,12 @@ def _collapse_parents(parents: List[int]) -> List[int]:
         labels[i] = label_of_root[r]
     return labels
 
+
 @dataclass
 class BestResponseRunner:
     client: OpenAIClient
     prompts: PromptLoader
-    dataset: str = "ubuntu_irc"  # Ubuntu rule: system => self
+    dataset: str = "ubuntu_irc"
 
     def run_chunk(
         self,
@@ -111,17 +117,17 @@ class BestResponseRunner:
         is_system: Optional[List[bool]] = None,
     ) -> Dict[str, Any]:
         """
-        Best-Response as in the paper:
+        Best-Response:
           - For each i, show ALL prior messages (0..i-1) and the 'Next message' (i).
           - Model returns {"response_to": "<some ID>"}.
           - Ubuntu: if message i is system, parent is self (id_i).
           - Validation: if response_to is missing/not a prior id, default to self.
           - Collapse parent links into conversation clusters.
 
-        Change in this version:
+        Also:
           - Use simple numeric DISPLAY IDs (1..n) in the prompt only.
           - Map model's numeric response back to an index: k in {1..i} -> parent = k-1; else self.
-          - NEW: If the chosen parent is a system message, reroute to the nearest non-system ancestor; if none, use self.
+          - If the chosen parent is a system message, reroute to the nearest non-system ancestor; if none, use self.
         """
         ids = _normalize_ids(ids_in)
         n = len(ids)
@@ -183,7 +189,7 @@ class BestResponseRunner:
                     except Exception:
                         parent_idx = i
 
-            # --- Reroute if parent is system: follow its ancestor until a non-system, else self
+            # Reroute if parent is system: follow its ancestor until a non-system, else self
             if parent_idx != i and is_system[parent_idx]:
                 p = parent_idx
                 seen = set()

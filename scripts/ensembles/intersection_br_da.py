@@ -1,4 +1,11 @@
 #!/usr/bin/env python
+
+"""
+This script runs an ensemble of a DR and a BR run (originally using gpt-5-mini).
+It keeps only those conversations both models agree on.
+It outputs a new predictions.jsonl file with the resulting conversations.
+"""
+
 from __future__ import annotations
 
 import argparse
@@ -148,10 +155,10 @@ def build_intersection(
 
 
 def main():
-    ap = argparse.ArgumentParser(description="Intersection ensemble between Best Response and Direct Assignment clusters.")
+    ap = argparse.ArgumentParser(description="Intersection between Best Response and Direct Assignment clusters.")
     ap.add_argument("--config", required=True, help="Path to ensemble YAML config")
-    ap.add_argument("--best-response", dest="best_response", help="Override path to best_response predictions.jsonl")
-    ap.add_argument("--direct-assignment", dest="direct_assignment", help="Override path to direct_assignment predictions.jsonl")
+    ap.add_argument("--best-response", dest="best_response", help="Path to best_response predictions.jsonl")
+    ap.add_argument("--direct-assignment", dest="direct_assignment", help="Path to direct_assignment predictions.jsonl")
     args = ap.parse_args()
 
     cfg = load_config(args.config)
@@ -187,4 +194,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

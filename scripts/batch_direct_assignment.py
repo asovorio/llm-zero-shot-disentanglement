@@ -1,4 +1,11 @@
 #!/usr/bin/env python
+
+"""
+This file runs the DA system using the BatchAPI. It's behaviour is identical to that of "run_direct_assignment.py"
+Since within a chunk, message m's prompt depends on the previous messages (0,...,m-1) prompt results because we build the clusters sequentially,
+we will do 50 Batch API calls (50 message chunks), with each call having one message per chunk.
+"""
+
 from __future__ import annotations
 
 import argparse

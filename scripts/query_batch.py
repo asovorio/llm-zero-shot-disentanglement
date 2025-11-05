@@ -1,8 +1,14 @@
 #!/usr/bin/env python
+
+"""
+This script queries OpenAI's Batch API to see the state of a batch (how many of the prompts are completed, etc)
+"""
+
 from __future__ import annotations
 import argparse, time
 from typing import Any, Dict
 from openai import OpenAI
+
 
 def _rc_to_dict(rc: Any) -> Dict[str, int]:
     """Convert OpenAI BatchRequestCounts (Pydantic) to a plain dict."""
@@ -10,15 +16,14 @@ def _rc_to_dict(rc: Any) -> Dict[str, int]:
         return {}
     if isinstance(rc, dict):
         return rc
-    # Try Pydantic helpers (OpenAI SDK models expose these)
     if hasattr(rc, "to_dict"):
-        return rc.to_dict()  # type: ignore[attr-defined]
-    # Fallback to attribute access
+        return rc.to_dict()
     out = {}
     for k in ("total", "completed", "failed", "processing"):
         if hasattr(rc, k):
             out[k] = getattr(rc, k)
     return out
+
 
 def show(batch_id: str):
     client = OpenAI()
@@ -40,6 +45,7 @@ def show(batch_id: str):
     if efid:
         print(f"Error file id:  {efid}")
 
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--id", required=True, help="Batch ID (e.g., batch_...)")
@@ -59,6 +65,7 @@ def main():
         if getattr(b, "status", "") in ("completed", "failed", "expired", "canceled"):
             break
         time.sleep(args.watch)
+
 
 if __name__ == "__main__":
     main()

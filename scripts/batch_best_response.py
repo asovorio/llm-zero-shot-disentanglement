@@ -1,4 +1,9 @@
 #!/usr/bin/env python
+
+"""
+This file runs the BR system using the BatchAPI. It's behaviour is identical to that of "run_best_response.py"
+"""
+
 from __future__ import annotations
 import argparse, json, hashlib, time
 from pathlib import Path
@@ -13,19 +18,22 @@ from src.disentangle.prompting.schema import parse_json_object
 from src.disentangle.utils.io import ensure_dir, write_jsonl
 from src.disentangle.utils.logging import setup_logger
 
-# Reuse existing helpers from your BR runner to guarantee identical behavior
+# Reusing existing helpers from the normal BR runner to guarantee identical behavior
 from src.disentangle.methods.best_response import (
     _build_user_prompt_for_step, _collapse_parents, _coerce_parent_id
 )
 
 logger = setup_logger(__name__)
 
+
 def _h(s: str) -> str:
     return hashlib.sha1(s.encode("utf-8")).hexdigest()[:10]
+
 
 def _make_custom_id(chunk_id: str, idx: int) -> str:
     base = f"br::{chunk_id}::{idx}"
     return f"{base}::{_h(base)}"
+
 
 def _build_batch_line(custom_id: str, model: str, messages: List[Dict[str, Any]], structured: bool) -> str:
     body: Dict[str, Any] = {"model": model, "messages": messages}
@@ -38,6 +46,7 @@ def _build_batch_line(custom_id: str, model: str, messages: List[Dict[str, Any]]
         "body": body
     }, ensure_ascii=False)
 
+
 def _poll_until_done(client: OpenAI, batch_id: str, sleep_s: float = 15.0):
     while True:
         b = client.batches.retrieve(batch_id)
@@ -45,6 +54,7 @@ def _poll_until_done(client: OpenAI, batch_id: str, sleep_s: float = 15.0):
         if b.status in ("completed", "failed", "expired", "canceled"):
             return b
         time.sleep(sleep_s)
+
 
 def _make_dataset(name: str, paths, run):
     name = name.lower()
@@ -54,6 +64,7 @@ def _make_dataset(name: str, paths, run):
             split=run.split, chunk_size=run.chunk_size, seed=run.seed
         )
     raise ValueError(f"Unknown dataset: {name}")
+
 
 def main():
     ap = argparse.ArgumentParser()
@@ -217,6 +228,7 @@ def main():
         f"config={args.config}\nmethod=best_response\nsplit={cfg.run.split}\npredictions={pred_path}\n",
         encoding="utf-8"
     )
+
 
 if __name__ == "__main__":
     main()

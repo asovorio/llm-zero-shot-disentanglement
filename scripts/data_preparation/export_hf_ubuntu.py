@@ -1,3 +1,7 @@
+"""
+This script extracts the Ubuntu IRC dataset from HuggingFace and stores it in data/raw
+"""
+
 from __future__ import annotations
 from datasets import load_dataset
 from pathlib import Path
@@ -16,6 +20,7 @@ SPLIT_NAME_TO_STEM = {
 # Typical raw line: "[18:42] <nick> message"
 RAW_RE = re.compile(r'^\[(\d{2}):(\d{2})\]\s+<([^>]+)>\s*(.*)$')
 
+
 def parse_raw_line(raw: str):
     """
     Parse '[HH:MM] <nick> text' lines.
@@ -30,11 +35,13 @@ def parse_raw_line(raw: str):
     # System-ish line (joins, parts, topics, etc.)
     return None, None, "SYSTEM", raw.strip(), True
 
+
 def to_timestamp(date_str: str, hh: int | None, mm: int | None) -> float:
     hh = 0 if hh is None else hh
     mm = 0 if mm is None else mm
     dt = datetime.strptime(f"{date_str} {hh:02d}:{mm:02d}", "%Y-%m-%d %H:%M")
     return float(dt.timestamp())
+
 
 def coerce_ints(xs):
     """Coerce connections into plain Python ints. Handles numpy ints, strings, dicts with 'id'."""
@@ -52,6 +59,7 @@ def coerce_ints(xs):
             pass
     return out
 
+
 def choose_reply_to(msg_id: int, connections):
     """
     Pick a single parent from 'connections' (no day constraints).
@@ -62,7 +70,8 @@ def choose_reply_to(msg_id: int, connections):
         return None
     msg_id = int(msg_id)
     earlier = [c for c in ints if c < msg_id]
-    return (max(earlier) if earlier else min(ints))
+    return max(earlier) if earlier else min(ints)
+
 
 def connected_components_undirected(nodes: list[int], edges: dict[int, set[int]]):
     """
@@ -87,12 +96,13 @@ def connected_components_undirected(nodes: list[int], edges: dict[int, set[int]]
         comps.append(comp)
     return comps
 
+
 def export_split(hf_split: str, out_path: Path, write_conv_id: bool):
     print(f"Loading split '{hf_split}' from jkkummerfeld/irc_disentangle (config='ubuntu')...")
     ds = load_dataset("jkkummerfeld/irc_disentangle", "ubuntu", split=hf_split)
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
-    # ---- NEW: first pass to determine context ids per day (1000 lowest ids per day) ----
+    # first pass to determine context ids per day (1000 lowest ids per day)
     ids_by_day: dict[str, list[int]] = defaultdict(list)
     for ex in ds:
         ids_by_day[ex["date"]].append(int(ex["id"]))
@@ -101,7 +111,7 @@ def export_split(hf_split: str, out_path: Path, write_conv_id: bool):
         ids.sort()
         context_ids.update(ids[:1000])  # if a day has <1000, all of them are "context"
 
-    # ---- Second pass: build rows and per-day graphs as before ----
+    # Second pass to build rows and per-day graphs
     n_rows = n_text = n_user = n_parent = n_system = n_ctx = 0
 
     per_day_nodes: dict[str, list[int]] = defaultdict(list)
@@ -109,15 +119,15 @@ def export_split(hf_split: str, out_path: Path, write_conv_id: bool):
     buffered_rows: list[tuple[str, int, dict]] = []
 
     for ex in ds:
-        msg_id      = int(ex.get("id"))
-        raw         = ex.get("raw")
-        date_str    = ex.get("date")              # e.g., "2011-01-01"
+        msg_id = int(ex.get("id"))
+        raw = ex.get("raw")
+        date_str = ex.get("date")
         connections = coerce_ints(ex.get("connections") or [])
 
         hh, mm, user, text, is_system = parse_raw_line(raw)
         ts = to_timestamp(date_str, hh, mm)
 
-        # Prepare base row (+ NEW: is_context)
+        # Prepare base row
         row = {
             "id": msg_id,
             "user": user,
@@ -125,7 +135,7 @@ def export_split(hf_split: str, out_path: Path, write_conv_id: bool):
             "timestamp": ts,
             "reply_to": choose_reply_to(msg_id, connections),
             "is_system": bool(is_system),
-            "is_context": (msg_id in context_ids),   # <-- NEW
+            "is_context": (msg_id in context_ids),
         }
 
         # basic quality stats
@@ -165,10 +175,11 @@ def export_split(hf_split: str, out_path: Path, write_conv_id: bool):
             f.write(json.dumps(row, ensure_ascii=False) + "\n")
 
     print(
-        f"✅ Wrote {out_path}  "
+        f"Wrote {out_path}  "
         f"(rows={n_rows} | text={n_text} | non-system users={n_user} | with_reply_to={n_parent} | "
         f"system={n_system} | context_marked={n_ctx})"
     )
+
 
 def main():
     ap = argparse.ArgumentParser()
@@ -185,6 +196,7 @@ def main():
         stem = SPLIT_NAME_TO_STEM[split]
         out_path = args.out_dir / f"{stem}.jsonl"
         export_split(split, out_path, write_conv_id=args.write_conv_id)
+
 
 if __name__ == "__main__":
     main()
