@@ -1,4 +1,4 @@
 config=configs/batch.yaml
-method=batch_direct_assignment
+method=best_response
 split=dev
-predictions=data\results_batch\direct_assignment\dev\predictions.jsonl
+predictions=data\results_batch\best_response\dev\predictions.jsonl
